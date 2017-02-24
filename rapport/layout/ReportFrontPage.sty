@@ -1,0 +1,54 @@
+% Public domain
+% Beta version
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{layout/ReportFrontPage}[2015/03/18 Version 0.1.0]
+
+\RequirePackage{ifthen}
+\RequirePackage{romannum}
+
+\DeclareRobustCommand{\frontpage}[1]{
+
+	\ifthenelse{\equal{\languagename}{\string french}}
+    	{\def \authors {Auteurs}}
+    	{\def \authors {Authors}}
+    
+  \ifthenelse{\equal{\languagename}{\string french}}
+    	{\def \professor {Professeur}}
+    	{\def \professor {Professor}}
+
+	\begin{titlepage}
+	\centering
+
+	% Title
+	\textsc{\LARGE Electronique, labo}\\[1.5cm]
+	\textsc{\Large Rapport}\\[0.5cm]
+	
+	\rule{\linewidth}{0.5mm} \\[0.4cm]
+	{\huge \bfseries #1\\[0.4cm]}
+
+	\rule{\linewidth}{0.5mm} \\[1.5cm]
+
+	% Author and supervisor
+	\noindent
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushleft}
+			\large \emph{\authors:}
+			  \\ \textsc{Spieler} Michael
+			  \\ \textsc{Rousset} Vianney
+		\end{flushleft}
+	\end{minipage}
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushright}
+			\large \emph{\professor :} \\ \textsc{Décurnex} André
+		\end{flushright}
+	\end{minipage}
+	
+	% Bottom of the page
+	\vfill
+	\today
+
+	\end{titlepage}
+}
+
+\endinput

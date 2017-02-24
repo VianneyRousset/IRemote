@@ -1,0 +1,49 @@
+% Public domain
+% Beta version
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{layout/Report}[2014/12/18 Version 0.1.2]
+
+\RequirePackage{amsfonts, hyperref, braket, numprint, siunitx, soul}
+\RequirePackage[makeroom]{cancel}
+
+\RequirePackage{pgfplots, pgfplotstable, float}
+\pgfplotsset{compat = 1.10}
+\usepgfplotslibrary{units}
+\usetikzlibrary{arrows}
+
+\RequirePackage{amsthm}
+\theoremstyle{remark}
+\newtheorem*{note}{Note}
+
+\RequirePackage{ifthen}
+
+\newif\ifmypackage@french
+\DeclareOption{french}{\mypackage@frenchtrue}
+\DeclareOption{english}{\mypackage@frenchfalse}
+
+\ExecuteOptions{english}
+\ProcessOptions\relax
+
+\ifmypackage@french
+	\RequirePackage[french]{babel}
+	\npdecimalsign{,}
+	\npthousandsep{'}
+	\AtBeginDocument{
+		\renewcommand{\figurename}{\textsc{Figure}}
+		\renewcommand{\tablename}{\textsc{Tableau}}
+	}
+\else
+	\RequirePackage[english]{babel}
+	\npdecimalsign{.}
+	\npthousandsep{,}
+\fi
+
+\providecommand\add@text{}
+\newcommand\tagaddtext[1]{
+	\gdef\add@text{#1\gdef\add@text{}}}
+\renewcommand\tagform@[1]{
+	\maketag@@@{\llap{\add@text\quad}(\ignorespaces#1\unskip\@@italiccorr)}
+}
+
+\endinput
