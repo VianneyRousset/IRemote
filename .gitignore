@@ -1,3 +1,5 @@
 *.aux
 *.fls
 *.out
+*.toc
+*.log
