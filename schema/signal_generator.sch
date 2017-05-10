@@ -280,7 +280,7 @@ $EndComp
 Wire Wire Line
 	2500 2750 2700 2750
 Wire Wire Line
-	2700 2100 2700 2750
+	2700 2750 2700 2100
 Wire Wire Line
 	1050 2100 2950 2100
 Connection ~ 2000 2100
@@ -421,7 +421,7 @@ $EndComp
 Wire Wire Line
 	8700 1950 8900 1950
 Wire Wire Line
-	8900 1300 8900 1950
+	8900 1950 8900 1300
 Wire Wire Line
 	7250 1300 9150 1300
 Connection ~ 8200 1300
