@@ -60,7 +60,7 @@ F 3 "" H 5650 4100 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L LED-RESCUE-IRemote D?
+L LED D?
 U 1 1 5910A491
 P 5750 3200
 F 0 "D?" H 5750 3300 50  0000 C CNN
@@ -70,10 +70,6 @@ F 3 "" H 5750 3200 50  0000 C CNN
 	1    5750 3200
 	0    -1   -1   0   
 $EndComp
-Wire Wire Line
-	5750 3800 5750 3900
-Wire Wire Line
-	5750 2950 5750 3050
 $Comp
 L +5V #PWR?
 U 1 1 5910A522
@@ -108,7 +104,22 @@ F 3 "" H 5750 3650 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
+	5750 3800 5750 3900
+Wire Wire Line
+	5750 2950 5750 3050
+Wire Wire Line
 	5750 3350 5750 3500
 Wire Wire Line
 	5450 4100 5100 4100
+$Comp
+L Q_NMOS_DGS Q?
+U 1 1 5910A46B
+P 5650 4100
+F 0 "Q?" H 5850 4150 50  0000 L CNN
+F 1 "Q_NMOS_DGS" H 5850 4050 50  0000 L CNN
+F 2 "" H 5850 4200 50  0000 C CNN
+F 3 "" H 5650 4100 50  0000 C CNN
+	1    5650 4100
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

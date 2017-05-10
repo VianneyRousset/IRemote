@@ -5,4 +5,5 @@
 *.log
 *.bak
 rapport/main.pdf
+_saved_*
 
