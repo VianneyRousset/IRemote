@@ -1,4 +1,5 @@
 EESchema Schematic File Version 2
+LIBS:IRemote-rescue
 LIBS:hef4526b
 LIBS:switches
 LIBS:power

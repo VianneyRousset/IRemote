@@ -1,5 +1,4 @@
 EESchema Schematic File Version 2
-LIBS:IRemote-rescue
 LIBS:hef4526b
 LIBS:switches
 LIBS:power
@@ -97,7 +96,7 @@ F1 "output_driver.sch" 60
 F2 "DRIVER_INPUT" I L 6800 4800 60 
 $EndSheet
 $Comp
-L Battery-RESCUE-IRemote BT?
+L Battery BT?
 U 1 1 59104416
 P 7500 2550
 F 0 "BT?" H 7600 2650 50  0000 L CNN

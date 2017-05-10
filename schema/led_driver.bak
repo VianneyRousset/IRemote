@@ -1,5 +1,4 @@
 EESchema Schematic File Version 2
-LIBS:IRemote-rescue
 LIBS:hef4526b
 LIBS:switches
 LIBS:power
@@ -49,7 +48,7 @@ $EndDescr
 Text HLabel 3200 2200 0    60   Input ~ 0
 LED_SIGNAL
 $Comp
-L LED-RESCUE-IRemote D?
+L LED D?
 U 1 1 5910407B
 P 4400 2200
 F 0 "D?" H 4400 2300 50  0000 C CNN
