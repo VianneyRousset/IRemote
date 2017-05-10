@@ -82,12 +82,12 @@ $EndComp
 $Comp
 L GND #PWR3
 U 1 1 58C0583B
-P 3250 4500
-F 0 "#PWR3" H 3250 4250 50  0001 C CNN
-F 1 "GND" H 3250 4350 50  0000 C CNN
-F 2 "" H 3250 4500 50  0000 C CNN
-F 3 "" H 3250 4500 50  0000 C CNN
-	1    3250 4500
+P 3350 4500
+F 0 "#PWR3" H 3350 4250 50  0001 C CNN
+F 1 "GND" H 3350 4350 50  0000 C CNN
+F 2 "" H 3350 4500 50  0000 C CNN
+F 3 "" H 3350 4500 50  0000 C CNN
+	1    3350 4500
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -441,8 +441,8 @@ Text HLabel 1650 2900 0    60   Input ~ 0
 DECODER_INPUT
 Text Notes 6550 1150 0    100  ~ 0
 Missing pulse detector
-Text Notes 3700 4750 0    100  ~ 0
-Counter & comparator
+Text Notes 2550 800  0    100  ~ 0
+Counter
 Wire Wire Line
 	2550 5700 2600 5700
 Wire Wire Line
@@ -597,15 +597,15 @@ Wire Wire Line
 	6200 4100 6200 6050
 Wire Wire Line
 	4650 4100 6200 4100
-Connection ~ 3250 4350
+Connection ~ 3350 4350
 Wire Wire Line
-	3950 4350 3250 4350
+	3950 4350 3350 4350
 Wire Wire Line
-	3250 4000 3250 4350
+	3350 4000 3350 4350
 Wire Wire Line
-	3250 4350 3250 4500
+	3350 4350 3350 4500
 Wire Wire Line
-	3450 4000 3250 4000
+	3450 4000 3350 4000
 Connection ~ 3150 3650
 Wire Wire Line
 	3150 4100 3450 4100
@@ -660,8 +660,8 @@ Wire Wire Line
 Connection ~ 5700 5350
 Text Notes 3000 2650 0    60   ~ 0
 counter reset
-Text Notes 6250 6000 0    60   ~ 0
-compare match
 Text Notes 7250 5300 0    60   ~ 0
 missing pulse (end of burst)
+Text Notes 4900 4050 0    60   ~ 0
+terminal count
 $EndSCHEMATC
