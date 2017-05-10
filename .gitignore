@@ -3,3 +3,6 @@
 *.out
 *.toc
 *.log
+*.bak
+rapport/main.pdf
+
