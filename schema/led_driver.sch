@@ -115,4 +115,31 @@ Wire Wire Line
 	6300 2850 6300 2950
 Text Notes 6550 3600 0    60   ~ 0
 V_forward = 1.9V\nI = 1A at 10% duty cycle
+$Comp
+L CP C?
+U 1 1 5921AD9D
+P 5800 3200
+F 0 "C?" H 5825 3300 50  0000 L CNN
+F 1 "470uF" H 5825 3100 50  0000 L CNN
+F 2 "" H 5838 3050 50  0000 C CNN
+F 3 "" H 5800 3200 50  0000 C CNN
+	1    5800 3200
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5921AE34
+P 5800 3350
+F 0 "#PWR?" H 5800 3100 50  0001 C CNN
+F 1 "GND" H 5800 3200 50  0000 C CNN
+F 2 "" H 5800 3350 50  0000 C CNN
+F 3 "" H 5800 3350 50  0000 C CNN
+	1    5800 3350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6300 2950 5800 2950
+Connection ~ 6300 2950
+Wire Wire Line
+	5800 2950 5800 3050
 $EndSCHEMATC
