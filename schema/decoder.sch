@@ -203,35 +203,35 @@ F 3 "" H 7100 2350 50  0000 C CNN
 $EndComp
 $Comp
 L 7402 U1
-U 4 1 58C07186
+U 2 1 58C07186
 P 9200 6050
 F 0 "U1" H 9200 6100 50  0000 C CNN
 F 1 "7402" H 9250 6000 50  0000 C CNN
 F 2 "" H 9200 6050 50  0000 C CNN
 F 3 "" H 9200 6050 50  0000 C CNN
-	4    9200 6050
+	2    9200 6050
 	1    0    0    -1  
 $EndComp
 $Comp
 L 7402 U1
-U 3 1 58C03FD3
+U 1 1 58C03FD3
 P 7550 6150
 F 0 "U1" H 7550 6200 50  0000 C CNN
 F 1 "7402" H 7600 6100 50  0000 C CNN
 F 2 "" H 7550 6150 50  0000 C CNN
 F 3 "" H 7550 6150 50  0000 C CNN
-	3    7550 6150
+	1    7550 6150
 	1    0    0    -1  
 $EndComp
 $Comp
 L 7402 U1
-U 2 1 58C07EDD
+U 3 1 58C07EDD
 P 4700 5800
 F 0 "U1" H 4700 5850 50  0000 C CNN
 F 1 "7402" H 4750 5750 50  0000 C CNN
 F 2 "" H 4700 5800 50  0000 C CNN
 F 3 "" H 4700 5800 50  0000 C CNN
-	2    4700 5800
+	3    4700 5800
 	-1   0    0    1   
 $EndComp
 $Comp
@@ -457,7 +457,11 @@ Wire Wire Line
 Connection ~ 4950 1950
 Connection ~ 4950 1800
 Wire Wire Line
-	4950 1650 4950 2100
+	4950 1650 4950 1800
+Wire Wire Line
+	4950 1800 4950 1950
+Wire Wire Line
+	4950 1950 4950 2100
 Connection ~ 4400 2100
 Wire Wire Line
 	4650 2100 4400 2100
@@ -465,9 +469,13 @@ Connection ~ 4300 1950
 Wire Wire Line
 	4650 1950 4300 1950
 Wire Wire Line
-	4400 1550 4400 3200
+	4400 1550 4400 2100
 Wire Wire Line
-	4300 1550 4300 3200
+	4400 2100 4400 3200
+Wire Wire Line
+	4300 1550 4300 1950
+Wire Wire Line
+	4300 1950 4300 3200
 Connection ~ 4200 1800
 Wire Wire Line
 	4200 1800 4650 1800
@@ -475,21 +483,33 @@ Connection ~ 4100 1650
 Wire Wire Line
 	4650 1650 4100 1650
 Wire Wire Line
-	4100 950  4400 950 
+	4100 950  4200 950 
+Wire Wire Line
+	4200 950  4250 950 
+Wire Wire Line
+	4250 950  4300 950 
+Wire Wire Line
+	4300 950  4400 950 
 Connection ~ 4250 950 
 Wire Wire Line
 	3750 3100 3750 3200
 Wire Wire Line
 	5550 5650 5550 5650
 Wire Wire Line
-	3400 5350 5700 5350
+	3400 5350 5300 5350
+Wire Wire Line
+	5300 5350 5550 5350
+Wire Wire Line
+	5550 5350 5700 5350
 Wire Wire Line
 	3400 5350 3400 5600
 Connection ~ 3500 5800
 Wire Wire Line
 	3500 5800 3500 5950
 Wire Wire Line
-	3400 5800 3650 5800
+	3400 5800 3500 5800
+Wire Wire Line
+	3500 5800 3650 5800
 Wire Wire Line
 	3950 5800 4100 5800
 Wire Wire Line
@@ -501,7 +521,11 @@ Wire Wire Line
 Connection ~ 7100 2700
 Connection ~ 8600 2900
 Wire Wire Line
-	8600 2700 8600 5950
+	8600 2700 8600 2900
+Wire Wire Line
+	8600 2900 8600 5350
+Wire Wire Line
+	8600 5350 8600 5950
 Wire Wire Line
 	8150 2900 8600 2900
 Wire Wire Line
@@ -516,7 +540,9 @@ Wire Wire Line
 	8150 2700 8250 2700
 Connection ~ 7100 4100
 Wire Wire Line
-	7100 4050 7100 4200
+	7100 4050 7100 4100
+Wire Wire Line
+	7100 4100 7100 4200
 Wire Wire Line
 	7300 4100 7100 4100
 Wire Wire Line
@@ -532,7 +558,13 @@ Wire Wire Line
 Wire Wire Line
 	7100 3000 7150 3000
 Wire Wire Line
-	7100 2500 7100 3650
+	7100 2500 7100 2700
+Wire Wire Line
+	7100 2700 7100 3000
+Wire Wire Line
+	7100 3000 7100 3600
+Wire Wire Line
+	7100 3600 7100 3650
 Wire Wire Line
 	3350 3750 3350 2900
 Wire Wire Line
@@ -544,7 +576,11 @@ Wire Wire Line
 Wire Wire Line
 	6700 3850 6800 3850
 Wire Wire Line
-	1650 2900 7150 2900
+	1650 2900 3350 2900
+Wire Wire Line
+	3350 2900 6700 2900
+Wire Wire Line
+	6700 2900 7150 2900
 Wire Wire Line
 	6700 2900 6700 3850
 Wire Wire Line
@@ -555,14 +591,18 @@ Connection ~ 3350 4350
 Wire Wire Line
 	3950 4350 3350 4350
 Wire Wire Line
-	3350 4000 3350 4500
+	3350 4000 3350 4350
+Wire Wire Line
+	3350 4350 3350 4500
 Wire Wire Line
 	3450 4000 3350 4000
 Connection ~ 3150 3650
 Wire Wire Line
 	3150 4100 3450 4100
 Wire Wire Line
-	3150 3550 3150 4100
+	3150 3550 3150 3650
+Wire Wire Line
+	3150 3650 3150 4100
 Wire Wire Line
 	3450 3650 3150 3650
 Wire Wire Line
@@ -572,9 +612,13 @@ Wire Wire Line
 Connection ~ 4300 950 
 Connection ~ 4200 950 
 Wire Wire Line
-	4200 1550 4200 3200
+	4200 1550 4200 1800
 Wire Wire Line
-	4100 1550 4100 3200
+	4200 1800 4200 3200
+Wire Wire Line
+	4100 1550 4100 1650
+Wire Wire Line
+	4100 1650 4100 3200
 Wire Wire Line
 	2050 5700 2050 2700
 Wire Notes Line
@@ -607,13 +651,13 @@ Text Notes 3550 6700 0    60   ~ 0
 falling edge detector
 $Comp
 L 7402 U1
-U 1 1 58C07DEF
+U 4 1 58C07DEF
 P 2800 5700
 F 0 "U1" H 2800 5750 50  0000 C CNN
 F 1 "7402" H 2850 5650 50  0000 C CNN
 F 2 "" H 2800 5700 50  0000 C CNN
 F 3 "" H 2800 5700 50  0000 C CNN
-	1    2800 5700
+	4    2800 5700
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
