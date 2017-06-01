@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2017.1.30)  24 FEB 2017 10:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2017.5.30)  1 JUN 2017 08:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -6,7 +6,7 @@ entering extended mode
 **main.tex
 (./main.tex
 LaTeX2e <2015/01/01> patch level 2
-Babel <3.9l> and hyphenation patterns for 11 languages loaded.
+Babel <3.9l> and hyphenation patterns for 18 languages loaded.
 (./layout/Report.cls
 Document Class: layout/Report 2014/12/15 Version 0.1.2
 (/usr/share/texmf-dist/tex/latex/base/article.cls
@@ -621,7 +621,7 @@ Package: xparse 2015/06/15 v5630 L3 Experimental document command parser
 \l__xparse_processor_int=\count148
 \l__xparse_v_nesting_int=\count149
 )
-Package: siunitx 2014/10/01 v2.6c A comprehensive (SI) units package
+Package: siunitx 2015/06/25 v2.6g A comprehensive (SI) units package
  (/usr/share/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
 Package: l3keys2e 2015/06/15 v5630 LaTeX2e option processing using LaTeX3 keys
 )
@@ -629,9 +629,9 @@ Variant \tl_if_blank:VTF already defined; not changing it on line 50
 \l__siunitx_tmp_box=\box44
 \l__siunitx_tmp_dim=\dimen162
 \l__siunitx_tmp_int=\count150
-Variant \prop_get:NVNT already defined; not changing it on line 372
-Variant \prop_get:NVNF already defined; not changing it on line 373
-Variant \prop_get:NVNTF already defined; not changing it on line 374
+Variant \prop_get:NVNT already defined; not changing it on line 380
+Variant \prop_get:NVNF already defined; not changing it on line 381
+Variant \prop_get:NVNTF already defined; not changing it on line 382
 \l__siunitx_number_mantissa_length_int=\count151
 \l__siunitx_number_uncert_length_int=\count152
 \l__siunitx_round_int=\count153
@@ -672,119 +672,119 @@ Variant \prop_get:NVNTF already defined; not changing it on line 374
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \DeclareBinaryPrefix with sig. 'mmm' on line 7168.
+. Defining command \DeclareBinaryPrefix with sig. 'mmm' on line 7184.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \DeclareSIPostPower with sig. 'mm' on line 7171.
+. Defining command \DeclareSIPostPower with sig. 'mm' on line 7187.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \DeclareSIPrefix with sig. 'mmm' on line 7174.
+. Defining command \DeclareSIPrefix with sig. 'mmm' on line 7190.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \DeclareSIPrePower with sig. 'mm' on line 7177.
+. Defining command \DeclareSIPrePower with sig. 'mm' on line 7193.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \DeclareSIQualifier with sig. 'mm' on line 7180.
+. Defining command \DeclareSIQualifier with sig. 'mm' on line 7196.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \DeclareSIUnit with sig. 'O{}mm' on line 7183.
+. Defining command \DeclareSIUnit with sig. 'O{}mm' on line 7199.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \DeclareSIUnitWithOptions with sig. 'mmm' on line 7186.
+. Defining command \DeclareSIUnitWithOptions with sig. 'mmm' on line 7202.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \ang with sig. 'o>{\SplitArgument {2}{;}}m' on line 7201.
+. Defining command \ang with sig. 'o>{\SplitArgument {2}{;}}m' on line 7217.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \num with sig. 'om' on line 7209.
+. Defining command \num with sig. 'om' on line 7225.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \numlist with sig. 'o>{\SplitList {;}}m' on line 7217.
+. Defining command \numlist with sig. 'o>{\SplitList {;}}m' on line 7233.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \numrange with sig. 'omm' on line 7225.
+. Defining command \numrange with sig. 'omm' on line 7241.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \SIlist with sig. 'o>{\SplitList {;}}mm' on line 7236.
+. Defining command \SIlist with sig. 'o>{\SplitList {;}}mm' on line 7252.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \SIrange with sig. 'ommm' on line 7247.
+. Defining command \SIrange with sig. 'ommm' on line 7263.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \SI with sig. 'omom' on line 7258.
+. Defining command \SI with sig. 'omom' on line 7274.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \sisetup with sig. 'm' on line 7261.
+. Defining command \sisetup with sig. 'm' on line 7277.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \tablenum with sig. 'om' on line 7273.
+. Defining command \tablenum with sig. 'om' on line 7289.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \si with sig. 'om' on line 7284.
+. Defining command \si with sig. 'om' on line 7300.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \__siunitx_bookmark_num:w with sig. 'om' on line 7331.
+. Defining command \__siunitx_bookmark_num:w with sig. 'om' on line 7347.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
 . Defining command \__siunitx_bookmark_numrange:w with sig. 'omm' on line
-. 7333.
+. 7349.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \__siunitx_bookmark_SI:w with sig. 'omom' on line 7335.
+. Defining command \__siunitx_bookmark_SI:w with sig. 'omom' on line 7351.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \__siunitx_bookmark_SIlist:w with sig. 'omm' on line 7337.
+. Defining command \__siunitx_bookmark_SIlist:w with sig. 'omm' on line 7353.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
 . Defining command \__siunitx_bookmark_SIrange:w with sig. 'ommm' on line
-. 7339.
+. 7355.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \__siunitx_bookmark_si:w with sig. 'om' on line 7340.
+. Defining command \__siunitx_bookmark_si:w with sig. 'om' on line 7356.
 .................................................
 \g__file_internal_ior=\read1
  (/usr/share/texmf-site/tex/latex/beamer/base/translator/translator.sty
@@ -803,7 +803,7 @@ Package: soul 2003/11/17 v2.4 letterspacing/underlining (mf)
 ) (/usr/share/texmf-dist/tex/latex/cancel/cancel.sty
 Package: cancel 2013/04/12 v2.2 Cancel math terms
 ) (/usr/share/texmf-dist/tex/latex/pgfplots/pgfplots.sty (/usr/share/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
-Package: pgfplots 2014/08/04 v1.11 Data Visualization (1.11-3-g4c99d7a)
+Package: pgfplots 2015/05/02 v1.12.1 Data Visualization (1.12.1)
  (/usr/share/texmf-site/tex/latex/pgf/frontendlayer/tikz.sty (/usr/share/texmf-site/tex/latex/pgf/basiclayer/pgf.sty (/usr/share/texmf-site/tex/latex/pgf/utilities/pgfrcs.sty (/usr/share/texmf-site/tex/generic/pgf/utilities/pgfutil-common.tex
 \pgfutil@everybye=\toks33
 \pgfutil@tempdima=\dimen177
@@ -1048,7 +1048,7 @@ File: tikzlibraryplotmarks.code.tex 2008/01/09 v3.0.1 (rcs-revision 1.1)
  (/usr/share/texmf-site/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex
 File: pgflibraryplotmarks.code.tex 2015/08/03 v3.0.1 (rcs-revision 1.14)
 ))) (/usr/share/texmf-dist/tex/latex/pgfplots/pgfplotstable.sty (/usr/share/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
-Package: pgfplotstable 2014/08/04 v1.11 Table typesetting and Pretty-printing (1.11-3-g4c99d7a)
+Package: pgfplotstable 2015/05/02 v1.12.1 Table typesetting and Pretty-printing (1.12.1)
  (/usr/share/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstable.code.tex (/usr/share/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstable.coltype.code.tex))) (/usr/share/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count194
@@ -1292,30 +1292,49 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 \l_MT_below_intertext_sep=\dimen271
 \l_MT_above_shortintertext_sep=\dimen272
 \l_MT_below_shortintertext_sep=\dimen273
-) (out/main.aux)
+)
+
+./main.tex:12: LaTeX Error: Option clash for package xcolor.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.12 
+     
+The package xcolor has already been loaded with options:
+  []
+There has now been an attempt to load it with options
+  [table]
+Adding the global options:
+  ,table
+to your \documentclass declaration may fix this.
+Try typing  <return>  to proceed.
+
+(out/main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 13.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 13.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 17.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 17.
  (/usr/share/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 13.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 17.
  (/usr/share/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
@@ -1354,7 +1373,7 @@ File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \AtBeginShipoutBox=\box65
-Package hyperref Info: Link coloring OFF on input line 13.
+Package hyperref Info: Link coloring OFF on input line 17.
 (/usr/share/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
  (/usr/share/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -1362,9 +1381,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count204
 )
-LaTeX Info: Redefining \ref on input line 13.
-LaTeX Info: Redefining \pageref on input line 13.
-LaTeX Info: Redefining \nameref on input line 13.
+LaTeX Info: Redefining \ref on input line 17.
+LaTeX Info: Redefining \pageref on input line 17.
+LaTeX Info: Redefining \nameref on input line 17.
  (out/main.out) (out/main.out)
 \@outlinefile=\write4
 \openout4 = `main.out'.
@@ -1374,7 +1393,7 @@ Dictionary: translator-basic-dictionary, Language: English
 ) (/usr/share/texmf-site/tex/latex/beamer/base/translator/dicts/translator-basic-dictionary/translator-basic-dictionary-French.dict
 Dictionary: translator-basic-dictionary, Language: French 
 ) (/usr/share/texmf-dist/tex/latex/siunitx/siunitx-abbreviations.cfg
-File: siunitx-abbreviations.cfg 2014/10/01 v2.6c siunitx: Abbreviated units
+File: siunitx-abbreviations.cfg 2015/06/25 v2.6g siunitx: Abbreviated units
 ) ABD: EveryShipout initializing macros (/usr/share/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count205
@@ -1399,76 +1418,232 @@ Package grfext Info: Graphics extension search list:
  (/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package pgfplots notification 'compat/show suggested version=true': you might benefit from \pgfplotsset{compat=1.11} (current compat level: 1.10).
+Package pgfplots notification 'compat/show suggested version=true': you might benefit from \pgfplotsset{compat=1.12} (current compat level: 1.10).
 
-LaTeX Info: Redefining \degres on input line 13.
-LaTeX Info: Redefining \dots on input line 13.
-LaTeX Info: Redefining \up on input line 13.
+LaTeX Info: Redefining \degres on input line 17.
+LaTeX Info: Redefining \dots on input line 17.
+LaTeX Info: Redefining \up on input line 17.
 \c__siunitx_mathsf_int=\count211
-LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 13.
+LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 17.
 (/usr/share/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 13.
+LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 17.
  (/usr/share/texmf-dist/tex/latex/psnfss/omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 13.
+LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 17.
  (/usr/share/texmf-dist/tex/latex/psnfss/omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 13.
+LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 17.
  (/usr/share/texmf-dist/tex/latex/psnfss/omxztmcm.fd
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 13.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 17.
  (/usr/share/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 13.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 17.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 13.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 17.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 13.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 17.
 \c__siunitx_mathtt_int=\count212
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <20.74> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 18.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 22.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 23.
- (out/main.toc
-LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 2.
-)
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 27.
+
+
+Package hyperref Warning: old toc file detected, not used; run LaTeX again.
+
 \tf@toc=\write5
 \openout5 = `main.toc'.
 
- [3] [4] [5] [6]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 38.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 38.
- (out/main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 38.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 38.
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 22B18F4199D9A775D6A1AC1053BBC954;160.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 38.
- ) 
-Here is how much of TeX's memory you used:
- 37821 strings out of 494892
- 875854 string characters out of 6175836
- 990211 words of memory out of 5000000
- 40482 multiletter control sequences out of 15000+600000
- 57716 words of font info for 70 fonts, out of 8000000 for 9000
- 36 hyphenation exceptions out of 8191
- 69i,5n,85p,10440b,815s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on out/main.pdf (6 pages, 36288 bytes).
-PDF statistics:
- 67 PDF objects out of 1000 (max. 8388607)
- 55 compressed objects within 1 object stream
- 10 named destinations out of 1000 (max. 500000)
- 37 words of extra memory for PDF output out of 10000 (max. 10000000)
+[3]
+\openout2 = `intro.aux'.
 
+ (./intro.tex) [4
+
+]
+\openout2 = `structure.aux'.
+
+ (./structure.tex <fig/IRemote_schema_structure.pdf, id=28, 713.66624pt x 62.2325pt>
+File: fig/IRemote_schema_structure.pdf Graphic file (type pdf)
+ <use fig/IRemote_schema_structure.pdf>
+Package pdftex.def Info: fig/IRemote_schema_structure.pdf used on input line 8.
+(pdftex.def)             Requested size: 386.95897pt x 33.74274pt.
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10.95> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 10.
+
+./structure.tex:21: Undefined control sequence.
+l.21 ...i{\milli\second}$ si la salve est \textemp
+                                                  {correcte}.}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./structure.tex:28: Undefined control sequence.
+<recently read> \thead 
+                       
+l.28 	\thead
+            {\emph{Missing pulse detector}} & \thead{\emph{Decounter}} & \th...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./structure.tex:28: Undefined control sequence.
+l.28 ...ad{\emph{Missing pulse detector}} & \thead
+                                                  {\emph{Decounter}} & \thea...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./structure.tex:28: Undefined control sequence.
+l.28 ...ctor}} & \thead{\emph{Decounter}} & \thead
+                                                  {Statu}} & \thead{Sortie}}...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./structure.tex:28: Extra }, or forgotten \endgroup.
+l.28 ... \thead{\emph{Decounter}} & \thead{Statu}}
+                                                   & \thead{Sortie}}\ \hline
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./structure.tex:28: Extra alignment tab has been changed to \cr.
+<recently read> \endtemplate 
+                             
+l.28 ...thead{\emph{Decounter}} & \thead{Statu}} &
+                                                   \thead{Sortie}}\ \hline
+You have given more \span or & marks than there were
+in the preamble to the \halign or \valign now in progress.
+So I'll assume that you meant to type \cr instead.
+
+./structure.tex:28: Undefined control sequence.
+l.28 ...emph{Decounter}} & \thead{Statu}} & \thead
+                                                  {Sortie}}\ \hline
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./structure.tex:28: Misplaced \noalign.
+\hline ->\noalign 
+                  {\ifnum 0=`}\fi \hrule \@height \arrayrulewidth \futurelet...
+l.28 ...& \thead{Statu}} & \thead{Sortie}}\ \hline
+                                                  
+I expect to see \noalign only after the \cr of
+an alignment. Proceed, and I'll ignore this case.
+
+./structure.tex:28: Missing $ inserted.
+<inserted text> 
+                $
+l.28 ...& \thead{Statu}} & \thead{Sortie}}\ \hline
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./structure.tex:28: Missing } inserted.
+<inserted text> 
+                }
+l.28 ...& \thead{Statu}} & \thead{Sortie}}\ \hline
+                                                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./structure.tex:28: You can't use `\hrule' here except with leaders.
+<recently read> \hrule 
+                       
+l.28 ...& \thead{Statu}} & \thead{Sortie}}\ \hline
+                                                  
+To put a horizontal rule in an hbox or an alignment,
+you should use \leaders or \hrulefill (see The TeXbook).
+
+./structure.tex:28: Missing number, treated as zero.
+<to be read again> 
+                   \futurelet 
+l.28 ...& \thead{Statu}} & \thead{Sortie}}\ \hline
+                                                  
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+./structure.tex:28: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \futurelet 
+l.28 ...& \thead{Statu}} & \thead{Sortie}}\ \hline
+                                                  
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+./structure.tex:29: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.29 		l
+        ow		& low		& Nombre incorrect de pulses dans la salve & low \\ \hline
+I'm guessing that you meant to end an alignment here.
+
+./structure.tex:29: Missing { inserted.
+<inserted text> 
+                {
+l.29 		l
+        ow		& low		& Nombre incorrect de pulses dans la salve & low \\ \hline
+I've put in what seems to be necessary to fix
+the current column of the current alignment.
+Try to go on, since this might almost work.
+
+./structure.tex:29: Missing $ inserted.
+<inserted text> 
+                $
+l.29 		l
+        ow		& low		& Nombre incorrect de pulses dans la salve & low \\ \hline
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./structure.tex:29: Misplaced alignment tab character &.
+l.29 		low		&
+              low		& Nombre incorrect de pulses dans la salve & low \\ \hline
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+./structure.tex:29: Misplaced alignment tab character &.
+l.29 		low		& low		&
+                     Nombre incorrect de pulses dans la salve & low \\ \hline
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+./structure.tex:29: Misplaced alignment tab character
