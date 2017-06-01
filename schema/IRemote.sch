@@ -142,4 +142,5 @@ Wire Notes Line
 	8850 1350 2400 1350
 Wire Notes Line
 	2400 1350 2400 3450
+NoConn ~ 4100 2700
 $EndSCHEMATC

@@ -202,7 +202,7 @@ F 3 "" H 7100 2350 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L 7402 U1
+L 7402-RESCUE-IRemote U1
 U 2 1 58C07186
 P 9200 6050
 F 0 "U1" H 9200 6100 50  0000 C CNN
@@ -213,7 +213,7 @@ F 3 "" H 9200 6050 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L 7402 U1
+L 7402-RESCUE-IRemote U1
 U 1 1 58C03FD3
 P 7550 6150
 F 0 "U1" H 7550 6200 50  0000 C CNN
@@ -224,7 +224,7 @@ F 3 "" H 7550 6150 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L 7402 U1
+L 7402-RESCUE-IRemote U1
 U 3 1 58C07EDD
 P 4700 5800
 F 0 "U1" H 4700 5850 50  0000 C CNN
@@ -650,7 +650,7 @@ terminal count
 Text Notes 3550 6700 0    60   ~ 0
 falling edge detector
 $Comp
-L 7402 U1
+L 7402-RESCUE-IRemote U1
 U 4 1 58C07DEF
 P 2800 5700
 F 0 "U1" H 2800 5750 50  0000 C CNN
