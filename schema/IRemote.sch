@@ -47,13 +47,6 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-$Sheet
-S 2850 2100 1250 950 
-U 5910364F
-F0 "Signal generator" 60
-F1 "signal_generator.sch" 60
-F2 "OUTPUT" O R 4100 2300 60 
-$EndSheet
 $Comp
 L GND #PWR2
 U 1 1 59103F43
@@ -68,12 +61,12 @@ $EndComp
 $Comp
 L +BATT #PWR1
 U 1 1 59103F75
-P 7500 2350
-F 0 "#PWR1" H 7500 2200 50  0001 C CNN
-F 1 "+BATT" H 7500 2490 50  0000 C CNN
-F 2 "" H 7500 2350 50  0000 C CNN
-F 3 "" H 7500 2350 50  0000 C CNN
-	1    7500 2350
+P 6800 2250
+F 0 "#PWR1" H 6800 2100 50  0001 C CNN
+F 1 "+BATT" H 6800 2390 50  0000 C CNN
+F 2 "" H 6800 2250 50  0000 C CNN
+F 3 "" H 6800 2250 50  0000 C CNN
+	1    6800 2250
 	1    0    0    -1  
 $EndComp
 $Sheet
@@ -142,5 +135,28 @@ Wire Notes Line
 	8850 1350 2400 1350
 Wire Notes Line
 	2400 1350 2400 3450
-NoConn ~ 4100 2700
+$Sheet
+S 2850 2100 1250 950 
+U 5910364F
+F0 "Signal generator" 60
+F1 "signal_generator.sch" 60
+F2 "OUTPUT" O R 4100 2300 60 
+$EndSheet
+$Comp
+L SW_Push SW1
+U 1 1 593A9694
+P 7150 2350
+F 0 "SW1" H 7200 2450 50  0000 L CNN
+F 1 "SW_Push" H 7150 2290 50  0000 C CNN
+F 2 "" H 7150 2550 50  0000 C CNN
+F 3 "" H 7150 2550 50  0000 C CNN
+	1    7150 2350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6800 2250 6800 2350
+Wire Wire Line
+	6800 2350 6950 2350
+Wire Wire Line
+	7350 2350 7500 2350
 $EndSCHEMATC
