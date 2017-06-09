@@ -8,9 +8,9 @@
 \usetikzlibrary{arrows}
 \usepackage{mathtools}
 \usepackage{array}
-\usepackage[table]{xcolor}
-
+\usepackage{color}
 \usepackage{graphicx}
+\usepackage{todonotes}
 
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}%
 
@@ -19,23 +19,96 @@
 \pagenumbering{arabic}
 
 
-\frontpage{Conception d'un émetteur-récepteur IR}
-\newpage
+\frontpage{Télécommande à 1 canal par infrarouge}
+%-------------------------------------------------------------------------------
+\section{Introduction}
+Le but est de concevoir un système d'émission - réception infrarouge avec adressage
+permettant d'enclencher et déclencher un relais optique.
 
-\newpage\null\thispagestyle{empty}\newpage
+%-------------------------------------------------------------------------------
+\section{Structure générale et principe}
 
-\tableofcontents
+On a divisé le système en 5 étages avec des interfaces définies:
 
-\include{intro}
-\include{structure}
-\include{notation}
-% \include{notation}
-% \include{generateur_de_pulse}
-% \include{alimentation}
-% \include{led_driver}
-% \include{recepteur_filtrage}
-% \include{decodage}
-% \include{output}
-\include{annexes}
+\begin{tabular}{l p{10cm}}
+Générateur de signal:   & Générerateur de N pulses de durée de 100\si{\micro\second} espacés de 1\si{\milli\second} en salves espacées de 100\si{\milli\second}. \\
+LED driver:             & Sortie de puissance qui drive la LED IR. \\
+Récepteur:              & Récepteur IR avec amplification et filtrage. La sortie est le signal digital des pulses. \\
+Décodeur:               & Circuit logique de décodage du nombre de pulses. La sortie est un pulse d'environ ? \si{\milli\second} pour chaque salve correcte reçue. \\
+Sortie:                 & Circuit de détection d'interruption du signal avec commutation et  du relais optique.
+\end{tabular}
+\todo[inline]{todo: durée de sortie du décodeur}
+
+\begin{figure}[h]
+\centering
+\vspace{5mm}
+\includegraphics[width=\textwidth]{fig/IRemote_schema_structure}
+% \includegraphics[width=0.8\textwidth]{fig/schema_bloc}
+\caption{Schéma bloc du système avec signaux}
+\label{fig:schema_bloc}
+\vspace{5mm}
+\end{figure}
+
+Le but de la structure choisie est de faciliter le développement et la testabilité
+du sous-système.
+
+
+
+%-------------------------------------------------------------------------------
+\section{Notation et nomenclature}
+
+\begin{center}
+    \begin{tabular}{| c | l |}
+        \hline
+        $n_{pulse}$  & Nombre de pulses dans une salve (addressage) \\ \hline
+        $t_0$               & \\ \hline
+    $T_0$               & \\ \hline
+    $D_0$               & Duty cycle dans une salve \\ \hline
+    $\tau$          & \\ \hline
+    $t_{miss}$  & \\ \hline
+        $t_{true}$  & Durée du pulse signal une salve correcte \\ \hline
+    \end{tabular}
+\end{center}
+
+\begin{center}
+    \begin{tabular}{| c | l | c |}
+        \textit{pulse}      &  \\ \hline
+    \end{tabular}
+\end{center}
+\todo[inline]{TODO: tableau pas fini}
+
+\subsection{Générateur de signal}
+
+\todo[inline]{dimensionnement de valeurs R et C}
+
+\subsection{LED driver}
+
+\subsection{Récepteur et filtrage}
+
+\subsection{Décodeur}
+Le décodeur à 3 fonctions:
+\begin{itemize}
+    \item{Le comptage des pulses assuré par le \emph{decounter}. Celui-ci signal en \emph{active high} si $n_{pulse}$ ont été reçus par la tension d'entrée depuis son dernier \emph{reset}.}
+    \item{La détection de pulse manquant assuré par le \emph{missing pulse detector}. Celui-ci signal en \emph{active low} si la tension d'entrée est maintenue \emph{low} pendant au moins $t_{miss} = xxx \si{\milli\second}$ après la fin d'un pulse.}
+    \item{La génération du signal sortant assuré par un délais et des portes logiques. Celui si génère en \emph{active high} un pulse de $t_{true} = xx\si{\milli\second}$ si la salve est \emph{correcte}.}
+\end{itemize}
+
+Une salve est considéré correcte si le \emph{missing pulse }
+\begin{center}
+    \begin{tabular}{| m{4cm} | m{4cm} | l | c |}
+        \hline
+    % \thead{\emph{Missing pulse detector}} & \thead{\emph{Decounter}} & \thead{Statu}} & \thead{Sortie}}\ \hline
+    % \thead{\emph{Missing pulse detector}} & \thead{\emph{Decounter}} & \thead{Statu} & \thead{Sortie}\\ \hline
+        low     & low       & Nombre incorrect de pulses dans la salve & low \\ \hline
+        low     & high  & Salve correcte    & high\\ \hline
+        high    & low       & Salve non finie & low \\ \hline
+        high    & high  & Salve non finie & low \\ \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Sortie}
+
+\section{Annexes}
+
 
 \end{document}
