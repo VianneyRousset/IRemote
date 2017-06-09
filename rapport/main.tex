@@ -12,6 +12,7 @@
 \usepackage{graphicx}
 \usepackage{todonotes}
 \usepackage{enumitem}
+\usepackage{MnSymbol}
 
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}%
 
@@ -35,10 +36,9 @@ On a divisé le système en 5 étages avec des interfaces définies:
 \item[Générateur de signal] Générerateur de salves de N pulses de durée de 100\si{\micro\second} avec une période de 1\si{\milli\second} espacées de 100\si{\milli\second}.
 \item[LED driver] Sortie de puissance qui drive la LED IR.
 \item[Récepteur] Récepteur IR avec amplification et filtrage. La sortie est le signal digital des pulses.
-\item[Décodeur] Circuit logique de décodage du nombre de pulses. La sortie est un pulse d'environ ? \si{\milli\second} pour chaque salve correcte reçue.
-\item[Sortie] Circuit de détection d'interruption du signal avec commutation et  du relais optique.
+\item[Décodeur] Circuit logique de décodage du nombre de pulses. La sortie est un pulse d'environ 5 \si{\milli\second} pour chaque salve correcte reçue.
+\item[Sortie] Circuit de détection d'interruption du signal avec commutation et du relais optique.
 \end{description}
-\todo[inline]{todo: durée de sortie du décodeur}
 
 \begin{figure}[h]
 \centering
@@ -123,27 +123,17 @@ Une salve est considéré correcte si le \emph{missing pulse }
 
 \subsection{Mesures}
 
-\begin{figure}
-\begin{minipage}[b]{0.5\linewidth}
+\begin{figure}[h]
 \centering
-\includegraphics[width=\textwidth]{../measurements/SCR06}
-\end{minipage}
-\hspace{0.05cm}
-\begin{minipage}[b]{0.5\linewidth}
-\centering
-\includegraphics[width=\textwidth]{../measurements/SCR07}
-\end{minipage}
-\begin{minipage}[b]{0.5\linewidth}
-\vspace{0.05cm}
-\centering
-\includegraphics[width=\textwidth]{../measurements/SCR08}
-\end{minipage}
-\hspace{0.05cm}
-\begin{minipage}[b]{0.5\linewidth}
-\centering
-\includegraphics[width=\textwidth]{../measurements/SCR12}
-\end{minipage}
-\caption{todo}
+\includegraphics[width=0.32\textwidth]{../measurements/SCR06}
+\includegraphics[width=0.32\textwidth]{../measurements/SCR07}
+\includegraphics[width=0.32\textwidth]{../measurements/SCR08}
+\caption{
+\textcolor{yellow}{$\blacksquare$} Signal d'entrée,
+\textcolor{blue}{$\blacksquare$} Détecteur de pulse manquant,
+\textcolor{magenta}{$\blacksquare$} Compteur de pulse,
+\textcolor{green}{$\blacksquare$} Sortie
+}
 \end{figure}
 
 \section{Annexes}
