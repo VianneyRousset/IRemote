@@ -31,7 +31,7 @@ permettant d'enclencher et déclencher un relais optique.
 
 On a divisé le système en 5 étages avec des interfaces définies:
 
-\begin{description}[leftmargin=!,labelwidth=4cm]
+\begin{description}[leftmargin=!,labelwidth=4cm, labelindent=\parindent]
 \item[Générateur de signal] Générerateur de salves de N pulses de durée de 100\si{\micro\second} avec une période de 1\si{\milli\second} espacées de 100\si{\milli\second}.
 \item[LED driver] Sortie de puissance qui drive la LED IR.
 \item[Récepteur] Récepteur IR avec amplification et filtrage. La sortie est le signal digital des pulses.
@@ -59,26 +59,38 @@ du sous-système.
 \section{Notation et nomenclature}
 
 \begin{center}
-    \begin{tabular}{| c | l |}
-        \hline
-        $n_{pulse}$  & Nombre de pulses dans une salve (addressage) \\ \hline
-        $t_0$               & \\ \hline
-    $T_0$               & \\ \hline
-    $D_0$               & Duty cycle dans une salve \\ \hline
-    $\tau$          & \\ \hline
-    $t_{miss}$  & \\ \hline
-        $t_{true}$  & Durée du pulse signal une salve correcte \\ \hline
-    \end{tabular}
+	\begin{tabular}{| c | l | l |}
+		\hline
+		$n_{pulse}$	& Nombre de pulses dans une salve (addressage) & $13$ \\ \hline
+		$t_0$				& Durée high d'un pulse	& $\SI{0.1}{\milli\second}$	\\ \hline
+		$T_0$				& Période des pulse	& $\SI{1.0}{\milli\second}$	\\ \hline
+		$D_0$				& Duty cycle dans une salve & $10\%$	\\ \hline
+		$\tau$			& Période des slaves	& $\SI{0.1}{\second}$\\ \hline
+		$t_{miss}$  & &\\ \hline
+		$t_{true}$  & Durée du pulse signal une salve correcte & \\ \hline
+	\end{tabular}
 \end{center}
 
 \begin{center}
     \begin{tabular}{| c | l | c |}
+			\hline
         \textit{pulse}      &  \\ \hline
     \end{tabular}
 \end{center}
 \todo[inline]{TODO: tableau pas fini}
 
 \subsection{Générateur de signal}
+Le générateur de signal génère dans OUTPUT des salves de $n_{pulses}$ à une période $\tau$ en active high tant que celui-ci est alimenté à 3V. Les pulses dans les salves ont une durée high $t_0$ et une période $T_0$. Le nombre de pulses et les durées ne sont pas garanties lorsque l'alimentation est retirée.
+
+
+
+
+\begin{description}[leftmargin=!,labelwidth=3cm, labelindent=\parindent]
+	\item[Pulse timer] Génère des impulsion à hautes fréquences tant qu'il n'est pas RESET
+	\item[Burst timer] Oscille à une période $\tau$ pour signaler le début d'une salve.
+	\item[Decounter] Compte le nombre de pulses reçu depuis son dernier RESET et signal lorsque $n_{pulse}$ pulses ont été reçu.
+	\item[Logic] Assure les conditions logiques sur les signaux.
+\end{description}
 
 \todo[inline]{dimensionnement de valeurs R et C}
 
