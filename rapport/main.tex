@@ -121,19 +121,52 @@ Une salve est considéré correcte si le \emph{missing pulse }
 
 \subsection{Sortie}
 
+\subsubsection{Détecteur de pause}
+\todo[inline]{pause = lâchement de bouton, comment on veut nommer cette partie?}
+
+\subsubsection{Commutation de la sortie}
+\subsubsection{Relais}
+Le relais optique est simulé par une LED rouge standard avec un courant de 20mA et une tension directe d'environ 1.8V.
+Pour alimenter la LED on a choisi le transistor bipolaire NPN BC107 avec une résistance en série pour limiter le courant.
+Le BC107 a une tension \(V_{CEsat}\) de 0.25V pour un courant de 10mA.
+En estimant une \(V_{CEsat}\) de 0.30V pour un courant de 20mA:
+\[
+R_{LED} = (5V - V_{CEsat} - V_{forward})/20mA = 145\Omega
+\]
+On choisit donc \(150\Omega\).
+
 \subsection{Mesures}
+
+Dans figure \ref{fig:decoder_signal} on voit le fonctionnement du détecteur avec différent nombres de pulses.
+Dans la mesure au milieu le décodeur détecté correctement les 13 pulses et la combinaison logique
+du signal du détecteur de pulse manquant et du compteur de pulses donne un signal de sortie (en vert).
+Dans le cas où le mauvais nombre  de pulses (12 pulese dans la mesrue à gauche et 14 pulese à droite)
+arrive à l'entrée il n'y a pas de signal à la sortie.
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.32\textwidth]{../measurements/SCR06}
-\includegraphics[width=0.32\textwidth]{../measurements/SCR07}
-\includegraphics[width=0.32\textwidth]{../measurements/SCR08}
+\includegraphics[width=0.3\textwidth]{../measurements/SCR06}
+\includegraphics[width=0.3\textwidth]{../measurements/SCR07}
+\includegraphics[width=0.3\textwidth]{../measurements/SCR08}
 \caption{
 \textcolor{yellow}{$\blacksquare$} Signal d'entrée,
 \textcolor{blue}{$\blacksquare$} Détecteur de pulse manquant,
 \textcolor{magenta}{$\blacksquare$} Compteur de pulse,
 \textcolor{green}{$\blacksquare$} Sortie
 }
+\label{fig:decoder_signal}
+\end{figure}
+
+\begin{figure}[h]{}
+\centering
+\includegraphics[width=0.3\textwidth]{../measurements/SCR12}
+\caption{
+\textcolor{yellow}{$\blacksquare$} Signal d'entrée,
+\textcolor{blue}{$\blacksquare$} Capacité sur bascule monostable,
+\textcolor{magenta}{$\blacksquare$} Sortie du détecteur de pause,
+\textcolor{green}{$\blacksquare$} Sortie
+}
+\label{fig:output_signal}
 \end{figure}
 
 \section{Annexes}
