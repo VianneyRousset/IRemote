@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2017.5.30)  11 JUN 2017 14:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2017.5.30)  11 JUN 2017 15:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1544,59 +1544,59 @@ Underfull \vbox (badness 6252) has occurred while \output is active []
 l.72 \end{center}
                   <./fig/IRemote_schema_structure.pdf>]
 Package hyperref Info: bookmark level for unknown todo defaults to 0 on input line 80.
- [3] <../measurements/SCR06.PNG, id=87, 642.4pt x 521.95pt>
+ [3] <../measurements/SCR06.PNG, id=89, 642.4pt x 521.95pt>
 File: ../measurements/SCR06.PNG Graphic file (type png)
  <use ../measurements/SCR06.PNG>
-Package pdftex.def Info: ../measurements/SCR06.PNG used on input line 145.
+Package pdftex.def Info: ../measurements/SCR06.PNG used on input line 157.
 (pdftex.def)             Requested size: 145.11053pt x 117.90356pt.
- <../measurements/SCR07.PNG, id=88, 642.4pt x 521.95pt>
+ <../measurements/SCR07.PNG, id=90, 642.4pt x 521.95pt>
 File: ../measurements/SCR07.PNG Graphic file (type png)
  <use ../measurements/SCR07.PNG>
-Package pdftex.def Info: ../measurements/SCR07.PNG used on input line 146.
+Package pdftex.def Info: ../measurements/SCR07.PNG used on input line 158.
 (pdftex.def)             Requested size: 145.11053pt x 117.90356pt.
- <../measurements/SCR08.PNG, id=89, 642.4pt x 521.95pt>
+ <../measurements/SCR08.PNG, id=91, 642.4pt x 521.95pt>
 File: ../measurements/SCR08.PNG Graphic file (type png)
  <use ../measurements/SCR08.PNG>
-Package pdftex.def Info: ../measurements/SCR08.PNG used on input line 147.
+Package pdftex.def Info: ../measurements/SCR08.PNG used on input line 159.
 (pdftex.def)             Requested size: 145.11053pt x 117.90356pt.
- <../measurements/SCR12.PNG, id=90, 642.4pt x 521.95pt>
+ <../measurements/SCR12.PNG, id=92, 642.4pt x 521.95pt>
 File: ../measurements/SCR12.PNG Graphic file (type png)
  <use ../measurements/SCR12.PNG>
-Package pdftex.def Info: ../measurements/SCR12.PNG used on input line 159.
+Package pdftex.def Info: ../measurements/SCR12.PNG used on input line 171.
 (pdftex.def)             Requested size: 145.11053pt x 117.90356pt.
  [4pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.172 \end{document}
+l.184 \end{document}
                     pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.172 \end{document}
-                     <../measurements/SCR06.PNG> <../measurements/SCR07.PNG> <../measurements/SCR08.PNG> <../measurements/SCR12.PNG>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 172.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 172.
+l.184 \end{document}
+                     <../measurements/SCR06.PNG> <../measurements/SCR07.PNG> <../measurements/SCR08.PNG> <../measurements/SCR12.PNG>] [5]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 184.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 184.
  (out/main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 172.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 172.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 184.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 184.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 88462497F050F25B38BCDA9D7D46F4A8;829.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 172.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 184.
  ) 
 Here is how much of TeX's memory you used:
- 40324 strings out of 494385
- 917586 string characters out of 6170800
- 1032026 words of memory out of 5000000
- 42916 multiletter control sequences out of 15000+600000
- 79141 words of font info for 113 fonts, out of 8000000 for 9000
+ 40326 strings out of 494385
+ 917568 string characters out of 6170800
+ 1030979 words of memory out of 5000000
+ 42915 multiletter control sequences out of 15000+600000
+ 82493 words of font info for 117 fonts, out of 8000000 for 9000
  452 hyphenation exceptions out of 8191
- 69i,13n,85p,10440b,895s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolC.enc}{/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolE.enc}{/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolD.enc}{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on out/main.pdf (4 pages, 130270 bytes).
+ 69i,17n,85p,10440b,984s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolC.enc}{/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolD.enc}{/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolE.enc}{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol10.pfb></usr/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on out/main.pdf (5 pages, 155660 bytes).
 PDF statistics:
- 141 PDF objects out of 1000 (max. 8388607)
- 117 compressed objects within 2 object streams
+ 148 PDF objects out of 1000 (max. 8388607)
+ 122 compressed objects within 2 object streams
  24 named destinations out of 1000 (max. 500000)
  142 words of extra memory for PDF output out of 10000 (max. 10000000)
 

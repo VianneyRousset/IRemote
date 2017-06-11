@@ -83,13 +83,25 @@ du sous-système.
 Le générateur de signal génère dans OUTPUT des salves de $n_{pulses}$ à une période $\tau$ en active high tant que celui-ci est alimenté à 3V. Les pulses dans les salves ont une durée high $t_0$ et une période $T_0$. Le nombre de pulses et les durées ne sont pas garanties lorsque l'alimentation est retirée.
 
 \begin{description}[leftmargin=!,labelwidth=3cm, labelindent=\parindent]
-	\item[Pulse timer] Génère des impulsion à hautes fréquences tant qu'il n'est pas RESET. 
-	\item[Burst timer] Oscille à une période $\tau$ pour signaler le début d'une salve.
-	\item[Decounter] Compte le nombre de pulses reçu depuis son dernier RESET et signal lorsque $n_{pulse}$ pulses ont été reçu.
-	\item[Logic] Assure les conditions logiques sur les signaux.
+	\item[Pulse timer] Génère des impulsion à hautes fréquences tant qu'il n'est pas RESET. Il est formé d'un timer TLC555 en configuration bascule astable. Les dimensionnements sont fait selon le datasheet avec une petite capacité pour la simplicité et la limitation de la consommation.
+		\begin{equation*}
+			\begin{cases}
+				t_0 = 0.693(Rpa+Rpb)Cp \\
+				T_0 = 0.693(Rpa+2Rpb)Cp \\
+				Rpl	= \SI{1}{\kilo\ohm}
+			\end{cases}
+		\end{equation*}
+	\item[Burst timer] Oscille à une période $\tau$ pour signaler le début d'une salve. Il est formé d'un timer TLC555 en configuration bascule astable. Les dimensionnements sont fait selon le datasheet avec une petite capacité pour la simplicité et la limitation de la consommation. La durée high doit être plus grand que la durée durée d'une salve.
+		\begin{equation*}
+			\begin{cases}
+				\tau = 0.693(Rba+2Rbb)Cb \\
+				n_{pulse}*\frac{T_0}{\tau} < \frac{Rba+Rbb}{Rba+2Rbb} \\
+				Rbl	= \SI{1}{\kilo\ohm}
+			\end{cases}
+		\end{equation*}
+	\item[Decounter] Compte le nombre de pulses reçu depuis son dernier RESET et signal lorsque $n_{pulse}$ pulses ont été reçu. Il est formé d'un compter HEF4526B.
+	\item[Logic] Assure les conditions logiques sur les signaux. Il est formée d'un quadruple 2-input NOR HEF4001.
 \end{description}
-
-\todo[inline]{dimensionnement de valeurs R et C}
 
 \subsection{LED driver}
 
