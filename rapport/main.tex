@@ -104,6 +104,12 @@ Le générateur de signal génère dans OUTPUT des salves de $n_{pulses}$ à une
 \end{description}
 
 \subsection{LED driver}
+Le LED driver allume la LED infrarouge lorsque LED\_SIGNAL est high. Il assure une bonne émission de la LED sans l'endommager si le signal de 3V a une période T\_0 avec un duty-cycle de 10\%.
+
+La LED est une LD271(H). Selon son datasheet, celle-ci accepte $\SI{1}{\ampere}$ durant $\SI{0.1}{\milli\second}$ toutes les $\SI{1.0}{\milli\second}$. Ce sont ses valeurs qui ont dicté le choix du signal. Le courant est limité par la résistance $R14 = \SI{1}{\ohm}$ et une grande capacité de découplage $C7=\SI{470}{\micro F}$ assure la puissance de l'émission.
+
+
+\todo[inline]{check active high/low}
 
 \subsection{Récepteur et filtrage}
 
