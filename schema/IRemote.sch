@@ -69,27 +69,6 @@ F 3 "" H 6800 2250 50  0000 C CNN
 	1    6800 2250
 	1    0    0    -1  
 $EndComp
-$Sheet
-S 4850 2100 1250 950 
-U 5910406D
-F0 "LED driver" 60
-F1 "led_driver.sch" 60
-F2 "LED_SIGNAL" I L 4850 2300 60 
-$EndSheet
-$Sheet
-S 2850 4600 1250 950 
-U 5910433E
-F0 "Receiver/filter" 60
-F1 "recevier_filter.sch" 60
-F2 "SIGNAL" O R 4100 4800 60 
-$EndSheet
-$Sheet
-S 6800 4600 1250 950 
-U 59104361
-F0 "Output driver" 60
-F1 "output_driver.sch" 60
-F2 "DRIVER_INPUT" I L 6800 4800 60 
-$EndSheet
 $Comp
 L Battery-RESCUE-IRemote BT1
 U 1 1 59104416
@@ -107,14 +86,6 @@ Wire Wire Line
 	4100 4800 4800 4800
 Wire Wire Line
 	6150 4800 6800 4800
-$Sheet
-S 4800 4600 1350 950 
-U 59103A74
-F0 "Decoder" 60
-F1 "decoder.sch" 60
-F2 "OUTPUT" O R 6150 4800 60 
-F3 "DECODER_INPUT" I L 4800 4800 60 
-$EndSheet
 Text Notes 2500 4000 0    100  ~ 0
 IR_RECEIVER
 Text Notes 2500 1600 0    100  ~ 0
@@ -135,13 +106,6 @@ Wire Notes Line
 	8850 1350 2400 1350
 Wire Notes Line
 	2400 1350 2400 3450
-$Sheet
-S 2850 2100 1250 950 
-U 5910364F
-F0 "Signal generator" 60
-F1 "signal_generator.sch" 60
-F2 "OUTPUT" O R 4100 2300 60 
-$EndSheet
 $Comp
 L SW_Push SW1
 U 1 1 593A9694
@@ -163,4 +127,40 @@ Wire Wire Line
 	6800 2750 7500 2750
 Wire Wire Line
 	6800 2900 6800 2750
+$Sheet
+S 2850 2100 1250 950 
+U 5910364F
+F0 "Signal generator" 60
+F1 "signal_generator.sch" 60
+F2 "OUTPUT" O R 4100 2300 60 
+$EndSheet
+$Sheet
+S 4850 2100 1250 950 
+U 5910406D
+F0 "LED driver" 60
+F1 "led_driver.sch" 60
+F2 "LED_SIGNAL" I L 4850 2300 60 
+$EndSheet
+$Sheet
+S 2850 4600 1250 950 
+U 5910433E
+F0 "Receiver/filter" 60
+F1 "recevier_filter.sch" 60
+F2 "SIGNAL" O R 4100 4800 60 
+$EndSheet
+$Sheet
+S 6800 4600 1250 950 
+U 59104361
+F0 "Output driver" 60
+F1 "output_driver.sch" 60
+F2 "DRIVER_INPUT" I L 6800 4800 60 
+$EndSheet
+$Sheet
+S 4800 4600 1350 950 
+U 59103A74
+F0 "Decoder" 60
+F1 "decoder.sch" 60
+F2 "OUTPUT" O R 6150 4800 60 
+F3 "DECODER_INPUT" I L 4800 4800 60 
+$EndSheet
 $EndSCHEMATC
