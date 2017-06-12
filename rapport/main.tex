@@ -109,6 +109,12 @@ La LED est une LD271(H). Selon son datasheet, celle-ci accepte $\SI{1}{\ampere}$
 \todo[inline]{check active high/low}
 
 \subsection{Récepteur et filtrage}
+\todo[inline]{blabla on frequencies + dimension RC}
+\begin{description}[leftmargin=!,labelwidth=5cm, labelindent=\parindent]
+	\item[Conversion \& low-pass] Convertit le petit courant de la diode en tension tout en appliquant un filtre passe-bas.
+	\item[Amplification \& high-pass] Amplifie la tension tout en appliquant un filtre passe-haut.
+	\item[Schmidt trigger] Génère un signal carré avec 2 seuils en tension: $V_+$ et $V_-$
+\end{description}
 
 \subsection{Décodeur}
 Le décodeur à 3 fonctions:
