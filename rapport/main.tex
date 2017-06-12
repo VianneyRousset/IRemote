@@ -73,7 +73,7 @@ du sous-système.
 
 \section{Dimensionnements}
 \subsection{Signal}
-Le nombre d'impulsions $n_{pulse}$ a été choisi arbitrairement à 13. La période et le duty-cycle des impulsions sont dictés par ce que la LED infrarouge peut supporter (c.f. \ref{subsec:LED_driver}).
+Le nombre d'impulsions $n_{pulse}$ a été fixé arbitrairement à 13. La période et le duty-cycle des impulsions sont dictés par ce que la LED infrarouge peut supporter (c.f. \ref{subsec:LED_driver}).
 
 \subsection{Générateur de signal}
 Le générateur de signal génère dans OUTPUT des salves de $n_{pulses}$ à une période $\tau$ en active high tant que celui-ci est alimenté à 3V. Les pulses dans les salves ont une durée high $t_0$ et une période $T_0$. Le nombre de pulses et les durées ne sont pas garanties lorsque l'alimentation est retirée.
@@ -112,13 +112,13 @@ La LED est une LD271(H). Selon son datasheet, celle-ci accepte $\SI{1}{\ampere}$
 
 \subsection{Décodeur}
 Le décodeur à 3 fonctions:
-\begin{itemize}
-    \item{Le comptage des pulses assuré par le \emph{decounter}. Celui-ci signal en \emph{active high} si $n_{pulse}$ ont été reçus par la tension d'entrée depuis son dernier \emph{reset}.}
-    \item{La détection de pulse manquant assuré par le \emph{missing pulse detector}. Celui-ci signal en \emph{active low} si la tension d'entrée est maintenue \emph{low} pendant au moins $t_{miss} = xxx \si{\milli\second}$ après la fin d'un pulse.}
-    \item{La génération du signal sortant assuré par un délais et des portes logiques. Celui si génère en \emph{active high} un pulse de $t_{true} = xx\si{\milli\second}$ si la salve est \emph{correcte}.}
-\end{itemize}
 
-Une salve est considéré correcte si le \emph{missing pulse }
+\begin{description}[leftmargin=!,labelwidth=4cm, labelindent=\parindent]
+	\item[Decounter] Signal si $n_{pulse}$ ont été reçus par la tension d'entrée depuis son dernier RESET.
+	\item[Missing pulse detector] Signal et reset le decounter après un certain délais si la tension d'entrée est maintenue \emph{low} pendant au moins $t_{miss} = xxx \si{\milli\second}$ après la fin d'un pulse.
+	\item[Logic] Met OUTPUT à high si les conditions d'une salve correcte sont remplie. Si $n_{pulse}$ impulsions ont été reçues et que une impulsion manquante est signalée, alors OUTPUT est mis à high. 
+\end{description}
+
 \begin{center}
     \begin{tabular}{| m{4cm} | m{4cm} | l | c |}
         \hline
