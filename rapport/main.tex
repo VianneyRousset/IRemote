@@ -12,7 +12,8 @@
 \usepackage{graphicx}
 \usepackage{todonotes}
 \usepackage{enumitem}
-\usepackage{MnSymbol}
+\usepackage{MnSymbol} % rectangle symbol
+\usepackage{pdfpages} % for appendix
 
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}%
 
@@ -107,12 +108,37 @@ La tension au borne de la résistance $\mathit{R14}$ a été mesurée pour véri
 
 \subsection{Récepteur et filtrage}
 Cet étage est composé de 3 sous-étages en série.
-\todo[inline]{blabla on frequencies + dimension RC}
-\begin{description}[leftmargin=!,labelwidth=5cm, labelindent=\parindent]
-	\item[Conversion \& low-pass] Convertit le petit courant de la diode en tension tout en appliquant un filtre passe-bas.
-	\item[Amplification \& high-pass] Amplifie la tension tout en appliquant un filtre passe-haut.
-	\item[Schmidt trigger] Génère un signal carré avec 2 seuils en tension: $V_+$ et $V_-$
-\end{description}
+% \begin{description}[leftmargin=!,labelwidth=5cm, labelindent=\parindent]
+% 	\item[Conversion \& low-pass] Convertit le petit courant de la diode en tension tout en appliquant un filtre passe-bas.
+% 	\item[Amplification \& high-pass] Amplifie la tension tout en appliquant un filtre passe-haut.
+% 	\item[Schmitt trigger] Génère un signal carré avec 2 seuils en tension: $V_+$ et $V_-$
+% \end{description}
+
+\paragraph{Conversion courant-tension et filtre low-pass}
+
+La photodiode génère un petit courant qui est converti en une tension par l'amplificateur opérationnel LMC6482.
+La résistance R15 définit le gain et est assez élevée car le courant est relativement faible.
+Dans le conditions de test, une valeur de \SI{1}{\mega\ohm} donnait les meilleures résultâts.
+En outre, la capacité C8 de \SI{10}{\pico F} filtre le bruit de haute fréquences d'ordre de \SI{100}{\kilo Hz}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.4\textwidth]{fig/current_to_voltage_converter.pdf}
+\end{figure}
+
+\paragraph{Amplificateur et filtre high-pass}
+Convertit le petit courant de la diode en tension tout en appliquant un filtre passe-bas.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.4\textwidth]{fig/amplifier.pdf}
+\end{figure}
+
+\paragraph{Schmitt trigger}
+Génère un signal carré avec 2 seuils en tension: $V_+$ et $V_-$
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.4\textwidth]{fig/schmitt_trigger.pdf}
+\end{figure}
 
 \subsection{Décodeur}
 Le décodeur à 3 fonctions:
@@ -160,7 +186,19 @@ Dans le cas où le mauvais nombre  de pulses (12 pulese dans la mesrue à gauche
 arrive à l'entrée il n'y a pas de signal à la sortie.
 
 \begin{figure}[h]
-\centering
+\hspace{5mm}
+\includegraphics[width=0.3\textwidth]{../measurements/SCR03}
+\caption{
+\textcolor{yellow}{$\blacksquare$} Conversion courant-tension,
+\textcolor{blue}{$\blacksquare$} Filtre passe-haut,
+\textcolor{magenta}{$\blacksquare$} Signal 10x amplifié,
+\textcolor{green}{$\blacksquare$} Schmitt trigger output
+}
+\label{fig:filter_signal}
+\end{figure}
+
+\begin{figure}[h]
+\hspace{5mm}
 \includegraphics[width=0.3\textwidth]{../measurements/SCR06}
 \includegraphics[width=0.3\textwidth]{../measurements/SCR07}
 \includegraphics[width=0.3\textwidth]{../measurements/SCR08}
@@ -173,8 +211,8 @@ arrive à l'entrée il n'y a pas de signal à la sortie.
 \label{fig:decoder_signal}
 \end{figure}
 
-\begin{figure}[h]{}
-\centering
+\begin{figure}[h]
+\hspace{5mm}
 \includegraphics[width=0.3\textwidth]{../measurements/SCR12}
 \caption{
 \textcolor{yellow}{$\blacksquare$} Signal d'entrée,
@@ -184,9 +222,6 @@ arrive à l'entrée il n'y a pas de signal à la sortie.
 }
 \label{fig:output_signal}
 \end{figure}
-
-\section{Annexes}
-
 
 \begin{thebibliography}{9}
 
@@ -226,5 +261,6 @@ arrive à l'entrée il n'y a pas de signal à la sortie.
 
 \end{thebibliography}
 
+\includepdf[pages={-},angle=90,scale=0.95,pagecommand={}]{../schema/IRemote.pdf}
 
 \end{document}
