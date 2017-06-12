@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2017.5.30)  12 JUN 2017 21:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2017.5.30)  12 JUN 2017 21:56
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1561,201 +1561,264 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.68 \end{center}
-                  <./fig/IRemote_schema_structure.pdf>] <fig/current_to_voltage_converter.pdf, id=76, 201.57681pt x 142.19855pt>
+l.67 \end{center}
+                  <./fig/IRemote_schema_structure.pdf>]
+
+LaTeX Warning: File `fig/pulse_timer.pdf' not found on input line 87.
+
+
+./main.tex:87: Package pdftex.def Error: File `fig/pulse_timer.pdf' not found.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.87 ...[width=0.3\textwidth]{fig/pulse_timer.pdf}
+                                                  
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 87.
+(/usr/share/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+
+LaTeX Warning: File `fig/burst_timer.pdf' not found on input line 101.
+
+
+./main.tex:101: Package pdftex.def Error: File `fig/burst_timer.pdf' not found.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.101 ...width=0.3\textwidth]{fig/burst_timer.pdf}
+                                                  
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[3] <fig/current_to_voltage_converter.pdf, id=90, 201.57681pt x 142.19855pt>
 File: fig/current_to_voltage_converter.pdf Graphic file (type pdf)
  <use fig/current_to_voltage_converter.pdf>
-Package pdftex.def Info: fig/current_to_voltage_converter.pdf used on input line 117.
+Package pdftex.def Info: fig/current_to_voltage_converter.pdf used on input line 137.
 (pdftex.def)             Requested size: 193.47578pt x 136.49168pt.
- [3] <fig/amplifier.pdf, id=90, 201.57678pt x 142.19865pt>
+ <fig/amplifier.pdf, id=91, 201.57678pt x 142.19865pt>
 File: fig/amplifier.pdf Graphic file (type pdf)
  <use fig/amplifier.pdf>
-Package pdftex.def Info: fig/amplifier.pdf used on input line 123.
+Package pdftex.def Info: fig/amplifier.pdf used on input line 144.
 (pdftex.def)             Requested size: 193.47578pt x 136.49179pt.
- <fig/schmitt_trigger.pdf, id=91, 201.36139pt x 149.3054pt>
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<fig/schmitt_trigger.pdf, id=92, 201.36139pt x 149.3054pt>
 File: fig/schmitt_trigger.pdf Graphic file (type pdf)
  <use fig/schmitt_trigger.pdf>
-Package pdftex.def Info: fig/schmitt_trigger.pdf used on input line 129.
+Package pdftex.def Info: fig/schmitt_trigger.pdf used on input line 153.
 (pdftex.def)             Requested size: 193.47578pt x 143.45914pt.
- [4 <./fig/current_to_voltage_converter.pdf> <./fig/amplifier.pdf> <./fig/schmitt_trigger.pdf>]
-Package hyperref Info: bookmark level for unknown todo defaults to 0 on input line 154.
- <../measurements/SCR03.PNG, id=152, 642.4pt x 521.95pt>
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[4 <./fig/current_to_voltage_converter.pdf>] <fig/decoder_reset_delay.pdf, id=121, 279.89468pt x 107.99878pt>
+File: fig/decoder_reset_delay.pdf Graphic file (type pdf)
+ <use fig/decoder_reset_delay.pdf>
+Package pdftex.def Info: fig/decoder_reset_delay.pdf used on input line 170.
+(pdftex.def)             Requested size: 193.47578pt x 74.65436pt.
+Package hyperref Info: bookmark level for unknown todo defaults to 0 on input line 185.
+ <fig/interrupt_detect.pdf, id=122, 210.95322pt x 153.89615pt>
+File: fig/interrupt_detect.pdf Graphic file (type pdf)
+ <use fig/interrupt_detect.pdf>
+Package pdftex.def Info: fig/interrupt_detect.pdf used on input line 192.
+(pdftex.def)             Requested size: 193.47578pt x 141.15408pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[5 <./fig/amplifier.pdf> <./fig/schmitt_trigger.pdf> <./fig/decoder_reset_delay.pdf>] <../measurements/SCR03.PNG, id=184, 642.4pt x 521.95pt>
 File: ../measurements/SCR03.PNG Graphic file (type png)
  <use ../measurements/SCR03.PNG>
-Package pdftex.def Info: ../measurements/SCR03.PNG used on input line 178.
+Package pdftex.def Info: ../measurements/SCR03.PNG used on input line 226.
 (pdftex.def)             Requested size: 145.11053pt x 117.90356pt.
- <../measurements/SCR06.PNG, id=153, 642.4pt x 521.95pt>
+ <../measurements/SCR06.PNG, id=185, 642.4pt x 521.95pt>
 File: ../measurements/SCR06.PNG Graphic file (type png)
  <use ../measurements/SCR06.PNG>
-Package pdftex.def Info: ../measurements/SCR06.PNG used on input line 190.
+Package pdftex.def Info: ../measurements/SCR06.PNG used on input line 238.
 (pdftex.def)             Requested size: 145.11053pt x 117.90356pt.
- <../measurements/SCR07.PNG, id=154, 642.4pt x 521.95pt>
+ <../measurements/SCR07.PNG, id=186, 642.4pt x 521.95pt>
 File: ../measurements/SCR07.PNG Graphic file (type png)
  <use ../measurements/SCR07.PNG>
-Package pdftex.def Info: ../measurements/SCR07.PNG used on input line 191.
+Package pdftex.def Info: ../measurements/SCR07.PNG used on input line 239.
 (pdftex.def)             Requested size: 145.11053pt x 117.90356pt.
- <../measurements/SCR08.PNG, id=155, 642.4pt x 521.95pt>
+ <../measurements/SCR08.PNG, id=187, 642.4pt x 521.95pt>
 File: ../measurements/SCR08.PNG Graphic file (type png)
  <use ../measurements/SCR08.PNG>
-Package pdftex.def Info: ../measurements/SCR08.PNG used on input line 192.
+Package pdftex.def Info: ../measurements/SCR08.PNG used on input line 240.
 (pdftex.def)             Requested size: 145.11053pt x 117.90356pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<../measurements/SCR12.PNG, id=156, 642.4pt x 521.95pt>
+ <../measurements/SCR12.PNG, id=188, 642.4pt x 521.95pt>
 File: ../measurements/SCR12.PNG Graphic file (type png)
  <use ../measurements/SCR12.PNG>
-Package pdftex.def Info: ../measurements/SCR12.PNG used on input line 204.
+Package pdftex.def Info: ../measurements/SCR12.PNG used on input line 252.
 (pdftex.def)             Requested size: 145.11053pt x 117.90356pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[5pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) has been already used, duplicate ignored
+[6pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.214 \begin{thebibliography}{9}
-                                 <../measurements/SCR03.PNG>]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 221.
- (/usr/share/texmf-dist/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-Underfull \hbox (badness 10000) in paragraph at lines 217--222
+l.262 \begin{thebibliography}{9}
+                                pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.262 \begin{thebibliography}{9}
+                                 <./fig/interrupt_detect.pdf> <../measurements/SCR03.PNG> <../measurements/SCR06.PNG> <../measurements/SCR07.PNG> <../measurements/SCR08.PNG>]
+Underfull \hbox (badness 10000) in paragraph at lines 265--270
 \T1/cmtt/m/n/10.95 Graphics / XPic5 / 00082753 _ 0 . pdf / LD % 20271 ,[] %20Lead % 20(Pb ) %20Free % 20Product % 20-[] % 20RoHS %
  []
 
-<../schema/IRemote.pdf, id=171, 845.1575pt x 598.235pt>
+
+Overfull \hbox (9.84889pt too wide) in paragraph at lines 299--304
+[]$\T1/cmtt/m/n/10.95 http : / / www . infineon . com / dgdl / irlr8259pbf . pdf ? fileId = 5546d462533600a40153566e1ebe26e9$[] 
+ []
+
+
+Underfull \hbox (badness 1810) in paragraph at lines 306--311
+[]\T1/ptm/m/n/10.95 Texas Ins-tru-ments, \T1/ptm/m/it/10.95 LMC6482 CMOS Dual Rail-to-Rail In-put and Out-put Ope-ra-tio-nal Am-pli-fier\T1/ptm/m/n/10.95 ,
+ []
+
+<../schema/IRemote.pdf, id=224, 845.1575pt x 598.235pt>
 File: ../schema/IRemote.pdf Graphic file (type pdf)
  <use ../schema/IRemote.pdf>
-Package pdftex.def Info: ../schema/IRemote.pdf used on input line 252.
+Package pdftex.def Info: ../schema/IRemote.pdf used on input line 314.
 (pdftex.def)             Requested size: 845.15544pt x 598.23354pt.
 File: ../schema/IRemote.pdf Graphic file (type pdf)
  <use ../schema/IRemote.pdf>
-Package pdftex.def Info: ../schema/IRemote.pdf used on input line 252.
+Package pdftex.def Info: ../schema/IRemote.pdf used on input line 314.
 (pdftex.def)             Requested size: 845.15544pt x 598.23354pt.
- <../schema/IRemote.pdf, id=174, page=1, 845.1575pt x 598.235pt>
+ <../schema/IRemote.pdf, id=227, page=1, 845.1575pt x 598.235pt>
 File: ../schema/IRemote.pdf Graphic file (type pdf)
  <use ../schema/IRemote.pdf, page 1>
-Package pdftex.def Info: ../schema/IRemote.pdf, page1 used on input line 252.
-(pdftex.def)             Requested size: 845.15544pt x 598.23354pt.
-File: ../schema/IRemote.pdf Graphic file (type pdf)
- <use ../schema/IRemote.pdf, page 1>
-Package pdftex.def Info: ../schema/IRemote.pdf, page1 used on input line 252.
+Package pdftex.def Info: ../schema/IRemote.pdf, page1 used on input line 314.
 (pdftex.def)             Requested size: 845.15544pt x 598.23354pt.
 File: ../schema/IRemote.pdf Graphic file (type pdf)
  <use ../schema/IRemote.pdf, page 1>
-Package pdftex.def Info: ../schema/IRemote.pdf, page1 used on input line 252.
+Package pdftex.def Info: ../schema/IRemote.pdf, page1 used on input line 314.
 (pdftex.def)             Requested size: 845.15544pt x 598.23354pt.
 File: ../schema/IRemote.pdf Graphic file (type pdf)
  <use ../schema/IRemote.pdf, page 1>
-Package pdftex.def Info: ../schema/IRemote.pdf, page1 used on input line 252.
+Package pdftex.def Info: ../schema/IRemote.pdf, page1 used on input line 314.
 (pdftex.def)             Requested size: 845.15544pt x 598.23354pt.
- [6] <../schema/IRemote.pdf, id=185, page=2, 845.1575pt x 598.235pt>
+File: ../schema/IRemote.pdf Graphic file (type pdf)
+ <use ../schema/IRemote.pdf, page 1>
+Package pdftex.def Info: ../schema/IRemote.pdf, page1 used on input line 314.
+(pdftex.def)             Requested size: 845.15544pt x 598.23354pt.
+ [7] <../schema/IRemote.pdf, id=236, page=2, 845.1575pt x 598.235pt>
 File: ../schema/IRemote.pdf Graphic file (type pdf)
  <use ../schema/IRemote.pdf, page 2>
-Package pdftex.def Info: ../schema/IRemote.pdf, page2 used on input line 252.
-(pdftex.def)             Requested size: 845.15544pt x 598.23354pt.
-File: ../schema/IRemote.pdf Graphic file (type pdf)
- <use ../schema/IRemote.pdf, page 2>
-Package pdftex.def Info: ../schema/IRemote.pdf, page2 used on input line 252.
-(pdftex.def)             Requested size: 845.15544pt x 598.23354pt.
-File: ../schema/IRemote.pdf Graphic file (type pdf)
- <use ../schema/IRemote.pdf, page 1>
-Package pdftex.def Info: ../schema/IRemote.pdf, page1 used on input line 252.
-(pdftex.def)             Requested size: 845.15544pt x 598.23354pt.
- [7 <../schema/IRemote.pdf>] <../schema/IRemote.pdf, id=196, page=3, 845.1575pt x 598.235pt>
-File: ../schema/IRemote.pdf Graphic file (type pdf)
- <use ../schema/IRemote.pdf, page 3>
-Package pdftex.def Info: ../schema/IRemote.pdf, page3 used on input line 252.
-(pdftex.def)             Requested size: 845.15544pt x 598.23354pt.
-File: ../schema/IRemote.pdf Graphic file (type pdf)
- <use ../schema/IRemote.pdf, page 3>
-Package pdftex.def Info: ../schema/IRemote.pdf, page3 used on input line 252.
+Package pdftex.def Info: ../schema/IRemote.pdf, page2 used on input line 314.
 (pdftex.def)             Requested size: 845.15544pt x 598.23354pt.
 File: ../schema/IRemote.pdf Graphic file (type pdf)
  <use ../schema/IRemote.pdf, page 2>
-Package pdftex.def Info: ../schema/IRemote.pdf, page2 used on input line 252.
-(pdftex.def)             Requested size: 845.15544pt x 598.23354pt.
- [8 <../schema/IRemote.pdf>] <../schema/IRemote.pdf, id=201, page=4, 845.1575pt x 598.235pt>
-File: ../schema/IRemote.pdf Graphic file (type pdf)
- <use ../schema/IRemote.pdf, page 4>
-Package pdftex.def Info: ../schema/IRemote.pdf, page4 used on input line 252.
+Package pdftex.def Info: ../schema/IRemote.pdf, page2 used on input line 314.
 (pdftex.def)             Requested size: 845.15544pt x 598.23354pt.
 File: ../schema/IRemote.pdf Graphic file (type pdf)
- <use ../schema/IRemote.pdf, page 4>
-Package pdftex.def Info: ../schema/IRemote.pdf, page4 used on input line 252.
+ <use ../schema/IRemote.pdf, page 1>
+Package pdftex.def Info: ../schema/IRemote.pdf, page1 used on input line 314.
+(pdftex.def)             Requested size: 845.15544pt x 598.23354pt.
+ [8 <../schema/IRemote.pdf>] <../schema/IRemote.pdf, id=246, page=3, 845.1575pt x 598.235pt>
+File: ../schema/IRemote.pdf Graphic file (type pdf)
+ <use ../schema/IRemote.pdf, page 3>
+Package pdftex.def Info: ../schema/IRemote.pdf, page3 used on input line 314.
 (pdftex.def)             Requested size: 845.15544pt x 598.23354pt.
 File: ../schema/IRemote.pdf Graphic file (type pdf)
  <use ../schema/IRemote.pdf, page 3>
-Package pdftex.def Info: ../schema/IRemote.pdf, page3 used on input line 252.
-(pdftex.def)             Requested size: 845.15544pt x 598.23354pt.
- [9 <../schema/IRemote.pdf>] <../schema/IRemote.pdf, id=206, page=5, 845.1575pt x 598.235pt>
-File: ../schema/IRemote.pdf Graphic file (type pdf)
- <use ../schema/IRemote.pdf, page 5>
-Package pdftex.def Info: ../schema/IRemote.pdf, page5 used on input line 252.
+Package pdftex.def Info: ../schema/IRemote.pdf, page3 used on input line 314.
 (pdftex.def)             Requested size: 845.15544pt x 598.23354pt.
 File: ../schema/IRemote.pdf Graphic file (type pdf)
- <use ../schema/IRemote.pdf, page 5>
-Package pdftex.def Info: ../schema/IRemote.pdf, page5 used on input line 252.
+ <use ../schema/IRemote.pdf, page 2>
+Package pdftex.def Info: ../schema/IRemote.pdf, page2 used on input line 314.
+(pdftex.def)             Requested size: 845.15544pt x 598.23354pt.
+ [9 <../schema/IRemote.pdf>] <../schema/IRemote.pdf, id=251, page=4, 845.1575pt x 598.235pt>
+File: ../schema/IRemote.pdf Graphic file (type pdf)
+ <use ../schema/IRemote.pdf, page 4>
+Package pdftex.def Info: ../schema/IRemote.pdf, page4 used on input line 314.
 (pdftex.def)             Requested size: 845.15544pt x 598.23354pt.
 File: ../schema/IRemote.pdf Graphic file (type pdf)
  <use ../schema/IRemote.pdf, page 4>
-Package pdftex.def Info: ../schema/IRemote.pdf, page4 used on input line 252.
-(pdftex.def)             Requested size: 845.15544pt x 598.23354pt.
- [10 <../schema/IRemote.pdf>] <../schema/IRemote.pdf, id=211, page=6, 845.1575pt x 598.235pt>
-File: ../schema/IRemote.pdf Graphic file (type pdf)
- <use ../schema/IRemote.pdf, page 6>
-Package pdftex.def Info: ../schema/IRemote.pdf, page6 used on input line 252.
+Package pdftex.def Info: ../schema/IRemote.pdf, page4 used on input line 314.
 (pdftex.def)             Requested size: 845.15544pt x 598.23354pt.
 File: ../schema/IRemote.pdf Graphic file (type pdf)
- <use ../schema/IRemote.pdf, page 6>
-Package pdftex.def Info: ../schema/IRemote.pdf, page6 used on input line 252.
+ <use ../schema/IRemote.pdf, page 3>
+Package pdftex.def Info: ../schema/IRemote.pdf, page3 used on input line 314.
+(pdftex.def)             Requested size: 845.15544pt x 598.23354pt.
+ [10 <../schema/IRemote.pdf>] <../schema/IRemote.pdf, id=256, page=5, 845.1575pt x 598.235pt>
+File: ../schema/IRemote.pdf Graphic file (type pdf)
+ <use ../schema/IRemote.pdf, page 5>
+Package pdftex.def Info: ../schema/IRemote.pdf, page5 used on input line 314.
 (pdftex.def)             Requested size: 845.15544pt x 598.23354pt.
 File: ../schema/IRemote.pdf Graphic file (type pdf)
  <use ../schema/IRemote.pdf, page 5>
-Package pdftex.def Info: ../schema/IRemote.pdf, page5 used on input line 252.
+Package pdftex.def Info: ../schema/IRemote.pdf, page5 used on input line 314.
 (pdftex.def)             Requested size: 845.15544pt x 598.23354pt.
- [11 <../schema/IRemote.pdf>]
+File: ../schema/IRemote.pdf Graphic file (type pdf)
+ <use ../schema/IRemote.pdf, page 4>
+Package pdftex.def Info: ../schema/IRemote.pdf, page4 used on input line 314.
+(pdftex.def)             Requested size: 845.15544pt x 598.23354pt.
+ [11 <../schema/IRemote.pdf>] <../schema/IRemote.pdf, id=261, page=6, 845.1575pt x 598.235pt>
 File: ../schema/IRemote.pdf Graphic file (type pdf)
  <use ../schema/IRemote.pdf, page 6>
-Package pdftex.def Info: ../schema/IRemote.pdf, page6 used on input line 252.
+Package pdftex.def Info: ../schema/IRemote.pdf, page6 used on input line 314.
+(pdftex.def)             Requested size: 845.15544pt x 598.23354pt.
+File: ../schema/IRemote.pdf Graphic file (type pdf)
+ <use ../schema/IRemote.pdf, page 6>
+Package pdftex.def Info: ../schema/IRemote.pdf, page6 used on input line 314.
+(pdftex.def)             Requested size: 845.15544pt x 598.23354pt.
+File: ../schema/IRemote.pdf Graphic file (type pdf)
+ <use ../schema/IRemote.pdf, page 5>
+Package pdftex.def Info: ../schema/IRemote.pdf, page5 used on input line 314.
 (pdftex.def)             Requested size: 845.15544pt x 598.23354pt.
  [12 <../schema/IRemote.pdf>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 254.
- [13pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) has been already used, duplicate ignored
+File: ../schema/IRemote.pdf Graphic file (type pdf)
+ <use ../schema/IRemote.pdf, page 6>
+Package pdftex.def Info: ../schema/IRemote.pdf, page6 used on input line 314.
+(pdftex.def)             Requested size: 845.15544pt x 598.23354pt.
+ [13 <../schema/IRemote.pdf>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 316.
+ [14pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.254 \end{document}
-                    pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.254 \end{document}
-                     <../measurements/SCR06.PNG> <../measurements/SCR07.PNG> <../measurements/SCR08.PNG> <../measurements/SCR12.PNG>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 254.
+l.316 \end{document}
+                     <../measurements/SCR12.PNG>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 316.
  (out/main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 254.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 254.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 316.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 316.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: A125B37F778565D3C1195D6DA18DD9D9;663.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 254.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 316.
  ) 
 Here is how much of TeX's memory you used:
- 40986 strings out of 494385
- 928846 string characters out of 6170800
- 1043828 words of memory out of 5000000
- 43534 multiletter control sequences out of 15000+600000
+ 41004 strings out of 494385
+ 929221 string characters out of 6170800
+ 1041886 words of memory out of 5000000
+ 43545 multiletter control sequences out of 15000+600000
  83454 words of font info for 120 fonts, out of 8000000 for 9000
  452 hyphenation exceptions out of 8191
  69i,21n,85p,10440b,948s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolC.enc}{/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolE.enc}{/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolD.enc}{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol10.pfb></usr/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/share/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on out/main.pdf (13 pages, 489669 bytes).
+{/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolA.enc}{/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolC.enc}{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolE.enc}{/usr/share/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolD.enc}{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol10.pfb></usr/share/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/share/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on out/main.pdf (14 pages, 610935 bytes).
 PDF statistics:
- 277 PDF objects out of 1000 (max. 8388607)
- 215 compressed objects within 3 object streams
- 35 named destinations out of 1000 (max. 500000)
- 191 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 329 PDF objects out of 1000 (max. 8388607)
+ 256 compressed objects within 3 object streams
+ 38 named destinations out of 1000 (max. 500000)
+ 201 words of extra memory for PDF output out of 10000 (max. 10000000)
 
