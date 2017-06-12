@@ -71,19 +71,15 @@ du sous-système.
 	\end{tabular}
 \end{center}
 
-\begin{center}
-    \begin{tabular}{| c | l | c |}
-			\hline
-        \textit{pulse}      &  \\ \hline
-    \end{tabular}
-\end{center}
-\todo[inline]{TODO: tableau pas fini}
+\section{Dimensionnements}
+\subsection{Signal}
+Le nombre d'impulsions $n_{pulse}$ a été choisi arbitrairement à 13. La période et le duty-cycle des impulsions sont dictés par ce que la LED infrarouge peut supporter (c.f. \ref{subsec:LED_driver}).
 
 \subsection{Générateur de signal}
 Le générateur de signal génère dans OUTPUT des salves de $n_{pulses}$ à une période $\tau$ en active high tant que celui-ci est alimenté à 3V. Les pulses dans les salves ont une durée high $t_0$ et une période $T_0$. Le nombre de pulses et les durées ne sont pas garanties lorsque l'alimentation est retirée.
 
 \begin{description}[leftmargin=!,labelwidth=3cm, labelindent=\parindent]
-	\item[Pulse timer] Génère des impulsion à hautes fréquences tant qu'il n'est pas RESET. Il est formé d'un timer TLC555 en configuration bascule astable. Les dimensionnements sont fait selon le datasheet avec une petite capacité pour la simplicité et la limitation de la consommation.
+	\item[Pulse timer] Génère des impulsion à hautes fréquences tant qu'il n'est pas RESET. Il est formé d'un timer TLC555 en configuration bascule astable. Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une petite capacité pour la simplicité et la limitation de la consommation.
 		\begin{equation*}
 			\begin{cases}
 				t_0 = 0.693(Rpa+Rpb)Cp \\
@@ -91,7 +87,8 @@ Le générateur de signal génère dans OUTPUT des salves de $n_{pulses}$ à une
 				Rpl	= \SI{1}{\kilo\ohm}
 			\end{cases}
 		\end{equation*}
-	\item[Burst timer] Oscille à une période $\tau$ pour signaler le début d'une salve. Il est formé d'un timer TLC555 en configuration bascule astable. Les dimensionnements sont fait selon le datasheet avec une petite capacité pour la simplicité et la limitation de la consommation. La durée high doit être plus grand que la durée durée d'une salve.
+	\item[Decounter] Compte le nombre de pulses reçu depuis son dernier RESET et maintient le RESET du pulse timer le bloquant ainsi lorsque $n_{pulse}$ pulses ont été reçu. Il est formé d'un compter HEF4526B \cite{HEF4526B}.
+	\item[Burst timer] Réinitialise le decounter à une période $\tau$ pour recommencer une salve. Il est formé d'un timer TLC555 en configuration bascule astable. Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une petite capacité pour la simplicité et la limitation de la consommation. La durée high doit être plus grand que la durée durée d'une salve.
 		\begin{equation*}
 			\begin{cases}
 				\tau = 0.693(Rba+2Rbb)Cb \\
@@ -99,14 +96,14 @@ Le générateur de signal génère dans OUTPUT des salves de $n_{pulses}$ à une
 				Rbl	= \SI{1}{\kilo\ohm}
 			\end{cases}
 		\end{equation*}
-	\item[Decounter] Compte le nombre de pulses reçu depuis son dernier RESET et signal lorsque $n_{pulse}$ pulses ont été reçu. Il est formé d'un compter HEF4526B.
-	\item[Logic] Assure les conditions logiques sur les signaux. Il est formée d'un quadruple 2-input NOR HEF4001.
+	\item[Logic] Assure les conditions logiques sur les signaux. Il est formée d'un quadruple 2-input NOR HEF4001 \cite{HEF4001B}.
 \end{description}
 
 \subsection{LED driver}
+\label{subsec:LED_driver}
 Le LED driver allume la LED infrarouge lorsque LED\_SIGNAL est high. Il assure une bonne émission de la LED sans l'endommager si le signal de 3V a une période T\_0 avec un duty-cycle de 10\%.
 
-La LED est une LD271(H). Selon son datasheet, celle-ci accepte $\SI{1}{\ampere}$ durant $\SI{0.1}{\milli\second}$ toutes les $\SI{1.0}{\milli\second}$. Ce sont ses valeurs qui ont dicté le choix du signal. Le courant est limité par la résistance $R14 = \SI{1}{\ohm}$ et une grande capacité de découplage $C7=\SI{470}{\micro F}$ assure la puissance de l'émission.
+La LED est une LD271(H). Selon son datasheet, celle-ci accepte $\SI{1}{\ampere}$ durant $\SI{0.1}{\milli\second}$ toutes les $\SI{1.0}{\milli\second}$ \cite{LD271(H)}. Ce sont ses valeurs qui ont dicté le choix du signal. Le courant est limité par la résistance $R14 = \SI{1}{\ohm}$ et une grande capacité de découplage $C7=\SI{470}{\micro F}$ assure la puissance de l'émission.
 
 
 \todo[inline]{check active high/low}
@@ -185,6 +182,45 @@ arrive à l'entrée il n'y a pas de signal à la sortie.
 \end{figure}
 
 \section{Annexes}
+
+
+\begin{thebibliography}{9}
+
+	\bibitem{LD271(H)}
+	OSRAM,
+	\textit{LD271 - HGaAs Infrared Emitter},
+	Version 1.0,
+	4 Avril 2007,
+	\url{http://www.osram-os.com/Graphics/XPic5/00082753_0.pdf/LD%20271,%20Lead%20(Pb)%20Free%20Product%20-%20RoHS%20Compliant.pdf}
+
+		\bibitem{BP104}
+		VISHAY,
+		\textit{BP104 - Silicon PIN Photodiode},
+		Revision: 08-Feb-17,
+		\url{http://www.vishay.com/docs/81500/81500.pdf}
+
+		\bibitem{TLC555}
+		TEXAS INSTRUMENTS,
+		\textit{TLC555 LinCMOS\texttrademark Timer},
+		REVISED AUGUST 2016,
+		SEPTEMBER 1983,
+		\url{http://www.ti.com/lit/ds/symlink/tlc555.pdf}
+
+		\bibitem{HEF4526B}
+		NXP,
+		\textit{HEF4526B - Programmable 4-bit binary down counter - Product data sheet},
+		Rev. 5,
+		22 November 2011,
+		\url{http://www.nxp.com/documents/data_sheet/HEF4526B.pdf}.
+
+		\bibitem{HEF4001B}
+		NXP,
+		\textit{HEF4001B - Quad 2-input NOR gate - Product data sheet},
+		Rev. 10,
+		10 December 2015,
+		\url{https://assets.nexperia.com/documents/data-sheet/HEF4001B.pdf}
+
+\end{thebibliography}
 
 
 \end{document}
