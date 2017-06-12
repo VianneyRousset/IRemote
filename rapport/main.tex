@@ -45,7 +45,6 @@ Le système est divisé en 5 étages pour faciliter le développement et la test
 \centering
 \vspace{5mm}
 \includegraphics[width=\textwidth]{fig/IRemote_schema_structure}
-% \includegraphics[width=0.8\textwidth]{fig/schema_bloc}
 \caption{Schéma bloc du système avec signaux}
 \label{fig:schema_bloc}
 \vspace{5mm}
@@ -102,43 +101,54 @@ Le générateur de signal génère dans OUTPUT des salves de $n_{pulses}$ à une
 \label{subsec:LED_driver}
 Le LED driver allume la LED infrarouge lorsque LED\_SIGNAL est high. Il assure une bonne émission de la LED sans l'endommager si le signal de 3V a une période $T_0$ avec un duty-cycle de 10\%.
 
-La LED est une LD271(H). Selon son datasheet, celle-ci accepte $\SI{1}{\ampere}$ durant $\SI{0.1}{\milli\second}$ toutes les $\SI{1.0}{\milli\second}$ \cite{LD271(H)}. Ce sont ses valeurs qui ont dicté le choix du signal. Le courant est limité par la résistance $\mathit{R14} = \SI{1}{\ohm}$ et une grande capacité de découplage $\mathit{C7}=\SI{470}{\micro F}$ assure la puissance de l'émission.
+La LED est une LD271(H). Selon son datasheet, celle-ci accepte $\SI{1}{\ampere}$ durant $\SI{0.1}{\milli\second}$ toutes les $\SI{1.0}{\milli\second}$ \cite{LD271(H)}.
+Ce sont ses valeurs qui ont dicté le choix du signal.
+Le courant est limité par la résistance $\mathit{R14} = \SI{1}{\ohm}$.
+La tension au borne de la résistance $\mathit{R14}$ a été mesurée pour vérifier que le courant dans la LED ne dépasse pas $\SI{1}{\ampere}$.
+L'alimentation se fait par le transistor NMOS IRLU8259\cite{IRLU8259} avec une faible tension Drain-Source.
 
-La tension au borne de la résistance $\mathit{R14}$ a été mesurée pour vérifié que le courant dans la LED ne dépasse pas $\SI{1}{\ampere}$.
+La capacité de découplage est dimensionnée pour limiter la baisse de tension à 0.3V pendant un pulse de durée $t_0$ pour assurer la puissance de l'émission.
+\begin{equation*}
+C7 = \SI{1}{\ampere}\SI{100}{\micro\second}/\SI{0.3}{\volt} = \SI{333}{\micro\farad} \Rightarrow \SI{470}{\micro\farad}
+\end{equation*}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.3\textwidth]{fig/ir_led.pdf}
+\end{figure}
+
 
 \subsection{Récepteur et filtrage}
 Cet étage est composé de 3 sous-étages en série.
-% \begin{description}[leftmargin=!,labelwidth=5cm, labelindent=\parindent]
-% 	\item[Conversion \& low-pass] Convertit le petit courant de la diode en tension tout en appliquant un filtre passe-bas.
-% 	\item[Amplification \& high-pass] Amplifie la tension tout en appliquant un filtre passe-haut.
-% 	\item[Schmitt trigger] Génère un signal carré avec 2 seuils en tension: $V_+$ et $V_-$
-% \end{description}
 
-\paragraph{Conversion courant-tension et filtre low-pass}
+\begin{description}[leftmargin=!,labelwidth=3cm, labelindent=\parindent]
+    \item[Convertisseur]
+        La photodiode génère un petit courant qui est converti en une tension par l'amplificateur opérationnel LMC6482\cite{LMC6482}.
+        La résistance R15 définit le gain et est assez élevée car le courant est relativement faible.
+        Dans le conditions de test, une valeur de \SI{1}{\mega\ohm} donnait les meilleures résultâts.
+        En outre, la capacité C8 de \SI{10}{\pico\farad} filtre le bruit de haute fréquences d'ordre de \SI{100}{\kilo Hz}.
 
-La photodiode génère un petit courant qui est converti en une tension par l'amplificateur opérationnel LMC6482.
-La résistance R15 définit le gain et est assez élevée car le courant est relativement faible.
-Dans le conditions de test, une valeur de \SI{1}{\mega\ohm} donnait les meilleures résultâts.
-En outre, la capacité C8 de \SI{10}{\pico F} filtre le bruit de haute fréquences d'ordre de \SI{100}{\kilo Hz}.
+        \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.4\textwidth]{fig/current_to_voltage_converter.pdf}
+        \end{figure}
 
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.4\textwidth]{fig/current_to_voltage_converter.pdf}
-\end{figure}
+    \item[Amplificateur] Convertit le petit courant de la diode en tension tout en appliquant un filtre passe-bas.
 
-\paragraph{Amplificateur et filtre high-pass}
-Convertit le petit courant de la diode en tension tout en appliquant un filtre passe-bas.
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.4\textwidth]{fig/amplifier.pdf}
-\end{figure}
+        \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.4\textwidth]{fig/amplifier.pdf}
+        \end{figure}
 
-\paragraph{Schmitt trigger}
-Génère un signal carré avec 2 seuils en tension: $V_+$ et $V_-$
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.4\textwidth]{fig/schmitt_trigger.pdf}
-\end{figure}
+    \item[Schmitt trigger] Génère un signal carré avec 2 seuils en tension: $V_+$ et $V_-$
+
+        TODO: définir les valeurs V+ et V-
+
+        \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.4\textwidth]{fig/schmitt_trigger.pdf}
+        \end{figure}
+\end{description}
 
 \subsection{Décodeur}
 Le décodeur à 3 fonctions:
@@ -169,9 +179,8 @@ La logique de sortie est réalisée en NOR gate comme suivant:
 		Le BC107 a une tension \(V_{CEsat}\) de \SI{0.25}{\volt} pour un courant de \SI{10}{\milli\ampere}.
 		En estimant une \(V_{CEsat}\) de \SI{0.30}{\volt} pour un courant de \SI{20}{\milli\ampere}:
 \begin{equation*}
-R_{LED} = (5V - V_{CEsat} - V_{forward})/20mA = 145\Omega
+R_{LED} = (5V - V_{CEsat} - V_{forward})/\SI{20}{\milli\ampere} = \SI{145}{\ohm} \Rightarrow \SI{150}{\ohm}
 \end{equation*}
-On choisit donc \(150\Omega\).
 
 
 \end{description}
@@ -233,29 +242,43 @@ arrive à l'entrée il n'y a pas de signal à la sortie.
 		\bibitem{BP104}
 		VISHAY,
 		\textit{BP104 - Silicon PIN Photodiode},
-		Revision: 08-Feb-17,
+		Revision: 08-Feb-17,\\
 		\url{http://www.vishay.com/docs/81500/81500.pdf}
 
 		\bibitem{TLC555}
 		TEXAS INSTRUMENTS,
 		\textit{TLC555 LinCMOS\texttrademark Timer},
 		REVISED AUGUST 2016,
-		SEPTEMBER 1983,
+		SEPTEMBER 1983,\\
 		\url{http://www.ti.com/lit/ds/symlink/tlc555.pdf}
 
 		\bibitem{HEF4526B}
 		NXP,
 		\textit{HEF4526B - Programmable 4-bit binary down counter - Product data sheet},
 		Rev. 5,
-		22 November 2011,
+		22 November 2011,\\
 		\url{http://www.nxp.com/documents/data_sheet/HEF4526B.pdf}.
 
 		\bibitem{HEF4001B}
-		NXP,
-		\textit{HEF4001B - Quad 2-input NOR gate - Product data sheet},
-		Rev. 10,
-		10 December 2015,
-		\url{https://assets.nexperia.com/documents/data-sheet/HEF4001B.pdf}
+        NXP,
+        \textit{HEF4001B - Quad 2-input NOR gate - Product data sheet},
+        Rev. 10,
+        10 December 2015,\\
+        \url{https://assets.nexperia.com/documents/data-sheet/HEF4001B.pdf}
+
+        \bibitem{IRLU8259}
+        International Rectifier,
+        \textit{IRLU8259PbF - HEXFET\textregistered Power MOSFET},
+        PD - 97360,
+        16 December 2008,\\
+        \url{http://www.infineon.com/dgdl/irlr8259pbf.pdf?fileId=5546d462533600a40153566e1ebe26e9}
+
+        \bibitem{LMC6482}
+		Texas Instruments,
+		\textit{LMC6482 CMOS Dual Rail-to-Rail Input and Output Operational Amplifier},
+		SNOS674E,
+		April 2015,\\
+		\url{http://www.ti.com/lit/ds/symlink/lmc6482.pdf}
 
 \end{thebibliography}
 
