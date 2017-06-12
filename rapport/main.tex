@@ -102,7 +102,7 @@ Le générateur de signal génère dans OUTPUT des salves de $n_{pulses}$ à une
 \label{subsec:LED_driver}
 Le LED driver allume la LED infrarouge lorsque LED\_SIGNAL est high. Il assure une bonne émission de la LED sans l'endommager si le signal de 3V a une période $T_0$ avec un duty-cycle de 10\%.
 
-La LED est une LD271(H). Selon son datasheet, celle-ci accepte $\SI{1}{\ampere}$ durant $\SI{0.1}{\milli\second}$ toutes les $\SI{1.0}{\milli\second}$ \cite{LD271(H)}. Ce sont ses valeurs qui ont dicté le choix du signal. Le courant est limité par la résistance $R14 = \SI{1}{\ohm}$ et une grande capacité de découplage $\mathit{C7}=\SI{470}{\micro F}$ assure la puissance de l'émission.
+La LED est une LD271(H). Selon son datasheet, celle-ci accepte $\SI{1}{\ampere}$ durant $\SI{0.1}{\milli\second}$ toutes les $\SI{1.0}{\milli\second}$ \cite{LD271(H)}. Ce sont ses valeurs qui ont dicté le choix du signal. Le courant est limité par la résistance $\mathit{R14} = \SI{1}{\ohm}$ et une grande capacité de découplage $\mathit{C7}=\SI{470}{\micro F}$ assure la puissance de l'émission.
 
 La tension au borne de la résistance $\mathit{R14}$ a été mesurée pour vérifié que le courant dans la LED ne dépasse pas $\SI{1}{\ampere}$.
 
@@ -144,8 +144,13 @@ Génère un signal carré avec 2 seuils en tension: $V_+$ et $V_-$
 Le décodeur à 3 fonctions:
 
 \begin{description}[leftmargin=!,labelwidth=4cm, labelindent=\parindent]
-	\item[Decounter] Signal si $n_{pulse}$ ont été reçus par la tension d'entrée depuis son dernier RESET.
-	\item[Missing pulse detector] Signal et reset le decounter après un certain délais si la tension d'entrée est maintenue \emph{low} pendant au moins $t_{miss} = xxx \si{\milli\second}$ après la fin d'un pulse.
+	\item[Down counter] Signal si $n_{pulse}$ ont été reçus par la tension d'entrée depuis son dernier RESET.
+	\item[Missing pulse detector] Signal et reset le decounter après un certain délais si la tension d'entrée est maintenue \emph{high} pendant au moins $t_{miss} = \SI{1.8}{\milli\second}$ après la fin d'un pulse. La durée $t_{miss}$ a été arbitrairement choisie pour être supérieur à $t_0 = \SI{1}{\milli\second}$ mais inférieur à $2t_0$. Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une capacité $\mathit{C3} = \SI{100}{\nano F}$ choisie petite pour la simplicité et la limitation de la consommation.
+
+		\begin{equation*}
+			t_{miss} = \mathit{R7}*\mathit{C3}
+		\end{equation*}
+
 	\item[Logic] Met OUTPUT à high si les conditions d'une salve correcte sont remplie. Si $n_{pulse}$ impulsions ont été reçues et que une impulsion manquante est signalée, alors OUTPUT est mis à high. 
 \end{description}
 
