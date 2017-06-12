@@ -30,11 +30,11 @@ permettant d'enclencher et déclencher un relais optique.
 %-------------------------------------------------------------------------------
 \section{Structure générale et principe}
 
-On a divisé le système en 5 étages avec des interfaces définies:
+Le système est divisé en 5 étages pour faciliter le développement et la testabilité:
 
 \begin{description}[leftmargin=!,labelwidth=4cm, labelindent=\parindent]
-\item[Générateur de signal] Générerateur de salves de N pulses de durée de 100\si{\micro\second} avec une période de 1\si{\milli\second} espacées de 100\si{\milli\second}.
-\item[LED driver] Sortie de puissance qui drive la LED IR.
+	\item[Générateur de signal] Générerateur de salves de N pulses de durée de $t_0 =  \SI{100}{\micro\second}$ avec une période de $T_0 = \SI{1}{\milli\second}$ espacées de $\tau = \SI{100}{\milli\second}$.
+\item[LED driver] Sortie de puissance qui contrôle la LED IR.
 \item[Récepteur] Récepteur IR avec amplification et filtrage. La sortie est le signal digital des pulses.
 \item[Décodeur] Circuit logique de décodage du nombre de pulses. La sortie est un pulse d'environ 5 \si{\milli\second} pour chaque salve correcte reçue.
 \item[Sortie] Circuit de détection d'interruption du signal avec commutation et du relais optique.
@@ -82,18 +82,16 @@ Le générateur de signal génère dans OUTPUT des salves de $n_{pulses}$ à une
 	\item[Pulse timer] Génère des impulsion à hautes fréquences tant qu'il n'est pas RESET. Il est formé d'un timer TLC555 en configuration bascule astable. Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une petite capacité pour la simplicité et la limitation de la consommation.
 		\begin{equation*}
 			\begin{cases}
-				t_0 = 0.693(Rpa+Rpb)Cp \\
-				T_0 = 0.693(Rpa+2Rpb)Cp \\
-				Rpl	= \SI{1}{\kilo\ohm}
+				t_0 = 0.693(\mathit{R20}+\mathit{R23})\mathit{C16} \\
+				T_0 = 0.693(\mathit{R20}+2\mathit{R23})\mathit{C16} \\
 			\end{cases}
 		\end{equation*}
-	\item[Decounter] Compte le nombre de pulses reçu depuis son dernier RESET et maintient le RESET du pulse timer le bloquant ainsi lorsque $n_{pulse}$ pulses ont été reçu. Il est formé d'un compter HEF4526B \cite{HEF4526B}.
+	\item[Down counter] Compte le nombre de pulses reçus depuis son dernier RESET et maintient le RESET du pulse timer le bloquant ainsi lorsque $n_{pulse}$ pulses ont été reçu. Il est formé d'un compteur HEF4526B \cite{HEF4526B}.
 	\item[Burst timer] Réinitialise le decounter à une période $\tau$ pour recommencer une salve. Il est formé d'un timer TLC555 en configuration bascule astable. Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une petite capacité pour la simplicité et la limitation de la consommation. La durée high doit être plus grand que la durée durée d'une salve.
 		\begin{equation*}
 			\begin{cases}
-				\tau = 0.693(Rba+2Rbb)Cb \\
-				n_{pulse}*\frac{T_0}{\tau} < \frac{Rba+Rbb}{Rba+2Rbb} \\
-				Rbl	= \SI{1}{\kilo\ohm}
+				\tau = 0.693(\mathit{R13}+2\mathit{R19})\mathit{C10} \\
+				n_{pulse}*\frac{T_0}{\tau} < \frac{\mathit{R13}+\mathit{R19}}{\mathit{R13}+2\mathit{19}} \\
 			\end{cases}
 		\end{equation*}
 	\item[Logic] Assure les conditions logiques sur les signaux. Il est formée d'un quadruple 2-input NOR HEF4001 \cite{HEF4001B}.
@@ -101,13 +99,11 @@ Le générateur de signal génère dans OUTPUT des salves de $n_{pulses}$ à une
 
 \subsection{LED driver}
 \label{subsec:LED_driver}
-Le LED driver allume la LED infrarouge lorsque LED\_SIGNAL est high. Il assure une bonne émission de la LED sans l'endommager si le signal de 3V a une période T\_0 avec un duty-cycle de 10\%.
+Le LED driver allume la LED infrarouge lorsque LED\_SIGNAL est high. Il assure une bonne émission de la LED sans l'endommager si le signal de 3V a une période $T_0$ avec un duty-cycle de 10\%.
 
-La LED est une LD271(H). Selon son datasheet, celle-ci accepte $\SI{1}{\ampere}$ durant $\SI{0.1}{\milli\second}$ toutes les $\SI{1.0}{\milli\second}$ \cite{LD271(H)}. Ce sont ses valeurs qui ont dicté le choix du signal. Le courant est limité par la résistance $R14 = \SI{1}{\ohm}$ et une grande capacité de découplage $C7=\SI{470}{\micro F}$ assure la puissance de l'émission.
+La LED est une LD271(H). Selon son datasheet, celle-ci accepte $\SI{1}{\ampere}$ durant $\SI{0.1}{\milli\second}$ toutes les $\SI{1.0}{\milli\second}$ \cite{LD271(H)}. Ce sont ses valeurs qui ont dicté le choix du signal. Le courant est limité par la résistance $R14 = \SI{1}{\ohm}$ et une grande capacité de découplage $\mathit{C7}=\SI{470}{\micro F}$ assure la puissance de l'émission.
 
-La tension au borne de la résistance $R14$ a été mesurée pour vérifié que le courant dans la LED ne dépasse pas $\SI{1}{\ampere}$.
-
-\todo[inline]{check active high/low}
+La tension au borne de la résistance $\mathit{R14}$ a été mesurée pour vérifié que le courant dans la LED ne dépasse pas $\SI{1}{\ampere}$.
 
 \subsection{Récepteur et filtrage}
 Cet étage est composé de 3 sous-étages en série.
@@ -141,20 +137,20 @@ Le décodeur à 3 fonctions:
 
 \subsection{Sortie}
 
-\subsubsection{Détecteur de pause}
 \todo[inline]{pause = lâchement de bouton, comment on veut nommer cette partie? -> Déclencheur?}
 
-\subsubsection{Commutation de la sortie}
-\subsubsection{Relais}
-Le relais optique est simulé par une LED rouge standard avec un courant de 20mA et une tension directe d'environ 1.8V.
-Pour alimenter la LED on a choisi le transistor bipolaire NPN BC107 avec une résistance en série pour limiter le courant.
-Le BC107 a une tension \(V_{CEsat}\) de 0.25V pour un courant de 10mA.
-En estimant une \(V_{CEsat}\) de 0.30V pour un courant de 20mA:
+\begin{description}[leftmargin=!,labelwidth=4cm, labelindent=\parindent]
+	\item[Déclencheur] kewurniwerjm
+	\item[Relais] Le relais optique est simulé par une LED rouge standard avec un courant de \SI{20}{\milli\ampere} et une tension directe d'environ \SI{1.8}{\volt}. Pour alimenter la LED on a choisi le transistor bipolaire NPN BC107 avec une résistance en série pour limiter le courant.
+		Le BC107 a une tension \(V_{CEsat}\) de \SI{0.25}{\volt} pour un courant de \SI{10}{\milli\ampere}.
+		En estimant une \(V_{CEsat}\) de \SI{0.30}{\volt} pour un courant de \SI{20}{\milli\ampere}:
 \[
-R_{LED} = (5V - V_{CEsat} - V_{forward})/20mA = 145\Omega
+	R_{LED} = (5V - V_{CEsat} - V_{forward})/\SI{20}{\milli\ampere} = \SI{145}{\ohm}
 \]
-On choisit donc \(150\Omega\).
+On choisit donc \SI{150}{\ohm}.
 
+
+\end{description}
 \subsection{Mesures}
 
 Dans figure \ref{fig:decoder_signal} on voit le fonctionnement du détecteur avec différent nombres de pulses.
