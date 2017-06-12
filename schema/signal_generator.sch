@@ -432,8 +432,6 @@ Wire Wire Line
 Wire Wire Line
 	2500 2950 6450 2950
 Wire Wire Line
-	5950 3750 5500 3750
-Wire Wire Line
 	5950 4100 5650 4100
 Wire Wire Line
 	5650 4100 5650 4600
@@ -458,7 +456,7 @@ Connection ~ 1400 3050
 Wire Wire Line
 	2500 2750 2700 2750
 Wire Wire Line
-	2700 2750 2700 2100
+	2700 2100 2700 2750
 Wire Wire Line
 	1050 2100 2950 2100
 Connection ~ 2000 2100
@@ -611,4 +609,24 @@ Text HLabel 10100 5400 2    60   Input ~ 0
 OUTPUT
 Wire Wire Line
 	9400 5400 10100 5400
+$Comp
+L +BATT #PWR?
+U 1 1 593EF96A
+P 5600 3350
+F 0 "#PWR?" H 5600 3200 50  0001 C CNN
+F 1 "+BATT" H 5600 3490 50  0000 C CNN
+F 2 "" H 5600 3350 50  0000 C CNN
+F 3 "" H 5600 3350 50  0000 C CNN
+	1    5600 3350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5600 3350 5600 3750
+Wire Wire Line
+	5600 3750 5950 3750
+Wire Wire Line
+	4600 5500 4600 3850
+Wire Wire Line
+	4600 3850 5950 3850
+Connection ~ 4600 5500
 $EndSCHEMATC
