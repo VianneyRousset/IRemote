@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1497284802 "main.tex" "out/main.pdf" "main" 1497284804
+["pdflatex"] 1497296919 "main.tex" "out/main.pdf" "main" 1497296920
   "../measurements/SCR03.PNG" 1496310583 8884 464f44ec020b7417ca96b9b093aa5ffc ""
   "../measurements/SCR06.PNG" 1496310583 6709 f29e91012de9dcf069a9773c4d08c4c5 ""
   "../measurements/SCR07.PNG" 1497018693 6030 26af062721de75593637c21d88209f50 ""
@@ -291,13 +291,13 @@
   "fig/schmitt_trigger.pdf" 1497283499 49793 afed3adee9e18cb5af52cd48b8a280ae ""
   "layout/Report.cls" 1496257272 849 b781537903f494953e91e65a0bb7709d ""
   "layout/Report.sty" 1496257272 1104 7c1d6cdb0332b1f0694f93e06544c4f9 ""
-  "layout/ReportFrontPage.sty" 1496257272 1121 4c83a4cbffd644d84d26c7505508076e ""
-  "main.tex" 1497284802 12638 40afe8a675b8d60e68360970d9a3b587 ""
-  "out/main.aux" 1497284803 4929 033f6163bb620418bd8a8437ecb3f9cf ""
-  "out/main.out" 1497284803 663 a125b37f778565d3c1195d6da18dd9d9 ""
+  "layout/ReportFrontPage.sty" 1497296101 1130 30dd8514281004165522f4a6d6d4c8d0 ""
+  "main.tex" 1497296918 12468 363181cdc0ed9f417e20652ab4b0e6be ""
+  "out/main.aux" 1497296920 4647 6ca4c3c76b44585baa1df98b3577a69c ""
+  "out/main.out" 1497296920 663 a125b37f778565d3c1195d6da18dd9d9 ""
   (generated)
+  "out/main.out"
+  "out/main.toc"
+  "out/main.aux"
   "out/main.log"
   "out/main.pdf"
-  "out/main.toc"
-  "out/main.out"
-  "out/main.aux"

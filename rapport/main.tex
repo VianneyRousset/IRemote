@@ -51,11 +51,6 @@ Le système est divisé en 5 étages pour faciliter le développement et la test
 \vspace{5mm}
 \end{figure}
 
-Le but de la structure choisie est de faciliter le développement et la testabilité
-du sous-système.
-
-
-
 %-------------------------------------------------------------------------------
 \section{Notation et nomenclature}
 
@@ -67,7 +62,7 @@ du sous-système.
 		$T_0$				& Période des pulse	& $\SI{1.0}{\milli\second}$	\\ \hline
 		$D_0$				& Duty cycle dans une salve & $10\%$	\\ \hline
 		$\tau$			& Période des slaves	& $\SI{0.1}{\second}$\\ \hline
-		$t_{miss}$  & &\\ \hline
+		$t_{miss}$  & Durée pour la détection d'une impulsion manquante & $\SI{1.8}{\milli\second}$ \\ \hline
 		$t_{true}$  & Durée du pulse signal une salve correcte & \\ \hline
 	\end{tabular}
 \end{center}
@@ -80,15 +75,15 @@ Le nombre d'impulsions $n_{pulse}$ a été fixé arbitrairement à 13. La pério
 Le générateur de signal génère dans OUTPUT des salves de $n_{pulses}$ à une période $\tau$ en active high tant que celui-ci est alimenté à 3V. Les pulses dans les salves ont une durée high $t_0$ et une période $T_0$. Le nombre de pulses et les durées ne sont pas garanties lorsque l'alimentation est retirée.
 
 \begin{description}[leftmargin=!,labelwidth=3cm, labelindent=\parindent]
-	\item[Pulse timer] Génère des impulsion à hautes fréquences tant qu'il n'est pas RESET. Il est formé d'un timer TLC555 en configuration bascule astable. Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une petite capacité pour la simplicité et la limitation de la consommation.
+	\item[Pulse timer] Génère des impulsions à hautes fréquences tant qu'il n'est pas RESET. Il est formé d'un timer TLC555 en configuration bascule astable. Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une capacité $\mathit{C16}$ choisie petite pour la simplicité et la limitation de la consommation.
 		\begin{equation*}
 			\begin{cases}
 				t_0 = 0.693(\mathit{R20}+\mathit{R23})\mathit{C16} \\
 				T_0 = 0.693(\mathit{R20}+2\mathit{R23})\mathit{C16} \\
 			\end{cases}
 		\end{equation*}
-	\item[Down counter] Compte le nombre de pulses reçus depuis son dernier RESET et maintient le RESET du pulse timer le bloquant ainsi lorsque $n_{pulse}$ pulses ont été reçu. Il est formé d'un compteur HEF4526B \cite{HEF4526B}.
-	\item[Burst timer] Réinitialise le decounter à une période $\tau$ pour recommencer une salve. Il est formé d'un timer TLC555 en configuration bascule astable. Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une petite capacité pour la simplicité et la limitation de la consommation. La durée high doit être plus grand que la durée durée d'une salve.
+	\item[Down counter] Compte le nombre d'impulsions reçues depuis son dernier RESET et maintient le RESET du pulse timer le bloquant ainsi lorsque $n_{pulse}$ pulses ont été reçu. Il est formé d'un compteur HEF4526B \cite{HEF4526B}.
+	\item[Burst timer] Réinitialise le down counter à une période $\tau = \SI{0.1}{\milli\second}$ pour recommencer une salve. Il est formé d'un timer TLC555 en configuration bascule astable. Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une capacité $\mathit{C10}$ choisie petite pour la simplicité et la limitation de la consommation. La durée high doit être plus grand que la durée durée d'une salve.
 		\begin{equation*}
 			\begin{cases}
 				\tau = 0.693(\mathit{R13}+2\mathit{R19})\mathit{C10} \\
@@ -102,7 +97,7 @@ Le générateur de signal génère dans OUTPUT des salves de $n_{pulses}$ à une
 \label{subsec:LED_driver}
 Le LED driver allume la LED infrarouge lorsque LED\_SIGNAL est high. Il assure une bonne émission de la LED sans l'endommager si le signal de 3V a une période $T_0$ avec un duty-cycle de 10\%.
 
-La LED est une LD271(H). Selon son datasheet, celle-ci accepte $\SI{1}{\ampere}$ durant $\SI{0.1}{\milli\second}$ toutes les $\SI{1.0}{\milli\second}$ \cite{LD271(H)}. Ce sont ses valeurs qui ont dicté le choix du signal. Le courant est limité par la résistance $\mathit{R14} = \SI{1}{\ohm}$ et une grande capacité de découplage $\mathit{C7}=\SI{470}{\micro F}$ assure la puissance de l'émission.
+La LED est une LD271(H). Selon son datasheet \cite{LD271(H)}, celle-ci accepte $\SI{1}{\ampere}$ durant $\SI{0.1}{\milli\second}$ toutes les $\SI{1.0}{\milli\second}$. Ce sont ses valeurs qui ont dicté le choix du signal. Le courant est limité par la résistance $\mathit{R14} = \SI{1}{\ohm}$ et une grande capacité de découplage $\mathit{C7}=\SI{470}{\micro F}$ assure la puissance de l'émission.
 
 La tension au borne de la résistance $\mathit{R14}$ a été mesurée pour vérifié que le courant dans la LED ne dépasse pas $\SI{1}{\ampere}$.
 
@@ -114,31 +109,26 @@ Cet étage est composé de 3 sous-étages en série.
 % 	\item[Schmitt trigger] Génère un signal carré avec 2 seuils en tension: $V_+$ et $V_-$
 % \end{description}
 
-\paragraph{Conversion courant-tension et filtre low-pass}
 
-La photodiode génère un petit courant qui est converti en une tension par l'amplificateur opérationnel LMC6482.
-La résistance R15 définit le gain et est assez élevée car le courant est relativement faible.
-Dans le conditions de test, une valeur de \SI{1}{\mega\ohm} donnait les meilleures résultâts.
-En outre, la capacité C8 de \SI{10}{\pico F} filtre le bruit de haute fréquences d'ordre de \SI{100}{\kilo Hz}.
+\begin{description}[leftmargin=!,labelwidth=3cm, labelindent=\parindent]
+	\item[Conversion] La photodiode génère un petit courant qui est converti en une tension par l'amplificateur opérationnel LMC6482. La résistance $\mathit{R15}$ définit le gain et est assez élevée car le courant est relativement faible. Dans le conditions de test, une valeur de $\SI{1}{\mega\ohm}$ donnait les meilleures résultats. En outre, la capacité $\mathit{C8}$ de $\SI{10}{\pico F}$ filtre le bruit de haute fréquences d'ordre de $\SI{100}{\kilo Hz}$.
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=0.4\textwidth]{fig/current_to_voltage_converter.pdf}
+		\end{figure}
 
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.4\textwidth]{fig/current_to_voltage_converter.pdf}
-\end{figure}
+	\item[Amplification] Amplificateur et filtre high-pass. Convertit le petit courant de la diode en tension tout en appliquant un filtre passe-bas.
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=0.4\textwidth]{fig/amplifier.pdf}
+		\end{figure}
 
-\paragraph{Amplificateur et filtre high-pass}
-Convertit le petit courant de la diode en tension tout en appliquant un filtre passe-bas.
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.4\textwidth]{fig/amplifier.pdf}
-\end{figure}
-
-\paragraph{Schmitt trigger}
-Génère un signal carré avec 2 seuils en tension: $V_+$ et $V_-$
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.4\textwidth]{fig/schmitt_trigger.pdf}
-\end{figure}
+	\item[Schmitt trigger] Génère un signal carré avec 2 seuils en tension: $V_+$ et $V_-$
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=0.4\textwidth]{fig/schmitt_trigger.pdf}
+		\end{figure}
+\end{description}
 
 \subsection{Décodeur}
 Le décodeur à 3 fonctions:
