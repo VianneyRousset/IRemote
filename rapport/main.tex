@@ -12,7 +12,8 @@
 \usepackage{graphicx}
 \usepackage{todonotes}
 \usepackage{enumitem}
-\usepackage{MnSymbol}
+\usepackage{MnSymbol} % rectangle symbol
+\usepackage{pdfpages} % for appendix
 
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}%
 
@@ -115,7 +116,7 @@ Cet étage est composé de 3 sous-étages en série.
 \begin{description}[leftmargin=!,labelwidth=5cm, labelindent=\parindent]
 	\item[Conversion \& low-pass] Convertit le petit courant de la diode en tension tout en appliquant un filtre passe-bas.
 	\item[Amplification \& high-pass] Amplifie la tension tout en appliquant un filtre passe-haut.
-	\item[Schmidt trigger] Génère un signal carré avec 2 seuils en tension: $V_+$ et $V_-$
+	\item[Schmitt trigger] Génère un signal carré avec 2 seuils en tension: $V_+$ et $V_-$
 \end{description}
 
 \subsection{Décodeur}
@@ -189,9 +190,6 @@ arrive à l'entrée il n'y a pas de signal à la sortie.
 \label{fig:output_signal}
 \end{figure}
 
-\section{Annexes}
-
-
 \begin{thebibliography}{9}
 
 	\bibitem{LD271(H)}
@@ -230,5 +228,6 @@ arrive à l'entrée il n'y a pas de signal à la sortie.
 
 \end{thebibliography}
 
+\includepdf[pages={-},angle=90,scale=0.95,pagecommand={}]{../schema/IRemote.pdf}
 
 \end{document}
