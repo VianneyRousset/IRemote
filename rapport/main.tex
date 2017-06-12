@@ -105,10 +105,12 @@ Le LED driver allume la LED infrarouge lorsque LED\_SIGNAL est high. Il assure u
 
 La LED est une LD271(H). Selon son datasheet, celle-ci accepte $\SI{1}{\ampere}$ durant $\SI{0.1}{\milli\second}$ toutes les $\SI{1.0}{\milli\second}$ \cite{LD271(H)}. Ce sont ses valeurs qui ont dicté le choix du signal. Le courant est limité par la résistance $R14 = \SI{1}{\ohm}$ et une grande capacité de découplage $C7=\SI{470}{\micro F}$ assure la puissance de l'émission.
 
+La tension au borne de la résistance $R14$ a été mesurée pour vérifié que le courant dans la LED ne dépasse pas $\SI{1}{\ampere}$.
 
 \todo[inline]{check active high/low}
 
 \subsection{Récepteur et filtrage}
+Cet étage est composé de 3 sous-étages en série.
 \todo[inline]{blabla on frequencies + dimension RC}
 \begin{description}[leftmargin=!,labelwidth=5cm, labelindent=\parindent]
 	\item[Conversion \& low-pass] Convertit le petit courant de la diode en tension tout en appliquant un filtre passe-bas.
