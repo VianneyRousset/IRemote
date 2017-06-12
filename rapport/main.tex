@@ -86,6 +86,12 @@ Le générateur de signal génère dans OUTPUT des salves de $n_{pulses}$ à une
 				T_0 = 0.693(\mathit{R20}+2\mathit{R23})\mathit{C16} \\
 			\end{cases}
 		\end{equation*}
+
+        \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.3\textwidth]{fig/pulse_timer.pdf}
+        \end{figure}
+
 	\item[Down counter] Compte le nombre de pulses reçus depuis son dernier RESET et maintient le RESET du pulse timer le bloquant ainsi lorsque $n_{pulse}$ pulses ont été reçu. Il est formé d'un compteur HEF4526B \cite{HEF4526B}.
 	\item[Burst timer] Réinitialise le decounter à une période $\tau$ pour recommencer une salve. Il est formé d'un timer TLC555 en configuration bascule astable. Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une petite capacité pour la simplicité et la limitation de la consommation. La durée high doit être plus grand que la durée durée d'une salve.
 		\begin{equation*}
@@ -94,6 +100,12 @@ Le générateur de signal génère dans OUTPUT des salves de $n_{pulses}$ à une
 				n_{pulse}*\frac{T_0}{\tau} < \frac{\mathit{R13}+\mathit{R19}}{\mathit{R13}+2\mathit{19}} \\
 			\end{cases}
 		\end{equation*}
+
+        \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.3\textwidth]{fig/burst_timer.pdf}
+        \end{figure}
+
 	\item[Logic] Assure les conditions logiques sur les signaux. Il est formée d'un quadruple 2-input NOR HEF4001 \cite{HEF4001B}.
 \end{description}
 
@@ -112,10 +124,10 @@ La capacité de découplage est dimensionnée pour limiter la baisse de tension 
 C7 = \SI{1}{\ampere}\SI{100}{\micro\second}/\SI{0.3}{\volt} = \SI{333}{\micro\farad} \Rightarrow \SI{470}{\micro\farad}
 \end{equation*}
 
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.3\textwidth]{fig/ir_led.pdf}
-\end{figure}
+% \begin{figure}[h]
+% \centering
+% \includegraphics[width=0.3\textwidth]{fig/ir_led.pdf}
+% \end{figure}
 
 
 \subsection{Récepteur et filtrage}
@@ -161,27 +173,52 @@ Le décodeur à 3 fonctions:
 			t_{miss} = \mathit{R7}*\mathit{C3}
 		\end{equation*}
 
-	\item[Logic] Met OUTPUT à high si les conditions d'une salve correcte sont remplie. Si $n_{pulse}$ impulsions ont été reçues et que une impulsion manquante est signalée, alors OUTPUT est mis à high. 
-\end{description}
+        \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.4\textwidth]{fig/decoder_reset_delay.pdf}
+        \end{figure}
 
-La logique de sortie est réalisée en NOR gate comme suivant:
-\begin{equation*}
-\text{Sortie} = \text{"bon nombre de pulses"} \land \text{"fin de salve"} = \overline{\overline{\text{"bon nombre de pulses"}} \lor \overline{\text{"fin de salve"}}}
-\end{equation*}
+	\item[Logic] Met OUTPUT à high si les conditions d'une salve correcte sont remplie. Si $n_{pulse}$ impulsions ont été reçues et que une impulsion manquante est signalée, alors OUTPUT est mis à high. 
+
+        La logique de sortie est réalisée en NOR gate comme suivant:
+        \begin{align*}
+        \text{Sortie} & = \text{"bon nombre de pulses"} \land \text{"fin de salve"} \\
+        & = \overline{\overline{\text{"bon nombre de pulses"}} \lor \overline{\text{"fin de salve"}}}
+        \end{align*}
+
+\end{description}
 
 \subsection{Sortie}
 
 \todo[inline]{pause = lâchement de bouton, comment on veut nommer cette partie? -> Déclencheur?}
 
 \begin{description}[leftmargin=!,labelwidth=4cm, labelindent=\parindent]
-	\item[Déclencheur] kewurniwerjm
+	\item[Détecteur d'interruption] TODO: valeurs de R et C
+
+    \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{fig/interrupt_detect.pdf}
+    \end{figure}
+
+    \item[Commutateur] TODO: Ce D-flip-flop qui toggle la LED chaque flanc montant...
+    % \begin{figure}[h]
+    % \centering
+    % \includegraphics[width=0.4\textwidth]{fig/commutator.pdf}
+    % \end{figure}
+
+
 	\item[Relais] Le relais optique est simulé par une LED rouge standard avec un courant de \SI{20}{\milli\ampere} et une tension directe d'environ \SI{1.8}{\volt}. Pour alimenter la LED on a choisi le transistor bipolaire NPN BC107 avec une résistance en série pour limiter le courant.
 		Le BC107 a une tension \(V_{CEsat}\) de \SI{0.25}{\volt} pour un courant de \SI{10}{\milli\ampere}.
 		En estimant une \(V_{CEsat}\) de \SI{0.30}{\volt} pour un courant de \SI{20}{\milli\ampere}:
-\begin{equation*}
-R_{LED} = (5V - V_{CEsat} - V_{forward})/\SI{20}{\milli\ampere} = \SI{145}{\ohm} \Rightarrow \SI{150}{\ohm}
-\end{equation*}
 
+    \begin{equation*}
+    R_{LED} = (5V - V_{CEsat} - V_{forward})/\SI{20}{\milli\ampere} = \SI{145}{\ohm} \Rightarrow \SI{150}{\ohm}
+    \end{equation*}
+
+    % \begin{figure}[h]
+    % \centering
+    % \includegraphics[width=0.2\textwidth]{fig/output_led.pdf}
+    % \end{figure}
 
 \end{description}
 \subsection{Mesures}
@@ -193,7 +230,7 @@ Dans le cas où le mauvais nombre  de pulses (12 pulese dans la mesrue à gauche
 arrive à l'entrée il n'y a pas de signal à la sortie.
 
 \begin{figure}[h]
-\hspace{5mm}
+\centering
 \includegraphics[width=0.3\textwidth]{../measurements/SCR03}
 \caption{
 \textcolor{yellow}{$\blacksquare$} Conversion courant-tension,
@@ -205,7 +242,7 @@ arrive à l'entrée il n'y a pas de signal à la sortie.
 \end{figure}
 
 \begin{figure}[h]
-\hspace{5mm}
+\centering
 \includegraphics[width=0.3\textwidth]{../measurements/SCR06}
 \includegraphics[width=0.3\textwidth]{../measurements/SCR07}
 \includegraphics[width=0.3\textwidth]{../measurements/SCR08}
@@ -219,7 +256,7 @@ arrive à l'entrée il n'y a pas de signal à la sortie.
 \end{figure}
 
 \begin{figure}[h]
-\hspace{5mm}
+\centering
 \includegraphics[width=0.3\textwidth]{../measurements/SCR12}
 \caption{
 \textcolor{yellow}{$\blacksquare$} Signal d'entrée,
