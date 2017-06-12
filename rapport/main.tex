@@ -112,12 +112,37 @@ La tension au borne de la résistance $R14$ a été mesurée pour vérifié que 
 
 \subsection{Récepteur et filtrage}
 Cet étage est composé de 3 sous-étages en série.
-\todo[inline]{blabla on frequencies + dimension RC}
-\begin{description}[leftmargin=!,labelwidth=5cm, labelindent=\parindent]
-	\item[Conversion \& low-pass] Convertit le petit courant de la diode en tension tout en appliquant un filtre passe-bas.
-	\item[Amplification \& high-pass] Amplifie la tension tout en appliquant un filtre passe-haut.
-	\item[Schmitt trigger] Génère un signal carré avec 2 seuils en tension: $V_+$ et $V_-$
-\end{description}
+% \begin{description}[leftmargin=!,labelwidth=5cm, labelindent=\parindent]
+% 	\item[Conversion \& low-pass] Convertit le petit courant de la diode en tension tout en appliquant un filtre passe-bas.
+% 	\item[Amplification \& high-pass] Amplifie la tension tout en appliquant un filtre passe-haut.
+% 	\item[Schmitt trigger] Génère un signal carré avec 2 seuils en tension: $V_+$ et $V_-$
+% \end{description}
+
+\paragraph{Conversion courant-tension et filtre low-pass}
+
+La photodiode génère un petit courant qui est converti en une tension par l'amplificateur opérationnel LMC6482.
+La résistance R15 définit le gain et est assez élevée car le courant est relativement faible.
+Dans le conditions de test, une valeur de \SI{1}{\mega\ohm} donnait les meilleures résultâts.
+En outre, la capacité C8 de \SI{10}{\pico F} filtre le bruit de haute fréquences d'ordre de \SI{100}{\kilo Hz}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.4\textwidth]{fig/current_to_voltage_converter.pdf}
+\end{figure}
+
+\paragraph{Amplificateur et filtre high-pass}
+Convertit le petit courant de la diode en tension tout en appliquant un filtre passe-bas.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.4\textwidth]{fig/amplifier.pdf}
+\end{figure}
+
+\paragraph{Schmitt trigger}
+Génère un signal carré avec 2 seuils en tension: $V_+$ et $V_-$
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.4\textwidth]{fig/schmitt_trigger.pdf}
+\end{figure}
 
 \subsection{Décodeur}
 Le décodeur à 3 fonctions:
