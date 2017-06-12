@@ -154,17 +154,10 @@ Le décodeur à 3 fonctions:
 	\item[Logic] Met OUTPUT à high si les conditions d'une salve correcte sont remplie. Si $n_{pulse}$ impulsions ont été reçues et que une impulsion manquante est signalée, alors OUTPUT est mis à high. 
 \end{description}
 
-\begin{center}
-    \begin{tabular}{| m{4cm} | m{4cm} | l | c |}
-        \hline
-    % \thead{\emph{Missing pulse detector}} & \thead{\emph{Decounter}} & \thead{Statu}} & \thead{Sortie}}\ \hline
-    % \thead{\emph{Missing pulse detector}} & \thead{\emph{Decounter}} & \thead{Statu} & \thead{Sortie}\\ \hline
-        low     & low       & Nombre incorrect de pulses dans la salve & low \\ \hline
-        low     & high  & Salve correcte    & high\\ \hline
-        high    & low       & Salve non finie & low \\ \hline
-        high    & high  & Salve non finie & low \\ \hline
-    \end{tabular}
-\end{center}
+La logique de sortie est réalisée en NOR gate comme suivant:
+\begin{equation*}
+\text{Sortie} = \text{"bon nombre de pulses"} \land \text{"fin de salve"} = \overline{\overline{\text{"bon nombre de pulses"}} \lor \overline{\text{"fin de salve"}}}
+\end{equation*}
 
 \subsection{Sortie}
 
@@ -175,10 +168,10 @@ Le décodeur à 3 fonctions:
 	\item[Relais] Le relais optique est simulé par une LED rouge standard avec un courant de \SI{20}{\milli\ampere} et une tension directe d'environ \SI{1.8}{\volt}. Pour alimenter la LED on a choisi le transistor bipolaire NPN BC107 avec une résistance en série pour limiter le courant.
 		Le BC107 a une tension \(V_{CEsat}\) de \SI{0.25}{\volt} pour un courant de \SI{10}{\milli\ampere}.
 		En estimant une \(V_{CEsat}\) de \SI{0.30}{\volt} pour un courant de \SI{20}{\milli\ampere}:
-\[
-	R_{LED} = (5V - V_{CEsat} - V_{forward})/\SI{20}{\milli\ampere} = \SI{145}{\ohm}
-\]
-On choisit donc \SI{150}{\ohm}.
+\begin{equation*}
+R_{LED} = (5V - V_{CEsat} - V_{forward})/20mA = 145\Omega
+\end{equation*}
+On choisit donc \(150\Omega\).
 
 
 \end{description}
