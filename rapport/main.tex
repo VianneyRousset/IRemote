@@ -21,6 +21,7 @@
 
 \pagenumbering{arabic}
 
+\pagebreak
 
 \frontpage{Télécommande à 1 canal par infrarouge}
 %-------------------------------------------------------------------------------
@@ -122,7 +123,7 @@ Le générateur de signal génère dans OUTPUT des salves de $n_{pulses} = 13$ �
         \end{figure}
 
 	\item[Logic]
-        Assure les conditions logiques sur les signaux pour contrôler la sortie et arrêter le \textit{pulse timer}.
+        Assure les conditions logiques sur les signaux pour contrôler la sortie et arrêter le \textit{Pulse timer}.
         Il est formée d'un quadruple 2-input NOR HEF4001 \cite{HEF4001B}.
 \end{description}
 
@@ -139,10 +140,10 @@ La capacité de découplage est dimensionnée pour limiter la baisse de tension 
 	\mathit{C7} \ge \frac{I_{max}*t_0}{\Delta V_{max}} = \frac{\SI{1}{\ampere}*\SI{100}{\micro\second}}{\SI{0.3}{\volt}} = \SI{333}{\micro\farad} \Rightarrow \SI{470}{\micro\farad}
 \end{equation*}
 
-% \begin{figure}[H]
-% \centering
-% \includegraphics[width=0.3\textwidth]{fig/ir_led.pdf}
-% \end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{fig/ir_led.pdf}
+\end{figure}
 
 \subsection{Récepteur et filtrage}
 Cet étage est composé de 3 sous-étages en série.
@@ -161,7 +162,7 @@ Cet étage est composé de 3 sous-étages en série.
 
 	\item[Amplificateur]
         Le signal est ensuite amplifié par un facteur de $A = \mathit{R18}/\mathit{R17} = \SI{100}{\kilo\ohm}/\SI{10}{\kilo\ohm} = 10$.
-        Avant l'amplification on filtre les fréquences parasites en dessouds de $1/t_0 = 10kHz$ en utilisant un filtre passe-haut RC avec $\mathit{R16} = \SI{1}{\kilo\ohm}$ et $\mathit{C9} = \SI{100}{\nano\farad}$.
+        Avant l'amplification on filtre les fréquences parasites en dessous de $1/t_0 = 10kHz$ en utilisant un filtre passe-haut RC avec $\mathit{R16} = \SI{1}{\kilo\ohm}$ et $\mathit{C9} = \SI{100}{\nano\farad}$.
 
 		\begin{figure}[H]
 			\centering
@@ -170,8 +171,8 @@ Cet étage est composé de 3 sous-étages en série.
 
 	\item[Schmitt trigger]
         Génère un signal carré avec 2 seuils: $V_+ = \SI{1}{\milli\volt}$ et $V_- = \SI{10}{\milli\volt}$.
-        Les valeurs de ces seuils ont été choisis arbitrairement pour être comprises entre $\SI{0}{\volt}$ et $\SI{5}{\volt}$ et supérieures au bruit.
-        Le choix des résistances ayant un degrés de liberté, celles-ci ont été choisies relativement grandes pour diminuer la consommation.
+        Les valeurs de ces seuils ont été choisis pour correspondre à la tension après l'amplification et pour rejeter le bruit.
+        Le choix des résistances ayant un degrés de liberté, celles-ci ont été choisies relativement grandes pour diminuer l'effet de la résistance pull-up $\mathit{R21}$.
         Le Schmitt trigger a été réalisé par le comparateur LM393 \cite{LM393} qui requiert une résistance de pull-up $\mathit{R21}$ de $\SI{10}{\kilo\ohm}$.
         	\begin{equation*}
     		\begin{cases}
@@ -188,10 +189,8 @@ Cet étage est composé de 3 sous-étages en série.
 
             \begin{figure}[H]
                 \centering
-                \includegraphics[width=0.4\textwidth]{fig/schmitt_trigger.pdf}
+                \includegraphics[width=0.3\textwidth]{fig/schmitt_trigger.pdf}
             \end{figure}
-
-	\item[Down counter] Compte le nombre d'impulsions reçues depuis son dernier RESET et maintient le RESET du pulse timer le bloquant ainsi lorsque $n_{pulse}$ impulsions ont été reçues. Il est formé d'un compteur HEF4526B \cite{HEF4526B}.
 
 	\item[Burst timer] Réinitialise le down counter à une période $\tau = \SI{0.1}{\second}$ pour recommencer une salve. Il est formé d'un timer TLC555 en configuration bascule astable. Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une capacité $\mathit{C10} = \SI{100}{\nano F}$ choisie petite pour la simplicité et la limitation de la consommation. La durée high doit être plus grand que la durée durée d'une salve.
 		\begin{equation*}
@@ -210,8 +209,8 @@ Le décodeur à 3 fonctions:
 
 \begin{description}[leftmargin=!,labelwidth=4cm, labelindent=\parindent]
 	\item[Down counter]
-        Signal si $n_{pulse}$ impulsions ont été reçues depuis son dernier RESET.
-        Le compteur est implementé par le compteur 4bit HEF4526B \cite{HEF4526B}.
+        Signale si $n_{pulse}$ impulsions ont été reçues depuis son dernier RESET.
+        Il formé du compteur 4bit HEF4526B \cite{HEF4526B}.
 
 	\item[Missing pulse detector]
         Signal et reset le down counter après un certain $t_{true} = \SI{5}{\milli\second}$ délais si la tension d'entrée est maintenue \emph{high} pendant au moins $t_{miss} = \SI{1.8}{\milli\second}$ après la fin d'une impulsion.
@@ -230,7 +229,7 @@ Le décodeur à 3 fonctions:
 
 	\item[Logic]
         Met OUTPUT à high si les conditions d'une salve correcte sont remplie.
-        Si $n_{pulse}$ impulsions ont été reçues et que une impulsion manquante est signalée, alors OUTPUT est mis à high. 
+        Si $n_{pulse}$ impulsions ont été reçues et que une impulsion manquante est signalée, alors OUTPUT est mis à high.
 
         La logique de sortie est réalisée en NOR gate comme suivant:
         \begin{align*}
@@ -245,7 +244,7 @@ Le décodeur à 3 fonctions:
 
         La sortie du \textit{Missing pulse detector} est relié à l'entrée de RESET \textit{Down counter}
         à travers un détecteur de flanc déscendant et un circuit de délai réalisé par des gate NOR et des filtres RC.
-        Les valeurs de R et C ont été choisi pour avoir un délai et un pulse de RESET d'ordre de $\SI{1}{\milli\second}$.
+        Les valeurs de R et C ont été choisi pour avoir un délai et un pulse de RESET d'ordre de $\SI{10}{\kilo\ohm}*\SI{100}{\nano\farad} = \SI{1}{\milli\second}$.
         \begin{figure}[H]
             \centering
             \includegraphics[width=0.4\textwidth]{fig/decoder_reset_delay.pdf}
@@ -276,8 +275,9 @@ Le décodeur à 3 fonctions:
 
     \item[Commutateur]
         La commutation de la sortie pour chaque nouveau appui sur le bouton est réalisé par le D-flip-flop HEF4013\cite{HEF4013}.
-        Le signal du bouton est branché sur la clock $CP$ et la sortie inversé $\overline{Q}$ sur l'entrée de donnée $D$.
-        Donc pour chaque flanc montant sur la clock l'état de la sortie est inversé.
+        Le signal du \textit{Détecteur d'interruption} est branché sur la clock $CP$ et la sortie inversé $\overline{Q}$ sur l'entrée de donnée $D$.
+        Donc chaque appui sur le bouton génère un flanc montant sur la clock et l'état de la sortie est ensuite inversé.
+        (voir mesure \ref{fig:output_signal})
 
         \begin{figure}[H]
         \centering
@@ -287,15 +287,13 @@ Le décodeur à 3 fonctions:
 	\item[Relais] Le relais optique est simulé par une LED rouge standard avec un courant de \SI{20}{\milli\ampere} et une tension directe d'environ \SI{1.8}{\volt}. Pour alimenter la LED on a choisi le transistor bipolaire NPN BC107 avec une résistance en série pour limiter le courant.
 		Le BC107 a une tension \(V_{CEsat}\) de \SI{0.25}{\volt} pour un courant de \SI{10}{\milli\ampere}.
 		En estimant une \(V_{CEsat}\) de \SI{0.30}{\volt} pour un courant de \SI{20}{\milli\ampere}:
-
-    \begin{equation*}
-    R_{LED} = (5V - V_{CEsat} - V_{forward})/\SI{20}{\milli\ampere} = \SI{145}{\ohm} \Rightarrow \SI{150}{\ohm}
-    \end{equation*}
-
-    % \begin{figure}[H]
-    % \centering
-    % \includegraphics[width=0.2\textwidth]{fig/output_led.pdf}
-    % \end{figure}
+        \begin{equation*}
+        R_{LED} = (5V - V_{CEsat} - V_{forward})/\SI{20}{\milli\ampere} = \SI{145}{\ohm} \Rightarrow \SI{150}{\ohm}
+        \end{equation*}
+        % \begin{figure}[H]
+        % \centering
+        % \includegraphics[width=0.2\textwidth]{fig/output_led.pdf}
+        % \end{figure}
 
 \end{description}
 \subsection{Mesures}
