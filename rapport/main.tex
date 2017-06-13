@@ -74,7 +74,10 @@ Le nombre d'impulsions $n_{pulse}$ a été fixé arbitrairement à 13. La pério
 Le générateur de signal génère dans OUTPUT des salves de $n_{pulses} = 13$ à une période $\tau = \SI{0.1}{\second}$ en active high tant que celui-ci est alimenté à 3V. Les impulsions dans les salves ont une durée high $t_0 = \SI{0.1}{\milli\second}$ et une période $T_0 = \SI{1.0}{\milli\second}$. Le nombre d'impulsions et les durées ne sont pas garanties lorsque l'alimentation est retirée.
 
 \begin{description}[leftmargin=!,labelwidth=3cm, labelindent=\parindent]
-	\item[Pulse timer] Génère des impulsions à hautes fréquences tant qu'il n'est pas RESET. Il est formé d'un timer TLC555 en configuration bascule astable. Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une capacité $\mathit{C16} = \SI{100}{\nano F}$ choisie petite pour la simplicité et la limitation de la consommation.
+	\item[Pulse timer]
+        Génère des impulsions à hautes fréquences tant qu'il n'est pas RESET.
+        Il est formé d'un timer TLC555 en configuration bascule astable.
+        Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une capacité $\mathit{C16} = \SI{100}{\nano F}$ choisie petite pour la simplicité et la limitation de la consommation.
 		\begin{equation*}
 			\begin{cases}
 				t_0 = 0.693(\mathit{R20}+\mathit{R23})\mathit{C16} \\
@@ -92,9 +95,15 @@ Le générateur de signal génère dans OUTPUT des salves de $n_{pulses} = 13$ �
         \includegraphics[width=0.3\textwidth]{fig/pulse_timer.pdf}
         \end{figure}
 
-	\item[Down counter] Compte le nombre d'impulsions reçues depuis son dernier RESET et maintient le RESET du pulse timer le bloquant ainsi lorsque $n_{pulse}$ impulsions ont été reçues. Il est formé d'un compteur HEF4526B \cite{HEF4526B}.
+	\item[Down counter]
+        Compte le nombre d'impulsions reçues depuis son dernier RESET et maintient le RESET du pulse timer le bloquant ainsi lorsque $n_{pulse}$ impulsions ont été reçues.
+        Il est formé d'un compteur HEF4526B \cite{HEF4526B}.
 
-	\item[Burst timer] Réinitialise le down counter à une période $\tau = \SI{0.1}{\second}$ pour recommencer une salve. Il est formé d'un timer TLC555 en configuration bascule astable. Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une capacité $\mathit{C10} = \SI{100}{\nano F}$ choisie petite pour la simplicité et la diminution de la consommation. La durée high doit être plus grand que la durée durée d'une salve.
+	\item[Burst timer]
+        Réinitialise le down counter à une période $\tau = \SI{0.1}{\second}$ pour recommencer une salve.
+        Il est formé d'un timer TLC555 en configuration bascule astable.
+        Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une capacité $\mathit{C10} = \SI{100}{\nano F}$ choisie petite pour la simplicité et la diminution de la consommation.
+        La durée high doit être plus grand que la durée durée d'une salve.
 		\begin{equation*}
 			\begin{cases}
 				\tau = 0.693(\mathit{R13}+2\mathit{R19})\mathit{C10} \\
@@ -112,7 +121,9 @@ Le générateur de signal génère dans OUTPUT des salves de $n_{pulses} = 13$ �
         \includegraphics[width=0.3\textwidth]{fig/burst_timer.pdf}
         \end{figure}
 
-	\item[Logic] Assure les conditions logiques sur les signaux. Il est formée d'un quadruple 2-input NOR HEF4001 \cite{HEF4001B}.
+	\item[Logic]
+        Assure les conditions logiques sur les signaux pour contrôler la sortie et arrêter le \textit{pulse timer}.
+        Il est formée d'un quadruple 2-input NOR HEF4001 \cite{HEF4001B}.
 \end{description}
 
 \subsection{LED driver}
@@ -148,33 +159,39 @@ Cet étage est composé de 3 sous-étages en série.
 			\includegraphics[width=0.4\textwidth]{fig/current_to_voltage_converter.pdf}
 		\end{figure}
 
-	\item[Amplificateur] Convertit le petit courant de la diode en tension tout en appliquant un filtre passe-bas.
-		\todo[inline]{wrong text at "Amplificateur"}
+	\item[Amplificateur]
+        Le signal est ensuite amplifié par un facteur de $A = \mathit{R18}/\mathit{R17} = \SI{100}{\kilo\ohm}/\SI{10}{\kilo\ohm} = 10$.
+        Avant l'amplification on filtre les fréquences parasites en dessouds de $1/t_0 = 10kHz$ en utilisant un filtre passe-haut RC avec $\mathit{R16} = \SI{1}{\kilo\ohm}$ et $\mathit{C9} = \SI{100}{\nano\farad}$.
 
 		\begin{figure}[H]
 			\centering
 			\includegraphics[width=0.4\textwidth]{fig/amplifier.pdf}
 		\end{figure}
 
-	\item[Schmitt trigger] Génère un signal carré avec 2 seuils: $V_+ = \SI{4.05}{\volt}$ et $V_- = \SI{2.02}{\volt}$. Les valeurs de ces seuils ont été choisis arbitrairement pour être comprises entre $\SI{0}{\volt}$ et $\SI{5}{\volt}$ et supérieures au bruit. Le choix des résistances ayant un degrés de liberté, celles-ci ont été choisies relativement grandes pour diminuer la consommation. La résistance $\mathit{R21}$ n'est qu'une résistance de pull-up choisie à $\SI{10}{\kilo\ohm}$.
-	\todo[inline]{R21 vraiment utiles?}	
-	\begin{equation*}
-		\begin{cases}
-			V_+ = \frac{1}{1+\frac{\mathit{R9}*\mathit{R11}}{\mathit{R10}*(\mathit{R9+\mathit{R11})}}} \\
-			V_- = \frac{1}{1+\frac{\mathit{R9}*(\mathit{R10}+\mathit{R11})}{\mathit{R10}*\mathit{R11}}} \\
-		\end{cases}
-		\Rightarrow\quad
-		\begin{cases}
-			\mathit{R9}  = \SI{4.7}{\kilo\ohm} \\
-			\mathit{R10} = \SI{10.0}{\kilo\ohm} \\
-			\mathit{R11} = \SI{4.7}{\kilo\ohm} \\
-		\end{cases}
-		\end{equation*}
+	\item[Schmitt trigger]
+        \todo[inline]{valeurs V+ et V- sont pas correctes (c'est pas plutot millivolt?)}
+        Génère un signal carré avec 2 seuils: $V_+ = \SI{4.05}{\volt}$ et $V_- = \SI{2.02}{\volt}$.
+        Les valeurs de ces seuils ont été choisis arbitrairement pour être comprises entre $\SI{0}{\volt}$ et $\SI{5}{\volt}$ et supérieures au bruit.
+        Le choix des résistances ayant un degrés de liberté, celles-ci ont été choisies relativement grandes pour diminuer la consommation.
+        Le Schmitt trigger a été réalisé par le comparateur LM393\cite{LM393} qui requiert une résistance de pull-up $\mathit{R21}$ de $\SI{10}{\kilo\ohm}$.
+        \todo[inline]{ce calcul me semble pas correcte (unités?)}
+    	\begin{equation*}
+    		\begin{cases}
+    			V_+ = \frac{1}{1+\frac{\mathit{R9}*\mathit{R11}}{\mathit{R10}*(\mathit{R9+\mathit{R11})}}} \\
+    			V_- = \frac{1}{1+\frac{\mathit{R9}*(\mathit{R10}+\mathit{R11})}{\mathit{R10}*\mathit{R11}}} \\
+    		\end{cases}
+    		\Rightarrow\quad
+    		\begin{cases}
+    			\mathit{R9}  = \SI{4.7}{\kilo\ohm} \\
+    			\mathit{R10} = \SI{10.0}{\kilo\ohm} \\
+    			\mathit{R11} = \SI{4.7}{\kilo\ohm} \\
+    		\end{cases}
+    		\end{equation*}
 
-        \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.3\textwidth]{fig/pulse_timer.pdf}
-        \end{figure}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.4\textwidth]{fig/schmitt_trigger.pdf}
+            \end{figure}
 
 	\item[Down counter] Compte le nombre d'impulsions reçues depuis son dernier RESET et maintient le RESET du pulse timer le bloquant ainsi lorsque $n_{pulse}$ impulsions ont été reçues. Il est formé d'un compteur HEF4526B \cite{HEF4526B}.
 
@@ -188,18 +205,19 @@ Cet étage est composé de 3 sous-étages en série.
 		\
 	\end{equation*}
 
-		\begin{figure}[H]
-			\centering
-			\includegraphics[width=0.4\textwidth]{fig/schmitt_trigger.pdf}
-		\end{figure}
 \end{description}
 
 \subsection{Décodeur}
 Le décodeur à 3 fonctions:
 
+\todo[inline]{le reset du missing pulse detector est un détecteur de flanc déscendant}
 \begin{description}[leftmargin=!,labelwidth=4cm, labelindent=\parindent]
-	\item[Down counter] Signal si $n_{pulse}$ impulsions ont été reçues par la tension d'entrée depuis son dernier RESET.
-	\item[Missing pulse detector] Signal et reset le down counter après un certain $t_{true} = \SI{5}{\milli\second}$ délais si la tension d'entrée est maintenue \emph{high} pendant au moins $t_{miss} = \SI{1.8}{\milli\second}$ après la fin d'une impulsion. La durée $t_{miss}$ a été arbitrairement choisie pour être supérieur à $t_0 = \SI{1}{\milli\second}$ mais inférieur à $2t_0$. Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une capacité $\mathit{C3} = \SI{100}{\nano F}$ choisie petite pour la simplicité et la limitation de la consommation.
+	\item[Down counter]
+        Signal si $n_{pulse}$ impulsions ont été reçues par la tension d'entrée depuis son dernier RESET.
+	\item[Missing pulse detector]
+        Signal et reset le down counter après un certain $t_{true} = \SI{5}{\milli\second}$ délais si la tension d'entrée est maintenue \emph{high} pendant au moins $t_{miss} = \SI{1.8}{\milli\second}$ après la fin d'une impulsion.
+        La durée $t_{miss}$ a été arbitrairement choisie pour être supérieur à $t_0 = \SI{1}{\milli\second}$ mais inférieur à $2t_0$.
+        Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une capacité $\mathit{C3} = \SI{100}{\nano F}$ choisie petite pour la simplicité et la limitation de la consommation.
 
 		\begin{equation*}
 			t_{miss} = \mathit{R7}*\mathit{C3} \quad\Rightarrow\quad \mathit{R7} = \SI{18}{\kilo\ohm}
@@ -207,12 +225,13 @@ Le décodeur à 3 fonctions:
 
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=0.4\textwidth]{fig/decoder_reset_delay.pdf}
+			\includegraphics[width=0.4\textwidth]{fig/missing_pulse_detector.pdf}
 		\end{figure}
 
-		\todo[inline]{fig decoder\_reset\_delay goto Logic and put fig missing pulse detector instead}
 
-	\item[Logic] Met OUTPUT à high si les conditions d'une salve correcte sont remplie. Si $n_{pulse}$ impulsions ont été reçues et que une impulsion manquante est signalée, alors OUTPUT est mis à high. 
+	\item[Logic]
+        Met OUTPUT à high si les conditions d'une salve correcte sont remplie.
+        Si $n_{pulse}$ impulsions ont été reçues et que une impulsion manquante est signalée, alors OUTPUT est mis à high. 
 
         La logique de sortie est réalisée en NOR gate comme suivant:
         \begin{align*}
@@ -220,24 +239,44 @@ Le décodeur à 3 fonctions:
         & = \overline{\overline{\text{"bon nombre d'impulsions"}} \lor \overline{\text{"fin de salve"}}}
         \end{align*}
 
+        \todo[inline]{expliquer et dimensionner reset logic avec RC pour reset delay...}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.4\textwidth]{fig/decoder_reset_delay.pdf}
+        \end{figure}
+
 \end{description}
 
 \subsection{Sortie}
 
 \begin{description}[leftmargin=!,labelwidth=4cm, labelindent=\parindent]
-	\item[Détecteur d'interruption] TODO: valeurs de R et C
+	\item[Détecteur d'interruption]
+        Une interruption des pulses sortant du décodeur signifie un déclenchemnt du bouton de la télécommande.
+        La bascule monostable HEF4538 détecte une absence de pulse pendant $T = 1.5 \tau = \SI{150}{\milli\second} = R_{EXT}*C_{EXT}$ (voir datasheet \cite{HEF4538}).
+        Le signal de sortie est high quand un signal périodique est reçu, ce qui correspond à l'étât du bouton sur la télécommande.
+        \begin{equation*}
+            \mathit{C6}*\mathit{R12} = \SI{150}{\milli\second}
+            \Rightarrow\quad
+            \begin{cases}
+                \mathit{C6} = \SI{100}{\nano\farad} \\
+                \mathit{R12} = \SI{150}{\kilo\ohm}
+            \end{cases}
+        \end{equation*}
 
-    \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.4\textwidth]{fig/interrupt_detect.pdf}
-    \end{figure}
+        \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.4\textwidth]{fig/interrupt_detect.pdf}
+        \end{figure}
 
-    \item[Commutateur] TODO: Ce D-flip-flop qui toggle la LED chaque flanc montant...
-    % \begin{figure}[H]
-    % \centering
-    % \includegraphics[width=0.4\textwidth]{fig/commutator.pdf}
-    % \end{figure}
+    \item[Commutateur]
+        La commutation de la sortie pour chaque nouveau appui sur le bouton est réalisé par le D-flip-flop HEF4013\cite{HEF4013}.
+        Le signal du bouton est branché sur la clock $CP$ et la sortie inversé $\overline{Q}$ sur l'entrée de donnée $D$.
+        Donc pour chaque flanc montant sur la clock l'état de la sortie est inversé.
 
+        \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.4\textwidth]{fig/commutator.pdf}
+        \end{figure}
 
 	\item[Relais] Le relais optique est simulé par une LED rouge standard avec un courant de \SI{20}{\milli\ampere} et une tension directe d'environ \SI{1.8}{\volt}. Pour alimenter la LED on a choisi le transistor bipolaire NPN BC107 avec une résistance en série pour limiter le courant.
 		Le BC107 a une tension \(V_{CEsat}\) de \SI{0.25}{\volt} pour un courant de \SI{10}{\milli\ampere}.
@@ -255,11 +294,7 @@ Le décodeur à 3 fonctions:
 \end{description}
 \subsection{Mesures}
 
-Dans figure \ref{fig:decoder_signal} on voit le fonctionnement du détecteur avec différent nombres d'impulsions.
-Dans la mesure au milieu le décodeur détecté correctement les 13 impulsions et la combinaison logique
-du signal du détecteur d'impulsion manquant et du compteur d'impulsion donne un signal de sortie (en vert).
-Dans le cas où le mauvais nombre  d'impulsions (12 impulsions dans la mesure à gauche et 14 impulsions à droite)
-arrive à l'entrée il n'y a pas de signal à la sortie.
+Figure \ref{fig:filter_signal} montre l'évolution du signal à travers l'es étages d'amplification du récepteur.
 
 \begin{figure}[H]
 \centering
@@ -272,6 +307,13 @@ arrive à l'entrée il n'y a pas de signal à la sortie.
 }
 \label{fig:filter_signal}
 \end{figure}
+
+
+Dans figure \ref{fig:decoder_signal} on voit le fonctionnement du détecteur avec différent nombres d'impulsions.
+Dans la mesure au milieu le décodeur détecté correctement les 13 impulsions et la combinaison logique
+du signal du détecteur d'impulsion manquant et du compteur d'impulsion donne un signal de sortie (en vert).
+Dans le cas où le mauvais nombre  d'impulsions (12 impulsions dans la mesure à gauche et 14 impulsions à droite)
+arrive à l'entrée il n'y a pas de signal à la sortie.
 
 \begin{figure}[H]
 \centering
@@ -291,10 +333,10 @@ arrive à l'entrée il n'y a pas de signal à la sortie.
 \centering
 \includegraphics[width=0.3\textwidth]{../measurements/SCR12}
 \caption{
-\textcolor{yellow}{$\blacksquare$} Signal d'entrée,
+\textcolor{yellow}{$\blacksquare$} Signal du décodeur,
 \textcolor{blue}{$\blacksquare$} Capacité sur bascule monostable,
-\textcolor{magenta}{$\blacksquare$} Sortie du détecteur de pause,
-\textcolor{green}{$\blacksquare$} Sortie
+\textcolor{magenta}{$\blacksquare$} Détecteur d'interruption (état du bouton),
+\textcolor{green}{$\blacksquare$} Relais
 }
 \label{fig:output_signal}
 \end{figure}
@@ -343,12 +385,32 @@ arrive à l'entrée il n'y a pas de signal à la sortie.
         \url{http://www.infineon.com/dgdl/irlr8259pbf.pdf?fileId=5546d462533600a40153566e1ebe26e9}
 
         \bibitem{LMC6482}
-		Texas Instruments,
-		\textit{LMC6482 CMOS Dual Rail-to-Rail Input and Output Operational Amplifier},
-		SNOS674E,
-		April 2015,\\
-		\url{http://www.ti.com/lit/ds/symlink/lmc6482.pdf}
+        Texas Instruments,
+        \textit{LMC6482 CMOS Dual Rail-to-Rail Input and Output Operational Amplifier},
+        SNOS674E,
+        April 2015,\\
+        \url{http://www.ti.com/lit/ds/symlink/lmc6482.pdf}
 
+        \bibitem{LM393}
+		Texas Instruments,
+		\textit{LMx93-N, LM2903-N Low-Power, Low-Offset Voltage, Dual Comparators},
+		SNOSBJ6F,
+		December 2014,\\
+		\url{http://www.ti.com/lit/ds/symlink/lm393-n.pdf}
+
+        \bibitem{HEF4538}
+        Nexperia,
+        \textit{HEF4538B Dual precision monostable multivibrator},
+        Rev. 10,
+        April 2016,\\
+        \url{https://assets.nexperia.com/documents/data-sheet/HEF4538B.pdf}
+
+        \bibitem{HEF4013}
+        Nexperia,
+        \textit{HEF4013B Dual D-type flip-flop},
+        Rev. 9,
+        December 2015,\\
+        \url{https://assets.nexperia.com/documents/data-sheet/HEF4013B.pdf}
 \end{thebibliography}
 
 \includepdf[pages={-},angle=90,scale=0.95,pagecommand={}]{../schema/IRemote.pdf}
