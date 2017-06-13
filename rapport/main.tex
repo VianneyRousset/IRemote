@@ -34,10 +34,10 @@ permettant d'enclencher et déclencher un relais optique.
 Le système est divisé en 5 étages pour faciliter le développement et la testabilité:
 
 \begin{description}[leftmargin=!,labelwidth=4cm, labelindent=\parindent]
-	\item[Générateur de signal] Générerateur de salves de N impulsions de durée de $t_0 =  \SI{100}{\micro\second}$ avec une période de $T_0 = \SI{1}{\milli\second}$ espacées de $\tau = \SI{100}{\milli\second}$.
+	\item[Générateur de signal] Générateur de salves espacées de $\tau = \SI{100}{\milli\second}$ formée par $n_{pulse}$ impulsions de durée $t_0 =  \SI{100}{\micro\second}$ avec une période $T_0 = \SI{1}{\milli\second}$. 
 \item[LED driver] Sortie de puissance qui contrôle la LED IR.
 \item[Récepteur] Récepteur IR avec amplification et filtrage. La sortie est le signal digital des impulsions.
-\item[Décodeur] Circuit logique de décodage du nombre d'impulsions. La sortie est une impulsion d'environ 5 \si{\milli\second} pour chaque salve correcte reçue.
+\item[Décodeur] Circuit logique de décodage du nombre d'impulsions. La sortie est une impulsion de $t_{true} = \SI{5}{\milli\second}$ pour chaque salve correcte reçue.
 \item[Sortie] Circuit de détection d'interruption du signal avec commutation et du relais optique.
 \end{description}
 
@@ -62,7 +62,7 @@ Le système est divisé en 5 étages pour faciliter le développement et la test
 		$D_0$				& Duty cycle dans une salve & $10\%$	\\ \hline
 		$\tau$			& Période des slaves	& $\SI{0.1}{\second}$\\ \hline
 		$t_{miss}$  & Durée pour la détection d'une impulsion manquante & $\SI{1.8}{\milli\second}$ \\ \hline
-		$t_{true}$  & Durée signal une salve correcte & \\ \hline
+		$t_{true}$  & Durée signal une salve correcte & \SI{5}{\milli\second}\\ \hline
 	\end{tabular}
 \end{center}
 
@@ -71,14 +71,19 @@ Le système est divisé en 5 étages pour faciliter le développement et la test
 Le nombre d'impulsions $n_{pulse}$ a été fixé arbitrairement à 13. La période et le duty-cycle des impulsions sont dictés par ce que la LED infrarouge peut supporter (c.f. \ref{subsec:LED_driver}).
 
 \subsection{Générateur de signal}
-Le générateur de signal génère dans OUTPUT des salves de $n_{pulses}$ à une période $\tau$ en active high tant que celui-ci est alimenté à 3V. Les impulsions dans les salves ont une durée high $t_0$ et une période $T_0$. Le nombre d'impulsions et les durées ne sont pas garanties lorsque l'alimentation est retirée.
+Le générateur de signal génère dans OUTPUT des salves de $n_{pulses} = 13$ à une période $\tau = \SI{0.1}{\second}$ en active high tant que celui-ci est alimenté à 3V. Les impulsions dans les salves ont une durée high $t_0 = \SI{0.1}{\milli\second}$ et une période $T_0 = \SI{1.0}{\milli\second}$. Le nombre d'impulsions et les durées ne sont pas garanties lorsque l'alimentation est retirée.
 
 \begin{description}[leftmargin=!,labelwidth=3cm, labelindent=\parindent]
-	\item[Pulse timer] Génère des impulsions à hautes fréquences tant qu'il n'est pas RESET. Il est formé d'un timer TLC555 en configuration bascule astable. Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une capacité $\mathit{C16}$ choisie petite pour la simplicité et la limitation de la consommation.
+	\item[Pulse timer] Génère des impulsions à hautes fréquences tant qu'il n'est pas RESET. Il est formé d'un timer TLC555 en configuration bascule astable. Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une capacité $\mathit{C16} = \SI{100}{\nano F}$ choisie petite pour la simplicité et la limitation de la consommation.
 		\begin{equation*}
 			\begin{cases}
 				t_0 = 0.693(\mathit{R20}+\mathit{R23})\mathit{C16} \\
 				T_0 = 0.693(\mathit{R20}+2\mathit{R23})\mathit{C16} \\
+			\end{cases}
+			\quad\Rightarrow\quad
+			\begin{cases}
+				\mathit{R20} = \SI{12}{\kilo\ohm} \\
+				\mathit{R23} = \SI{1.5}{\kilo\ohm}
 			\end{cases}
 		\end{equation*}
 
@@ -89,11 +94,16 @@ Le générateur de signal génère dans OUTPUT des salves de $n_{pulses}$ à une
 
 	\item[Down counter] Compte le nombre d'impulsions reçues depuis son dernier RESET et maintient le RESET du pulse timer le bloquant ainsi lorsque $n_{pulse}$ impulsions ont été reçues. Il est formé d'un compteur HEF4526B \cite{HEF4526B}.
 
-	\item[Burst timer] Réinitialise le down counter à une période $\tau$ pour recommencer une salve. Il est formé d'un timer TLC555 en configuration bascule astable. Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une capacité $\mathi{C10}$ choisie petite pour la simplicité et la limitation de la consommation. La durée high doit être plus grand que la durée durée d'une salve.
+	\item[Burst timer] Réinitialise le down counter à une période $\tau = \SI{0.1}{\second}$ pour recommencer une salve. Il est formé d'un timer TLC555 en configuration bascule astable. Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une capacité $\mathi{C10} = \SI{100}{\nano F}$ choisie petite pour la simplicité et la limitation de la consommation. La durée high doit être plus grand que la durée durée d'une salve.
 		\begin{equation*}
 			\begin{cases}
 				\tau = 0.693(\mathit{R13}+2\mathit{R19})\mathit{C10} \\
 				n_{pulse}*\frac{T_0}{\tau} < \frac{\mathit{R13}+\mathit{R19}}{\mathit{R13}+2\mathit{19}} \\
+			\end{cases}
+		\quad\Rightarrow\quad
+			\begin{cases}
+				\mathit{R13} = \SI{556}{\kilo\ohm} \\
+				\mathit{R19} = \SI{467}{\kilo\ohm} \\
 			\end{cases}
 		\end{equation*}
 
@@ -107,15 +117,15 @@ Le générateur de signal génère dans OUTPUT des salves de $n_{pulses}$ à une
 
 \subsection{LED driver}
 \label{subsec:LED_driver}
-Le LED driver allume la LED infrarouge lorsque LED\_SIGNAL est high. Il assure une bonne émission de la LED sans l'endommager si le signal de 3V a une période $T_0$ avec un duty-cycle de 10\%.
+Le LED driver allume la LED infrarouge lorsque LED\_SIGNAL est high. Il assure une bonne émission de la LED sans l'endommager si le signal de 3V a une période $T_0 = \SI{1}{\milli\second}$ avec un duty-cycle $D_0 = 10\%$.
 
 La LED est une LD271(H). Selon son datasheet \cite{LD271(H)}, celle-ci accepte $\SI{1}{\ampere}$ durant $\SI{0.1}{\milli\second}$ toutes les $\SI{1.0}{\milli\second}$. Ce sont ses valeurs qui ont dicté le choix du signal. Le courant est limité par la résistance $\mathit{R14} = \SI{1}{\ohm}$. 
 La tension au borne de la résistance $\mathit{R14}$ a été mesurée pour vérifier que le courant dans la LED ne dépasse pas $\SI{1}{\ampere}$.
 L'alimentation se fait par le transistor NMOS IRLU8259\cite{IRLU8259} avec une faible tension Drain-Source.
 
-La capacité de découplage est dimensionnée pour limiter la baisse de tension à 0.3V pendant une impulsion de durée $t_0$ pour assurer la puissance de l'émission.
+La capacité de découplage est dimensionnée pour limiter la baisse de tension à 0.3V pendant une impulsion de durée $t_0 = \SI{0.1}{\milli\second}$ pour assurer la puissance de l'émission.
 \begin{equation*}
-	\mathit{C7} = \SI{1}{\ampere}\SI{100}{\micro\second}/\SI{0.3}{\volt} = \SI{333}{\micro\farad} \Rightarrow \SI{470}{\micro\farad}
+	\mathit{C7} \ge \frac{I_{max}*t_0}{\Delta V_{max}} = \frac{\SI{1}{\ampere}*\SI{100}{\micro\second}}{\SI{0.3}{\volt}} = \SI{333}{\micro\farad} \Rightarrow \SI{470}{\micro\farad}
 \end{equation*}
 
 % \begin{figure}[H]
@@ -129,9 +139,9 @@ Cet étage est composé de 3 sous-étages en série.
 \begin{description}[leftmargin=!,labelwidth=3cm, labelindent=\parindent]
 	\item[Convertisseur]
 		La photodiode génère un petit courant qui est converti en une tension par l'amplificateur opérationnel LMC6482\cite{LMC6482}.
-		La résistance R15 définit le gain et est assez élevée car le courant est relativement faible.
-		Dans le conditions de test, une valeur de \SI{1}{\mega\ohm} donnait les meilleures résultâts.
-		En outre, la capacité C8 de \SI{10}{\pico\farad} filtre le bruit de haute fréquences d'ordre de \SI{100}{\kilo Hz}.
+		La résistance $\mathit{R15}$ définit le gain et est assez élevée car le courant est relativement faible.
+		Dans le conditions de test, une valeur de $\SI{1}{\mega\ohm}$ donnait les meilleures résultâts.
+		En outre, la capacité $\mathit{C8} = \SI{10}{\pico\farad}$ filtre le bruit de haute fréquences d'ordre de $\SI{100}{\kilo Hz}$.
 
 		\begin{figure}[H]
 			\centering
@@ -139,18 +149,43 @@ Cet étage est composé de 3 sous-étages en série.
 		\end{figure}
 
 	\item[Amplificateur] Convertit le petit courant de la diode en tension tout en appliquant un filtre passe-bas.
+		\todo[inline]{wrong text at "Amplificateur"}
 
 		\begin{figure}[H]
 			\centering
 			\includegraphics[width=0.4\textwidth]{fig/amplifier.pdf}
 		\end{figure}
 
-\item[Schmitt trigger] Génère un signal carré avec 2 seuils en tension: $V_+ = \SI{4.05}{\volt}$ et $V_- = \SI{2.02}{\volt}$. Les valeurs des seuils ont été choisis arbitrairement pour être comprises entre $\SI{0}{\volt}$ et $\SI{5}{\volt}$ et supérieur au bruit. Le choix des résistance ayant un degrés de liberté ont été choisie relativement grande pour diminuer la consommation.
+	\item[Schmitt trigger] Génère un signal carré avec 2 seuils: $V_+ = \SI{4.05}{\volt}$ et $V_- = \SI{2.02}{\volt}$. Les valeurs de ces seuils ont été choisis arbitrairement pour être comprises entre $\SI{0}{\volt}$ et $\SI{5}{\volt}$ et supérieures au bruit. Le choix des résistances ayant un degrés de liberté, celles-ci ont été choisies relativement grandes pour diminuer la consommation. La résistance $\mathit{R21}$ n'est qu'une résistance de pull-up choisie à $\SI{10}{\kilo\ohm}$.
+	\todo[inline]{R21 vraiment utiles?}	
 	\begin{equation*}
 		\begin{cases}
 			V_+ = \frac{1}{1+\frac{\mathit{R9}*\mathit{R11}}{\mathit{R10}*(\mathit{R9+\mathit{R11})}}} \\
 			V_- = \frac{1}{1+\frac{\mathit{R9}*(\mathit{R10}+\mathit{R11})}{\mathit{R10}*\mathit{R11}}} \\
 		\end{cases}
+		\Rightarrow\quad
+		\begin{cases}
+			\mathit{R9}  = \SI{4.7}{\kilo\ohm} \\
+			\mathit{R10} = \SI{10.0}{\kilo\ohm} \\
+			\mathit{R11} = \SI{4.7}{\kilo\ohm} \\
+		\end{cases}
+		\end{equation*}
+
+        \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.3\textwidth]{fig/pulse_timer.pdf}
+        \end{figure}
+
+	\item[Down counter] Compte le nombre d'impulsions reçues depuis son dernier RESET et maintient le RESET du pulse timer le bloquant ainsi lorsque $n_{pulse}$ impulsions ont été reçues. Il est formé d'un compteur HEF4526B \cite{HEF4526B}.
+
+	\item[Burst timer] Réinitialise le down counter à une période $\tau = \SI{0.1}{\second}$ pour recommencer une salve. Il est formé d'un timer TLC555 en configuration bascule astable. Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une capacité $\mathi{C10} = \SI{100}{\nano F}$ choisie petite pour la simplicité et la limitation de la consommation. La durée high doit être plus grand que la durée durée d'une salve.
+		\begin{equation*}
+			\begin{cases}
+				\tau = 0.693(\mathit{R13}+2\mathit{R19})\mathit{C10} \\
+				n_{pulse}*\frac{T_0}{\tau} < \frac{\mathit{R13}+\mathit{R19}}{\mathit{R13}+2\mathit{19}} \\
+			\end{cases}
+		\quad\
+		\
 	\end{equation*}
 
 		\begin{figure}[H]
@@ -163,17 +198,19 @@ Cet étage est composé de 3 sous-étages en série.
 Le décodeur à 3 fonctions:
 
 \begin{description}[leftmargin=!,labelwidth=4cm, labelindent=\parindent]
-	\item[Down counter] Signal si $n_{pulse}$ ont été reçus par la tension d'entrée depuis son dernier RESET.
-	\item[Missing pulse detector] Signal et reset le down counter après un certain délais si la tension d'entrée est maintenue \emph{high} pendant au moins $t_{miss} = \SI{1.8}{\milli\second}$ après la fin d'une impulsion. La durée $t_{miss}$ a été arbitrairement choisie pour être supérieur à $t_0 = \SI{1}{\milli\second}$ mais inférieur à $2t_0$. Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une capacité $\mathit{C3} = \SI{100}{\nano F}$ choisie petite pour la simplicité et la limitation de la consommation.
+	\item[Down counter] Signal si $n_{pulse}$ impulsions ont été reçues par la tension d'entrée depuis son dernier RESET.
+	\item[Missing pulse detector] Signal et reset le down counter après un certain $t_{true} = \SI{5}{\milli\second}$ délais si la tension d'entrée est maintenue \emph{high} pendant au moins $t_{miss} = \SI{1.8}{\milli\second}$ après la fin d'une impulsion. La durée $t_{miss}$ a été arbitrairement choisie pour être supérieur à $t_0 = \SI{1}{\milli\second}$ mais inférieur à $2t_0$. Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une capacité $\mathit{C3} = \SI{100}{\nano F}$ choisie petite pour la simplicité et la limitation de la consommation.
 
 		\begin{equation*}
-			t_{miss} = \mathit{R7}*\mathit{C3}
+			t_{miss} = \mathit{R7}*\mathit{C3} \quad\Rightarrow\quad \mathit{R7} = \SI{18}{\kilo\ohm}
 		\end{equation*}
 
 		\begin{figure}[H]
 			\centering
 			\includegraphics[width=0.4\textwidth]{fig/decoder_reset_delay.pdf}
 		\end{figure}
+
+		\todo[inline]{fig decoder_reset_delay goto Logic and put fig missing pulse detector instead}
 
 	\item[Logic] Met OUTPUT à high si les conditions d'une salve correcte sont remplie. Si $n_{pulse}$ impulsions ont été reçues et que une impulsion manquante est signalée, alors OUTPUT est mis à high. 
 
