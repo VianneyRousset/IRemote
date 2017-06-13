@@ -34,14 +34,14 @@ permettant d'enclencher et déclencher un relais optique.
 Le système est divisé en 5 étages pour faciliter le développement et la testabilité:
 
 \begin{description}[leftmargin=!,labelwidth=4cm, labelindent=\parindent]
-	\item[Générateur de signal] Générerateur de salves de N pulses de durée de $t_0 =  \SI{100}{\micro\second}$ avec une période de $T_0 = \SI{1}{\milli\second}$ espacées de $\tau = \SI{100}{\milli\second}$.
+	\item[Générateur de signal] Générerateur de salves de N impulsions de durée de $t_0 =  \SI{100}{\micro\second}$ avec une période de $T_0 = \SI{1}{\milli\second}$ espacées de $\tau = \SI{100}{\milli\second}$.
 \item[LED driver] Sortie de puissance qui contrôle la LED IR.
-\item[Récepteur] Récepteur IR avec amplification et filtrage. La sortie est le signal digital des pulses.
-\item[Décodeur] Circuit logique de décodage du nombre de pulses. La sortie est un pulse d'environ 5 \si{\milli\second} pour chaque salve correcte reçue.
+\item[Récepteur] Récepteur IR avec amplification et filtrage. La sortie est le signal digital des impulsions.
+\item[Décodeur] Circuit logique de décodage du nombre d'impulsions. La sortie est une impulsion d'environ 5 \si{\milli\second} pour chaque salve correcte reçue.
 \item[Sortie] Circuit de détection d'interruption du signal avec commutation et du relais optique.
 \end{description}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \vspace{5mm}
 \includegraphics[width=\textwidth]{fig/IRemote_schema_structure}
@@ -56,13 +56,13 @@ Le système est divisé en 5 étages pour faciliter le développement et la test
 \begin{center}
 	\begin{tabular}{| c | l | l |}
 		\hline
-		$n_{pulse}$	& Nombre de pulses dans une salve (addressage) & $13$ \\ \hline
-		$t_0$				& Durée high d'un pulse	& $\SI{0.1}{\milli\second}$	\\ \hline
-		$T_0$				& Période des pulse	& $\SI{1.0}{\milli\second}$	\\ \hline
+		$n_{pulse}$	& Nombre d'impulsion dans une salve (addressage) & $13$ \\ \hline
+		$t_0$				& Durée high d'une impulsion & $\SI{0.1}{\milli\second}$	\\ \hline
+		$T_0$				& Période des impulsions& $\SI{1.0}{\milli\second}$	\\ \hline
 		$D_0$				& Duty cycle dans une salve & $10\%$	\\ \hline
 		$\tau$			& Période des slaves	& $\SI{0.1}{\second}$\\ \hline
 		$t_{miss}$  & Durée pour la détection d'une impulsion manquante & $\SI{1.8}{\milli\second}$ \\ \hline
-		$t_{true}$  & Durée du pulse signal une salve correcte & \\ \hline
+		$t_{true}$  & Durée signal une salve correcte & \\ \hline
 	\end{tabular}
 \end{center}
 
@@ -71,7 +71,7 @@ Le système est divisé en 5 étages pour faciliter le développement et la test
 Le nombre d'impulsions $n_{pulse}$ a été fixé arbitrairement à 13. La période et le duty-cycle des impulsions sont dictés par ce que la LED infrarouge peut supporter (c.f. \ref{subsec:LED_driver}).
 
 \subsection{Générateur de signal}
-Le générateur de signal génère dans OUTPUT des salves de $n_{pulses}$ à une période $\tau$ en active high tant que celui-ci est alimenté à 3V. Les pulses dans les salves ont une durée high $t_0$ et une période $T_0$. Le nombre de pulses et les durées ne sont pas garanties lorsque l'alimentation est retirée.
+Le générateur de signal génère dans OUTPUT des salves de $n_{pulses}$ à une période $\tau$ en active high tant que celui-ci est alimenté à 3V. Les impulsions dans les salves ont une durée high $t_0$ et une période $T_0$. Le nombre d'impulsions et les durées ne sont pas garanties lorsque l'alimentation est retirée.
 
 \begin{description}[leftmargin=!,labelwidth=3cm, labelindent=\parindent]
 	\item[Pulse timer] Génère des impulsions à hautes fréquences tant qu'il n'est pas RESET. Il est formé d'un timer TLC555 en configuration bascule astable. Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une capacité $\mathit{C16}$ choisie petite pour la simplicité et la limitation de la consommation.
@@ -82,13 +82,14 @@ Le générateur de signal génère dans OUTPUT des salves de $n_{pulses}$ à une
 			\end{cases}
 		\end{equation*}
 
-        \begin{figure}[h]
+        \begin{figure}[H]
         \centering
         \includegraphics[width=0.3\textwidth]{fig/pulse_timer.pdf}
         \end{figure}
 
-	\item[Down counter] Compte le nombre de pulses reçus depuis son dernier RESET et maintient le RESET du pulse timer le bloquant ainsi lorsque $n_{pulse}$ pulses ont été reçu. Il est formé d'un compteur HEF4526B \cite{HEF4526B}.
-	\item[Burst timer] Réinitialise le decounter à une période $\tau$ pour recommencer une salve. Il est formé d'un timer TLC555 en configuration bascule astable. Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une petite capacité pour la simplicité et la limitation de la consommation. La durée high doit être plus grand que la durée durée d'une salve.
+	\item[Down counter] Compte le nombre d'impulsions reçues depuis son dernier RESET et maintient le RESET du pulse timer le bloquant ainsi lorsque $n_{pulse}$ impulsions ont été reçues. Il est formé d'un compteur HEF4526B \cite{HEF4526B}.
+
+	\item[Burst timer] Réinitialise le down counter à une période $\tau$ pour recommencer une salve. Il est formé d'un timer TLC555 en configuration bascule astable. Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une capacité $\mathi{C10}$ choisie petite pour la simplicité et la limitation de la consommation. La durée high doit être plus grand que la durée durée d'une salve.
 		\begin{equation*}
 			\begin{cases}
 				\tau = 0.693(\mathit{R13}+2\mathit{R19})\mathit{C10} \\
@@ -96,7 +97,7 @@ Le générateur de signal génère dans OUTPUT des salves de $n_{pulses}$ à une
 			\end{cases}
 		\end{equation*}
 
-        \begin{figure}[h]
+        \begin{figure}[H]
         \centering
         \includegraphics[width=0.3\textwidth]{fig/burst_timer.pdf}
         \end{figure}
@@ -112,12 +113,12 @@ La LED est une LD271(H). Selon son datasheet \cite{LD271(H)}, celle-ci accepte $
 La tension au borne de la résistance $\mathit{R14}$ a été mesurée pour vérifier que le courant dans la LED ne dépasse pas $\SI{1}{\ampere}$.
 L'alimentation se fait par le transistor NMOS IRLU8259\cite{IRLU8259} avec une faible tension Drain-Source.
 
-La capacité de découplage est dimensionnée pour limiter la baisse de tension à 0.3V pendant un pulse de durée $t_0$ pour assurer la puissance de l'émission.
+La capacité de découplage est dimensionnée pour limiter la baisse de tension à 0.3V pendant une impulsion de durée $t_0$ pour assurer la puissance de l'émission.
 \begin{equation*}
 	\mathit{C7} = \SI{1}{\ampere}\SI{100}{\micro\second}/\SI{0.3}{\volt} = \SI{333}{\micro\farad} \Rightarrow \SI{470}{\micro\farad}
 \end{equation*}
 
-% \begin{figure}[h]
+% \begin{figure}[H]
 % \centering
 % \includegraphics[width=0.3\textwidth]{fig/ir_led.pdf}
 % \end{figure}
@@ -126,32 +127,36 @@ La capacité de découplage est dimensionnée pour limiter la baisse de tension 
 Cet étage est composé de 3 sous-étages en série.
 
 \begin{description}[leftmargin=!,labelwidth=3cm, labelindent=\parindent]
-    \item[Convertisseur]
-        La photodiode génère un petit courant qui est converti en une tension par l'amplificateur opérationnel LMC6482\cite{LMC6482}.
-        La résistance R15 définit le gain et est assez élevée car le courant est relativement faible.
-        Dans le conditions de test, une valeur de \SI{1}{\mega\ohm} donnait les meilleures résultâts.
-        En outre, la capacité C8 de \SI{10}{\pico\farad} filtre le bruit de haute fréquences d'ordre de \SI{100}{\kilo Hz}.
+	\item[Convertisseur]
+		La photodiode génère un petit courant qui est converti en une tension par l'amplificateur opérationnel LMC6482\cite{LMC6482}.
+		La résistance R15 définit le gain et est assez élevée car le courant est relativement faible.
+		Dans le conditions de test, une valeur de \SI{1}{\mega\ohm} donnait les meilleures résultâts.
+		En outre, la capacité C8 de \SI{10}{\pico\farad} filtre le bruit de haute fréquences d'ordre de \SI{100}{\kilo Hz}.
 
-        \begin{figure}[h]
-        \centering
-        \includegraphics[width=0.4\textwidth]{fig/current_to_voltage_converter.pdf}
-        \end{figure}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.4\textwidth]{fig/current_to_voltage_converter.pdf}
+		\end{figure}
 
-    \item[Amplificateur] Convertit le petit courant de la diode en tension tout en appliquant un filtre passe-bas.
+	\item[Amplificateur] Convertit le petit courant de la diode en tension tout en appliquant un filtre passe-bas.
 
-        \begin{figure}[h]
-        \centering
-        \includegraphics[width=0.4\textwidth]{fig/amplifier.pdf}
-        \end{figure}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.4\textwidth]{fig/amplifier.pdf}
+		\end{figure}
 
-    \item[Schmitt trigger] Génère un signal carré avec 2 seuils en tension: $V_+$ et $V_-$
+\item[Schmitt trigger] Génère un signal carré avec 2 seuils en tension: $V_+ = \SI{4.05}{\volt}$ et $V_- = \SI{2.02}{\volt}$. Les valeurs des seuils ont été choisis arbitrairement pour être comprises entre $\SI{0}{\volt}$ et $\SI{5}{\volt}$ et supérieur au bruit. Le choix des résistance ayant un degrés de liberté ont été choisie relativement grande pour diminuer la consommation.
+	\begin{equation*}
+		\begin{cases}
+			V_+ = \frac{1}{1+\frac{\mathit{R9}*\mathit{R11}}{\mathit{R10}*(\mathit{R9+\mathit{R11})}}} \\
+			V_- = \frac{1}{1+\frac{\mathit{R9}*(\mathit{R10}+\mathit{R11})}{\mathit{R10}*\mathit{R11}}} \\
+		\end{cases}
+	\end{equation*}
 
-        TODO: définir les valeurs V+ et V-
-
-        \begin{figure}[h]
-        \centering
-        \includegraphics[width=0.4\textwidth]{fig/schmitt_trigger.pdf}
-        \end{figure}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.4\textwidth]{fig/schmitt_trigger.pdf}
+		\end{figure}
 \end{description}
 
 \subsection{Décodeur}
@@ -159,41 +164,39 @@ Le décodeur à 3 fonctions:
 
 \begin{description}[leftmargin=!,labelwidth=4cm, labelindent=\parindent]
 	\item[Down counter] Signal si $n_{pulse}$ ont été reçus par la tension d'entrée depuis son dernier RESET.
-	\item[Missing pulse detector] Signal et reset le decounter après un certain délais si la tension d'entrée est maintenue \emph{high} pendant au moins $t_{miss} = \SI{1.8}{\milli\second}$ après la fin d'un pulse. La durée $t_{miss}$ a été arbitrairement choisie pour être supérieur à $t_0 = \SI{1}{\milli\second}$ mais inférieur à $2t_0$. Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une capacité $\mathit{C3} = \SI{100}{\nano F}$ choisie petite pour la simplicité et la limitation de la consommation.
+	\item[Missing pulse detector] Signal et reset le down counter après un certain délais si la tension d'entrée est maintenue \emph{high} pendant au moins $t_{miss} = \SI{1.8}{\milli\second}$ après la fin d'une impulsion. La durée $t_{miss}$ a été arbitrairement choisie pour être supérieur à $t_0 = \SI{1}{\milli\second}$ mais inférieur à $2t_0$. Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une capacité $\mathit{C3} = \SI{100}{\nano F}$ choisie petite pour la simplicité et la limitation de la consommation.
 
 		\begin{equation*}
 			t_{miss} = \mathit{R7}*\mathit{C3}
 		\end{equation*}
 
-        \begin{figure}[h]
-        \centering
-        \includegraphics[width=0.4\textwidth]{fig/decoder_reset_delay.pdf}
-        \end{figure}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.4\textwidth]{fig/decoder_reset_delay.pdf}
+		\end{figure}
 
 	\item[Logic] Met OUTPUT à high si les conditions d'une salve correcte sont remplie. Si $n_{pulse}$ impulsions ont été reçues et que une impulsion manquante est signalée, alors OUTPUT est mis à high. 
 
         La logique de sortie est réalisée en NOR gate comme suivant:
         \begin{align*}
-        \text{Sortie} & = \text{"bon nombre de pulses"} \land \text{"fin de salve"} \\
-        & = \overline{\overline{\text{"bon nombre de pulses"}} \lor \overline{\text{"fin de salve"}}}
+        \text{Sortie} & = \text{"bon nombre d'impulsions"} \land \text{"fin de salve"} \\
+        & = \overline{\overline{\text{"bon nombre d'impulsions"}} \lor \overline{\text{"fin de salve"}}}
         \end{align*}
 
 \end{description}
 
 \subsection{Sortie}
 
-\todo[inline]{pause = lâchement de bouton, comment on veut nommer cette partie? -> Déclencheur?}
-
 \begin{description}[leftmargin=!,labelwidth=4cm, labelindent=\parindent]
 	\item[Détecteur d'interruption] TODO: valeurs de R et C
 
-    \begin{figure}[h]
+    \begin{figure}[H]
     \centering
     \includegraphics[width=0.4\textwidth]{fig/interrupt_detect.pdf}
     \end{figure}
 
     \item[Commutateur] TODO: Ce D-flip-flop qui toggle la LED chaque flanc montant...
-    % \begin{figure}[h]
+    % \begin{figure}[H]
     % \centering
     % \includegraphics[width=0.4\textwidth]{fig/commutator.pdf}
     % \end{figure}
@@ -207,7 +210,7 @@ Le décodeur à 3 fonctions:
     R_{LED} = (5V - V_{CEsat} - V_{forward})/\SI{20}{\milli\ampere} = \SI{145}{\ohm} \Rightarrow \SI{150}{\ohm}
     \end{equation*}
 
-    % \begin{figure}[h]
+    % \begin{figure}[H]
     % \centering
     % \includegraphics[width=0.2\textwidth]{fig/output_led.pdf}
     % \end{figure}
@@ -215,13 +218,13 @@ Le décodeur à 3 fonctions:
 \end{description}
 \subsection{Mesures}
 
-Dans figure \ref{fig:decoder_signal} on voit le fonctionnement du détecteur avec différent nombres de pulses.
-Dans la mesure au milieu le décodeur détecté correctement les 13 pulses et la combinaison logique
-du signal du détecteur de pulse manquant et du compteur de pulses donne un signal de sortie (en vert).
-Dans le cas où le mauvais nombre  de pulses (12 pulese dans la mesrue à gauche et 14 pulese à droite)
+Dans figure \ref{fig:decoder_signal} on voit le fonctionnement du détecteur avec différent nombres d'impulsions.
+Dans la mesure au milieu le décodeur détecté correctement les 13 impulsions et la combinaison logique
+du signal du détecteur d'impulsion manquant et du compteur d'impulsion donne un signal de sortie (en vert).
+Dans le cas où le mauvais nombre  d'impulsions (12 impulsions dans la mesure à gauche et 14 impulsions à droite)
 arrive à l'entrée il n'y a pas de signal à la sortie.
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.3\textwidth]{../measurements/SCR03}
 \caption{
@@ -233,21 +236,21 @@ arrive à l'entrée il n'y a pas de signal à la sortie.
 \label{fig:filter_signal}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.3\textwidth]{../measurements/SCR06}
 \includegraphics[width=0.3\textwidth]{../measurements/SCR07}
 \includegraphics[width=0.3\textwidth]{../measurements/SCR08}
 \caption{
 \textcolor{yellow}{$\blacksquare$} Signal d'entrée,
-\textcolor{blue}{$\blacksquare$} Détecteur de pulse manquant,
-\textcolor{magenta}{$\blacksquare$} Compteur de pulse,
+\textcolor{blue}{$\blacksquare$} Détecteur d'impulsion manquant,
+\textcolor{magenta}{$\blacksquare$} Compteur d'impulsions,
 \textcolor{green}{$\blacksquare$} Sortie
 }
 \label{fig:decoder_signal}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.3\textwidth]{../measurements/SCR12}
 \caption{
