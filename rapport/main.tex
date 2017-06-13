@@ -208,10 +208,11 @@ Cet étage est composé de 3 sous-étages en série.
 \subsection{Décodeur}
 Le décodeur à 3 fonctions:
 
-\todo[inline]{le reset du missing pulse detector est un détecteur de flanc déscendant}
 \begin{description}[leftmargin=!,labelwidth=4cm, labelindent=\parindent]
 	\item[Down counter]
-        Signal si $n_{pulse}$ impulsions ont été reçues par la tension d'entrée depuis son dernier RESET.
+        Signal si $n_{pulse}$ impulsions ont été reçues depuis son dernier RESET.
+        Le compteur est implementé par le compteur 4bit HEF4526B \cite{HEF4526B}.
+
 	\item[Missing pulse detector]
         Signal et reset le down counter après un certain $t_{true} = \SI{5}{\milli\second}$ délais si la tension d'entrée est maintenue \emph{high} pendant au moins $t_{miss} = \SI{1.8}{\milli\second}$ après la fin d'une impulsion.
         La durée $t_{miss}$ a été arbitrairement choisie pour être supérieur à $t_0 = \SI{1}{\milli\second}$ mais inférieur à $2t_0$.
@@ -237,7 +238,14 @@ Le décodeur à 3 fonctions:
         & = \overline{\overline{\text{"bon nombre d'impulsions"}} \lor \overline{\text{"fin de salve"}}}
         \end{align*}
 
-        \todo[inline]{expliquer et dimensionner reset logic avec RC pour reset delay...}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.4\textwidth]{fig/decoder_output_logic.pdf}
+        \end{figure}
+
+        La sortie du \textit{Missing pulse detector} est relié à l'entrée de RESET \textit{Down counter}
+        à travers un détecteur de flanc déscendant et un circuit de délai réalisé par des gate NOR et des filtres RC.
+        Les valeurs de R et C ont été choisi pour avoir un délai et un pulse de RESET d'ordre de $\SI{1}{\milli\second}$.
         \begin{figure}[H]
             \centering
             \includegraphics[width=0.4\textwidth]{fig/decoder_reset_delay.pdf}
