@@ -169,22 +169,20 @@ Cet étage est composé de 3 sous-étages en série.
 		\end{figure}
 
 	\item[Schmitt trigger]
-        \todo[inline]{valeurs V+ et V- sont pas correctes (c'est pas plutot millivolt?)}
-        Génère un signal carré avec 2 seuils: $V_+ = \SI{4.05}{\volt}$ et $V_- = \SI{2.02}{\volt}$.
+        Génère un signal carré avec 2 seuils: $V_+ = \SI{1}{\milli\volt}$ et $V_- = \SI{10}{\milli\volt}$.
         Les valeurs de ces seuils ont été choisis arbitrairement pour être comprises entre $\SI{0}{\volt}$ et $\SI{5}{\volt}$ et supérieures au bruit.
         Le choix des résistances ayant un degrés de liberté, celles-ci ont été choisies relativement grandes pour diminuer la consommation.
-        Le Schmitt trigger a été réalisé par le comparateur LM393\cite{LM393} qui requiert une résistance de pull-up $\mathit{R21}$ de $\SI{10}{\kilo\ohm}$.
-        \todo[inline]{ce calcul me semble pas correcte (unités?)}
-    	\begin{equation*}
+        Le Schmitt trigger a été réalisé par le comparateur LM393 \cite{LM393} qui requiert une résistance de pull-up $\mathit{R21}$ de $\SI{10}{\kilo\ohm}$.
+        	\begin{equation*}
     		\begin{cases}
-    			V_+ = \frac{1}{1+\frac{\mathit{R9}*\mathit{R11}}{\mathit{R10}*(\mathit{R9+\mathit{R11})}}} \\
-    			V_- = \frac{1}{1+\frac{\mathit{R9}*(\mathit{R10}+\mathit{R11})}{\mathit{R10}*\mathit{R11}}} \\
+    			V_- = \frac{1}{1+\frac{\mathit{R9}*\mathit{R11}}{\mathit{R10}*(\mathit{R9+\mathit{R11})}}}*\SI{5}{\volt} \\
+    			V_+ = \frac{1}{1+\frac{\mathit{R9}*(\mathit{R10}+\mathit{R11})}{\mathit{R10}*\mathit{R11}}}*\SI{5}{\volt} \\
     		\end{cases}
     		\Rightarrow\quad
     		\begin{cases}
-    			\mathit{R9}  = \SI{4.7}{\kilo\ohm} \\
-    			\mathit{R10} = \SI{10.0}{\kilo\ohm} \\
-    			\mathit{R11} = \SI{4.7}{\kilo\ohm} \\
+    			\mathit{R9}  = \SI{4.7}{\mega\ohm} \\
+    			\mathit{R10} = \SI{10}{\kilo\ohm} \\
+    			\mathit{R11} = \SI{4.7}{\mega\ohm} \\
     		\end{cases}
     		\end{equation*}
 
