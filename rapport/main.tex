@@ -94,7 +94,7 @@ Le générateur de signal génère dans OUTPUT des salves de $n_{pulses} = 13$ �
 
 	\item[Down counter] Compte le nombre d'impulsions reçues depuis son dernier RESET et maintient le RESET du pulse timer le bloquant ainsi lorsque $n_{pulse}$ impulsions ont été reçues. Il est formé d'un compteur HEF4526B \cite{HEF4526B}.
 
-	\item[Burst timer] Réinitialise le down counter à une période $\tau = \SI{0.1}{\second}$ pour recommencer une salve. Il est formé d'un timer TLC555 en configuration bascule astable. Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une capacité $\mathi{C10} = \SI{100}{\nano F}$ choisie petite pour la simplicité et la limitation de la consommation. La durée high doit être plus grand que la durée durée d'une salve.
+	\item[Burst timer] Réinitialise le down counter à une période $\tau = \SI{0.1}{\second}$ pour recommencer une salve. Il est formé d'un timer TLC555 en configuration bascule astable. Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une capacité $\mathit{C10} = \SI{100}{\nano F}$ choisie petite pour la simplicité et la diminution de la consommation. La durée high doit être plus grand que la durée durée d'une salve.
 		\begin{equation*}
 			\begin{cases}
 				\tau = 0.693(\mathit{R13}+2\mathit{R19})\mathit{C10} \\
@@ -178,7 +178,7 @@ Cet étage est composé de 3 sous-étages en série.
 
 	\item[Down counter] Compte le nombre d'impulsions reçues depuis son dernier RESET et maintient le RESET du pulse timer le bloquant ainsi lorsque $n_{pulse}$ impulsions ont été reçues. Il est formé d'un compteur HEF4526B \cite{HEF4526B}.
 
-	\item[Burst timer] Réinitialise le down counter à une période $\tau = \SI{0.1}{\second}$ pour recommencer une salve. Il est formé d'un timer TLC555 en configuration bascule astable. Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une capacité $\mathi{C10} = \SI{100}{\nano F}$ choisie petite pour la simplicité et la limitation de la consommation. La durée high doit être plus grand que la durée durée d'une salve.
+	\item[Burst timer] Réinitialise le down counter à une période $\tau = \SI{0.1}{\second}$ pour recommencer une salve. Il est formé d'un timer TLC555 en configuration bascule astable. Les dimensionnements sont fait selon le datasheet \cite{TLC555} avec une capacité $\mathit{C10} = \SI{100}{\nano F}$ choisie petite pour la simplicité et la limitation de la consommation. La durée high doit être plus grand que la durée durée d'une salve.
 		\begin{equation*}
 			\begin{cases}
 				\tau = 0.693(\mathit{R13}+2\mathit{R19})\mathit{C10} \\
@@ -210,7 +210,7 @@ Le décodeur à 3 fonctions:
 			\includegraphics[width=0.4\textwidth]{fig/decoder_reset_delay.pdf}
 		\end{figure}
 
-		\todo[inline]{fig decoder_reset_delay goto Logic and put fig missing pulse detector instead}
+		\todo[inline]{fig decoder\_reset\_delay goto Logic and put fig missing pulse detector instead}
 
 	\item[Logic] Met OUTPUT à high si les conditions d'une salve correcte sont remplie. Si $n_{pulse}$ impulsions ont été reçues et que une impulsion manquante est signalée, alors OUTPUT est mis à high. 
 
